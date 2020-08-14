@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'students',
+    'studentinterface',
 ]
 
 MIDDLEWARE = [
@@ -75,8 +77,11 @@ WSGI_APPLICATION = 'acader.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'ACADERproject',
+        'USER': 'postgres',
+        'PASSWORD': '123',
+        'HOST': 'localhost'
     }
 }
 
@@ -118,3 +123,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+AUTH_USER_MODEL = 'students.CustomUser'
