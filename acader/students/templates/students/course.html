@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Registration Form</title>
+	<link rel="stylesheet" href="{% static 'css/course.css' %}">
+</head>
+<body>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div class="wrapper">
+            <div class="title">
+              Course Form
+            </div>
+            <div class="form">
+                <div class="inputfield">
+                  <label id="grade">Grade</label>
+                  <div class="custom_select">
+                    <select name="grade">
+                      <option value="">Select</option>
+                      <option value="11">11</option>
+                      <option value="12">12</option>
+                    </select>
+                  </div>
+               </div>
+               <div class="inputfield">
+                <label id="faculty">Faculty</label>
+                <div class="custom_select">
+                  <select name="faculty">
+                    <option value="">Select</option>
+                    <option value="Science">Science</option>
+                    <option value="Management">Management</option>
+                  </select>
+                </div>
+             </div>
+             <div class="inputfield">
+                <label id="course_name">Course</label>
+                <div class="custom_select">
+                  <select name="course_name">
+                    <option value="">Select</option>
+                    <option value="Economics" id="management11">Economics-11mg</option>
+                    <option value="English" id="management11">English-11mg</option>
+                    <option value="Hotel management" id="management11">Hotel management-11mg</option>
+                    <option value="Nepali" id="management11">Nepali-11mg</option>
+                    <option value="Principle of accounting" id="management11">Principle of accounting-11mg</option>
+                    <option value="Biology" id="science11">Biology-11sc</option>
+                    <option value="Chemistry" id="science11">Chemistry-11sc</option>
+                    <option value="Computer" id="science11">Computer-11sc</option>
+                    <option value="English" id="science11">English-11sc</option>
+                    <option value="Mathematics" id="science11">Mathematics-11sc</option>
+                    <option value="Physics" id="science11">Physics-11sc</option>
+                    <option value="Business mathematics" id="management12">Business mathematics-12mg</option>
+                    <option value="Economics" id="management12">Economics-12mg</option>
+                    <option value="English" id="management12">English-12mg</option>
+                    <option value="Hotel management" id="management12">Hotel management-12mg</option>
+                    <option value="Marketing" id="management12">Marketing-12mg</option>
+                    <option value="Principle of accounting" id="management12">Principle of accounting-12mg</option>
+                    <option value="Biology" id="science12">Biology-12sc</option>
+                    <option value="Chemistry" id="science12">Chemistry-12sc</option>
+                    <option value="English" id="science12">English-12sc</option>
+                    <option value="Mathematics" id="science12">Mathematics-12sc</option>
+                    <option value="Nepali" id="science12">Nepali-12sc</option>
+                    <option value="Physics" id="science12">Physics-12sc</option>
+                  </select>
+                </div>
+             </div>
+             <div class="inputfield">
+                <label id="pass_marks">Pass Marks</label>
+                <div class="custom_select">
+                  <select name="pass_marks">
+                    <option value="">Select</option>
+                    <option value="24" id="24">24</option>
+                    <option value="32" id="32">32</option>
+                    <option value="40" id="40">40</option>
+                  </select>
+                </div>
+             </div>
+             <div class="inputfield">
+                <label id="total_marks">Full Marks</label>
+                <div class="custom_select">
+                  <select name="total_marks">
+                    <option value="">Select</option>
+                    <option value="60" id="60">60</option>
+                    <option value="80" id="80">80</option>
+                    <option value="100" id="100">100</option>
+                  </select>
+                </div>
+             </div>
+              <!-- <div class="inputfield terms">
+                  <label class="check">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                  </label>
+                  <p>Agreed to terms and conditions</p>
+               </div>  -->
+              <div class="inputfield">
+                <button type="submit" value="Register" class="btn">Register</button>
+              </div>
+                <div class="container">
+                  {% if messages %}
+                    {% for message in messages %}
+                        {% if message.tags == 'warning' %}
+                            <div class="alert alert-danger" style="margin-top:10px"><strong>{{ message }}</strong></div>
+                        {% endif %}
+                        {% if message.tags == 'success' %}
+                            <div class="alert alert-success" style="margin-top:10px">{{ message }} <a href="{% url 'home' %}">Go back</a> </div>
+                        {% endif %}
+                    {% endfor %}
+                  {% endif %}
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
