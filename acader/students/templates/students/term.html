@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Term-register</title>
+    <link rel="stylesheet" href="{% static 'css/teachersign.css' %}">
+</head>
+<body>
+        <div class="registerform">
+                <h1>Term Registration</h1>
+
+                <form action="" method="POST">
+                    {% csrf_token %}
+
+                    <div class="field">
+                        <input type="text" id="terms_name" name="terms_name" placeholder="Terms_Name" required />
+                        <label for="terms_name">Terms_Name</label>
+                    </div>
+
+                    <button type="submit" class="button">Register</button>
+
+                </form>
+                <div class="container">
+                  {% if messages %}
+                    {% for message in messages %}
+                        {% if message.tags == 'warning' %}
+                            <div class="alert alert-danger" style="margin-top:10px"><strong>{{ message }}</strong></div>
+                        {% endif %}
+                        {% if message.tags == 'success' %}
+                            <div class="alert alert-success" style="margin-top:10px">{{ message }} <a href="{% url 'home' %}">Go back</a> </div>
+                        {% endif %}
+                    {% endfor %}
+                  {% endif %}
+                </div>
+            </div>
+
+</body>
+</html>

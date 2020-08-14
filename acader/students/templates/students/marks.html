@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Marks-Register Form</title>
+	<link rel="stylesheet" href="{% static 'css/course.css' %}">
+</head>
+<body>
+<form action="" method="POST">
+    {% csrf_token %}
+<div class="wrapper">
+    <div class="title">
+      Marks Form
+    </div>
+    <div class="form">
+        <div class="inputfield">
+          <label>Student Name</label>
+          <div class="custom_select">
+            <select name="students">
+                <option value="">-----</option>
+                {% for student in students_model %}
+                     <option value="{{student.id}}">{{student.first_name}} {{student.last_name}}</option>
+                {% endfor %}
+            </select>
+          </div>
+       </div>
+
+        <div class="inputfield">
+          <label>Current Grade</label>
+          <div class="custom_select">
+            <select name="grade">
+                <option value="">-----</option>
+                {% for g in grade_model %}
+                     <option value="{{g.id}}">{{g.grade1}}</option>
+                {% endfor %}
+            </select>
+          </div>
+       </div>
+
+        <div class="inputfield">
+          <label>Faculty</label>
+          <div class="custom_select">
+            <select name="faculty">
+                <option value="">-----</option>
+                {% for f in faculty_model %}
+              <option value="{{f.id}}">{{f.faculty1}}</option>
+                {% endfor %}
+
+            </select>
+          </div>
+       </div>
+
+       <div class="inputfield">
+            <label>Term</label>
+            <div class="custom_select">
+                <select name="terms_name">
+                    <option value="">-----</option>
+                    {% for t in terms_model %}
+                    <option value="{{t.id}}">{{t.terms_name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+
+     <div class="inputfield">
+        <label>Subject</label>
+        <div class="custom_select">
+          <select name="courses">
+            <option value="">-----</option>
+
+               {% for c in courses_model %}
+                <option value="{{c.id}}">{{c.course_name}}</option>
+                {% endfor %}
+          </select>
+        </div>
+     </div>
+
+        <div class="inputfield">
+          <label>Marks obtained</label>
+          <input type="number" class="input" name="obtained_marks">
+    </div>
+
+    <div class="inputfield">
+    <input type="submit" value="Register" class="btn">
+      </div>
+    </div>
+</div>
+        <div class="container">
+              {% if messages %}
+                {% for message in messages %}
+                {% if message.tags == 'warning' %}
+                <div class="alert alert-warning" style="margin-top:10px">{{ message }}</div>
+                {% endif %}
+                {% if message.tags == 'success' %}
+                <div class="alert alert-success" style="margin-top:10px"><b>{{ message }}</b></div>
+                {% endif %}
+                {% endfor %}
+              {% endif %}
+         </div>
+    </form>
+
+
+</body>
+</html>

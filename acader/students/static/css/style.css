@@ -1,0 +1,48 @@
+body,h1,h2,h3,h4,h5 {
+    font-family: "Poppins", sans-serif
+}
+
+body {
+    font-size:16px;
+}
+
+.active{
+    width:100%;
+    display:block;
+    padding:8px 16px;
+    text-align:left;
+    white-space:normal;
+    float:none;
+    outline:0;
+    border:none;
+    overflow:hidden;
+    text-decoration:none;
+    cursor:pointer;
+    white-space:nowrap;
+    color:#000!important;
+    background-color:#fff!important;
+}
+
+.LineChart{
+    width: 400px;
+}
+
+.profile_img {
+    display: table;
+    margin: auto ;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 3px solid white;
+    transition: all .5s;
+  } 
+
+
+.profile_name {
+    background-color: #efefef;
+    color: black;
+    padding: 10px;
+    border-radius: 5px;
+    display: table;
+    margin:  auto;
+  } 

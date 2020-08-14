@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Grade Form</title>
+	<link rel="stylesheet" href="{% static 'css/course.css' %}">
+</head>
+<body>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div class="wrapper">
+            <div class="title">
+              Grade Form
+            </div>
+            <div class="form">
+                <div class="inputfield">
+                  <label id="grade">Grade</label>
+                  <div class="custom_select">
+                    <select name="grade">
+                      <option value="">Select</option>
+                      <option value="11">11</option>
+                      <option value="12">12</option>
+                    </select>
+                  </div>
+               </div>
+              <div class="inputfield">
+                <button type="submit" value="Register" class="btn">Register</button>
+              </div>
+                <div class="container">
+                  {% if messages %}
+                    {% for message in messages %}
+                        {% if message.tags == 'warning' %}
+                            <div class="alert alert-danger" style="margin-top:10px"><strong>{{ message }}</strong></div>
+                        {% endif %}
+                        {% if message.tags == 'success' %}
+                            <div class="alert alert-success" style="margin-top:10px">{{ message }} <a href="{% url 'home' %}">Go back</a> </div>
+                        {% endif %}
+                    {% endfor %}
+                  {% endif %}
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
