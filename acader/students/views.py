@@ -264,9 +264,9 @@ def home(request):
 
 
 
-def base(request):
-    return render(request, 'students/base.html')
+def student_func(request):
+    return render(request, 'students/student_func.html')
 
 
-def base1(request):
-    return render(request, 'students/base1.html')
+def teacher_func(request):
+    return render(request, 'students/teacher_func.html')
