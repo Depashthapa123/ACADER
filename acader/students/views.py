@@ -36,6 +36,11 @@ def loginpage(request):
 
 
 def teacherlogin(request):
+    if request.session.has_key('teacher_id'):
+        teacher_id = request.session['teacher_id']
+        print(teacher_id, 'found')
+    else:
+        print('not found')
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -45,7 +50,8 @@ def teacherlogin(request):
         if user1 is not None:
             login(request, user1)
             if user1.user_type == '2':
-                return redirect('home')
+                request.session['teacher_id'] = user1.id
+                return redirect('teacher_profile')
             elif user1.user_type == '3':
                 messages.warning(request, 'sorry ur not teacher')
                 return redirect('teacherlogin')
@@ -60,17 +66,23 @@ def teacherlogin(request):
 
 
 def adminlogin(request):
+    if request.session.has_key('admin_id'):
+        admin_id = request.session['admin_id']
+        print(admin_id, 'found')
+    else:
+        print('not found')
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
 
-        user1 = authenticate(username=username, password=password)
+        user2 = authenticate(username=username, password=password)
 
-        if user1 is not None:
-            login(request, user1)
-            if user1.user_type == '1':
+        if user2 is not None:
+            login(request, user2)
+            if user2.user_type == '1':
+                request.session['admin_id'] = user2.id
                 return redirect('student-func')
-            elif user1.user_type == '3':
+            elif user2.user_type == '3':
                 messages.warning(request, 'sorry ur not teacher')
                 return redirect('adminlogin')
             else:
@@ -259,10 +271,24 @@ def marks(request):
 
 
 @login_required()
-
 def student_func(request):
+    if request.session.has_key('admin_id'):
+        admin_id = request.session['admin_id']
+        print(admin_id, 'found')
+    else:
+        print('not found')
     return render(request, 'students/student_func.html')
 
 
 def teacher_func(request):
+    if request.session.has_key('admin_id'):
+        admin_id = request.session['admin_id']
+        print(admin_id, 'found')
+    else:
+        print('not found')
     return render(request, 'students/teacher_func.html')
+
+
+def do_logout(request):
+    logout(request)
+    return redirect('loginpage')
