@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<title>Acader</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" href="{% static 'css/w3.css' %}">
+<link rel="stylesheet" href="{% static 'css/font.css' %}">
+<body>
+    <!-- Sidebar/menu -->
+    <nav class="w3-sidebar w3-blue w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
+      <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Close Menu</a>
+      <div class="w3-container">
+        <h1 class="w3-padding-64"><b>Acader</b></h1>
+      </div>
+      <div class="w3-bar-block">
+        <a href="{% url 'student-func' %}" onclick="w3_close()" class="active">Profile</a><br>
+        <a href="{% url 'teacher-func' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Dashboard</a><br>
+        <a href="{% url 'teacher-func' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Marks</a><br>
+        <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Logout</a>
+      </div>
+    </nav>
+
+<!-- Top menu on small screens -->
+<header class="w3-container w3-top w3-hide-large w3-blue w3-xlarge w3-padding">
+  <a href="javascript:void(0)" class="w3-button w3-blue w3-margin-right" onclick="w3_open()">☰</a>
+  <span>Acader</span>
+</header>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:340px;margin-right:40px">
+
+  <!-- Header(main body) -->
+  <div class="w3-container" style="margin-top:80px" id="showcase">
+        <div class="coverpic" style="background-image: url({% static 'image/coverpic.jpg' %})">
+      <img src="../images/profile.jpg" alt="profile_picture" class="profile_img">   
+      <h3 class="profile_name">Shaun</h3> 
+    </div>
+
+  </div>
+
+<!-- End page content -->
+</div>
+<script src="{% static 'js/loginpage.js' %}"></script>
+</body>
+</html>
