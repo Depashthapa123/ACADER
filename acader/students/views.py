@@ -36,6 +36,11 @@ def loginpage(request):
 
 
 def teacherlogin(request):
+    if request.session.has_key('teacher_id'):
+        teacher_id = request.session['teacher_id']
+        print(teacher_id, 'found')
+    else:
+        print('not found')
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -45,6 +50,7 @@ def teacherlogin(request):
         if user1 is not None:
             login(request, user1)
             if user1.user_type == '2':
+                request.session['student_id'] = user1.id
                 return redirect('home')
             elif user1.user_type == '3':
                 messages.warning(request, 'sorry ur not teacher')
@@ -60,6 +66,11 @@ def teacherlogin(request):
 
 
 def adminlogin(request):
+    if request.session.has_key('admin_id'):
+        admin_id = request.session['admin_id']
+        print(admin_id, 'found')
+    else:
+        print('not found')
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -69,6 +80,7 @@ def adminlogin(request):
         if user1 is not None:
             login(request, user1)
             if user1.user_type == '1':
+                request.session['admin_id'] = user1.id
                 return redirect('student-func')
             elif user1.user_type == '3':
                 messages.warning(request, 'sorry ur not teacher')
@@ -264,8 +276,23 @@ def home(request):
 
 
 def student_func(request):
+    if request.session.has_key('admin_id'):
+        admin_id = request.session['admin_id']
+        print(admin_id, 'found')
+    else:
+        print('not found')
     return render(request, 'students/student_func.html')
 
 
 def teacher_func(request):
+    if request.session.has_key('admin_id'):
+        admin_id = request.session['admin_id']
+        print(admin_id, 'found')
+    else:
+        print('not found')
     return render(request, 'students/teacher_func.html')
+
+
+def do_logout(request):
+    logout(request)
+    return redirect('adminlogin')

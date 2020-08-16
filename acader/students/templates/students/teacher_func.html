@@ -18,7 +18,7 @@
         <div class="w3-bar-block">
           <a href="{% url 'student-func' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Student</a><br>
           <a href="{% url 'teacher-func' %}" onclick="w3_close()" class="active">Teacher</a><br>
-          <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Logout</a>
+          <a href="{% url 'do_logout' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Logout</a>
         </div>
       </nav>
   </div>
@@ -47,7 +47,6 @@
 <<<<<<< HEAD
 =======
 
->>>>>>> 20ea7629a4e10f39669bbc1f563880d00624ac39
 </body>
 </html>
 
