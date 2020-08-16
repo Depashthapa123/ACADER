@@ -270,3 +270,4 @@ def student_func(request):
 
 def teacher_func(request):
     return render(request, 'students/teacher_func.html')
+
