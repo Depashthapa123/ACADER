@@ -263,14 +263,8 @@ def home(request):
     return render(request, 'students/home.html')
 
 
-<<<<<<< HEAD
-def base(request):
-    return render(request, 'students/base.html')
-=======
-
 def student_func(request):
     return render(request, 'students/student_func.html')
->>>>>>> a5e71fa6e21e77dce4afc948b1146199044a58d8
 
 
 def teacher_func(request):
