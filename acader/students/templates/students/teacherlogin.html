@@ -64,7 +64,9 @@
                   {% if messages %}
                     {% for message in messages %}
                         {% if message.tags == 'warning' %}
-                            <div class="alert alert-danger" style="margin-top:10px"><strong>{{ message }}</strong></div>
+                        <script>
+                          alert("invalid username or password");
+                        </script>                            
                         {% endif %}
                         {% if message.tags == 'success' %}
                             <div class="alert alert-success" style="margin-top:10px">{{ message }} <a href="{% url 'home' %}">Go back</a> </div>
