@@ -21,7 +21,7 @@ def loginpage(request):
             login(request, user)
             if user.user_type == '3':
                 request.session['student_id'] = user.id
-                return redirect('home')
+                return redirect('')
             elif user.user_type == '2':
                 messages.warning(request, 'sory mf')
                 return redirect('loginpage')
@@ -259,10 +259,6 @@ def marks(request):
 
 
 @login_required()
-def home(request):
-    return render(request, 'students/home.html')
-
-
 
 def student_func(request):
     return render(request, 'students/student_func.html')
