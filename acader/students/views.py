@@ -6,6 +6,11 @@ from .models import CustomUser, Course, Marks, Terms, Grade, Faculty
 
 
 def loginpage(request):
+    if request.session.has_key('student_id'):
+        student_id = request.session['student_id']
+        print(student_id, 'found')
+    else:
+        print('not found')
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -15,6 +20,7 @@ def loginpage(request):
         if user is not None:
             login(request, user)
             if user.user_type == '3':
+                request.session['student_id'] = user.id
                 return redirect('home')
             elif user.user_type == '2':
                 messages.warning(request, 'sory mf')
@@ -211,6 +217,11 @@ def facultys(request):
 
 
 def marks(request):
+    if request.session.has_key('student_id'):
+        student_id = request.session['student_id']
+        print(student_id, 'found')
+    else:
+        print('not found')
     courses_model = Course.objects.all()
     students_model = CustomUser.objects.filter(user_type=3)
     terms_model = Terms.objects.all()
