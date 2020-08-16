@@ -69,7 +69,7 @@ def adminlogin(request):
         if user1 is not None:
             login(request, user1)
             if user1.user_type == '1':
-                return redirect('home')
+                return redirect('student-func')
             elif user1.user_type == '3':
                 messages.warning(request, 'sorry ur not teacher')
                 return redirect('adminlogin')
@@ -261,3 +261,12 @@ def marks(request):
 @login_required()
 def home(request):
     return render(request, 'students/home.html')
+
+
+
+def base(request):
+    return render(request, 'students/base.html')
+
+
+def base1(request):
+    return render(request, 'students/base1.html')
