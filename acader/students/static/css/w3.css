@@ -159,8 +159,8 @@ hr{
 /* Tablet and laptop screen */
 @media (min-width:993px){
     .w3-modal-content{width:900px}
-    .w3-hide-large{display:none}
-    .w3-sidebar.w3-collapse{display:block}
+    .w3-hide-large{display:none!important}
+    .w3-sidebar.w3-collapse{display:block!important}
 
 }
 
