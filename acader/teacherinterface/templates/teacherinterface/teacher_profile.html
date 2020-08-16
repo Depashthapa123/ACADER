@@ -15,9 +15,10 @@
         <h1 class="w3-padding-64"><b>Acader</b></h1>
       </div>
       <div class="w3-bar-block">
-        <a href="{% url 'student-func' %}" onclick="w3_close()" class="active">Student</a><br>
-        <a href="{% url 'teacher-func' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Teacher</a><br>
-        <a href="{% url 'do_logout' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Logout</a>
+        <a href="#" onclick="w3_close()" class="active">Profile</a><br>
+        <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Dashboard</a><br>
+        <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Marks</a><br>
+        <a href="{% url 'do_logout1' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Logout</a>
       </div>
     </nav>
 
@@ -35,9 +36,10 @@
 
   <!-- Header(main body) -->
   <div class="w3-container" style="margin-top:80px" id="showcase">
-      <h3><a href="#" style="text-decoration: none;color: black;">Student list</a></h3>
-      <h3><a href="{% url 'studentregister' %}" style="text-decoration: none;color: black;">Add Student</a></h3>
-      <h3><a href="{% url 'marks' %}" style="text-decoration: none;color: black;">Add Student Marks</a></h3>
+        <div class="coverpic" style="background-image: url({% static 'image/coverpic.jpg' %})">
+      <img src="../images/profile.jpg" alt="profile_picture" class="profile_img">   
+      <h3 class="profile_name">Shaun</h3> 
+    </div>
 
   </div>
 
