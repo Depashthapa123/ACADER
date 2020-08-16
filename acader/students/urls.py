@@ -13,4 +13,6 @@ urlpatterns = [
     path('grade/', views.grades, name='grades'),
     path('teacherlogin/', views.teacherlogin, name='teacherlogin'),
     path('adminlogin/', views.adminlogin, name='adminlogin'),
+    path('student-func/', views.base, name='student-func'),
+    path('teacher-func/', views.base1, name='teacher-func'),
 ]

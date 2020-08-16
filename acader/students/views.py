@@ -261,3 +261,12 @@ def marks(request):
 @login_required()
 def home(request):
     return render(request, 'students/home.html')
+
+
+
+def base(request):
+    return render(request, 'students/base.html')
+
+
+def base1(request):
+    return render(request, 'students/base1.html')
