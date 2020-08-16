@@ -263,7 +263,6 @@ def home(request):
     return render(request, 'students/home.html')
 
 
-
 def base(request):
     return render(request, 'students/base.html')
 
