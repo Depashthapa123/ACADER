@@ -30,7 +30,6 @@ body {
 .coverpic{
   height: 100%;
   width: 100%;
-  background-image:url("../images/coverpic.jpg");
   background-color: #cccccc;
   /* background-position: center; */
   background-repeat: no-repeat;

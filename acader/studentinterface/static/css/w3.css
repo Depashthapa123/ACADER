@@ -235,6 +235,8 @@ hr{
     padding-bottom:55px
 }
 
+.w3-display-right{position:absolute;top:50%;right:0%;transform:translate(0%,-50%);-ms-transform:translate(0%,-50%)}
+.w3-display-topright{position:absolute;right:0;top:15%}
 
 /* Colors */
 .w3-blue,.w3-hover-blue:hover{
