@@ -21,7 +21,7 @@ def loginpage(request):
             login(request, user)
             if user.user_type == '3':
                 request.session['student_id'] = user.id
-                return redirect('student-func')
+                return redirect('student_dashboard')
             elif user.user_type == '2':
                 messages.warning(request, 'sory mf')
                 return redirect('loginpage')
