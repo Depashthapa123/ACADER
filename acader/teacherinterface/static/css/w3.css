@@ -106,7 +106,7 @@ hr{
     background-color:#fff;
     position:fixed;
     z-index:1;
-    overflow:auto
+    overflow:none;
 }
 
 .w3-bar-block ,.w3-bar-block .w3-bar-block .w3-button,.w3-bar-block .w3-button{
@@ -230,9 +230,9 @@ hr{
     padding:8px 16px
 }
 
-.w3-padding-64{
-    padding-top:64px;
-    padding-bottom:64px
+.w3-padding-55{
+    padding-top:55px;
+    padding-bottom:55px
 }
 
 
