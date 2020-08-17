@@ -19,4 +19,4 @@ def teacher_marks(request):
 
 def do_logout1(request):
     logout(request)
-    return redirect('loginpage')
+    return redirect('teacherlogin')

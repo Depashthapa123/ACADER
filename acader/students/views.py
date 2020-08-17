@@ -50,13 +50,10 @@ def teacherlogin(request):
         if user1 is not None:
             login(request, user1)
             if user1.user_type == '2':
-<<<<<<< HEAD
                 request.session['student_id'] = user1.id
-                return redirect('home')
-=======
+                return redirect('teacher_profile')
                 request.session['teacher_id'] = user1.id
                 return redirect('teacher_profile')
->>>>>>> depash
             elif user1.user_type == '3':
                 messages.warning(request, 'sorry ur not teacher')
                 return redirect('teacherlogin')
@@ -82,17 +79,14 @@ def adminlogin(request):
 
         user2 = authenticate(username=username, password=password)
 
-<<<<<<< HEAD
-        if user1 is not None:
-            login(request, user1)
-            if user1.user_type == '1':
-                request.session['admin_id'] = user1.id
-=======
         if user2 is not None:
             login(request, user2)
             if user2.user_type == '1':
                 request.session['admin_id'] = user2.id
->>>>>>> depash
+        if user2 is not None:
+            login(request, user2)
+            if user2.user_type == '1':
+                request.session['admin_id'] = user2.id
                 return redirect('student-func')
             elif user2.user_type == '3':
                 messages.warning(request, 'sorry ur not teacher')
@@ -283,13 +277,11 @@ def marks(request):
 
 
 @login_required()
-<<<<<<< HEAD
 def home(request):
     return render(request, 'students/home.html')
 
 
-=======
->>>>>>> depash
+
 def student_func(request):
     if request.session.has_key('admin_id'):
         admin_id = request.session['admin_id']
@@ -310,8 +302,5 @@ def teacher_func(request):
 
 def do_logout(request):
     logout(request)
-<<<<<<< HEAD
     return redirect('adminlogin')
-=======
     return redirect('loginpage')
->>>>>>> depash
