@@ -161,6 +161,8 @@ hr{
     .w3-modal-content{width:900px}
     .w3-hide-large{display:none!important}
     .w3-sidebar.w3-collapse{display:block!important}
+    .side_bar{display: none;
+}
 
 }
 
