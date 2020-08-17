@@ -38,28 +38,34 @@
   <div class="w3-container" style="margin-top:80px" id="showcase">
 <!--      <h3><a href="{% url 'marks' %}" style="text-decoration: none;color: black;">Student Marks list</a></h3>-->
     <h3>Students List</h3>
-     <!-- Search form -->
-  <form class="example" action="#" method="GET" style="margin:auto;max-width:300px">
-    <input type="text" placeholder="Search.." name="search">
-    <button  class="searchbtn" type="submit"><img src="../images/search.svg " alt=""></button>
-  </form>
     <table class="w3-table-all">
         <thead>
+            <h1>//Username</h1>
           <tr class="w3-blue">
-            <th>Student username</th>
-            <th>faculty</th>
-            <th>grade</th>
+            <th>course</th>
+            <th>term</th>
+            <th>marks</th>
           </tr>
         </thead>
         {% for s in students %}
         <tr>
-          <td>{{ s.username }}</td>
-          <td>{{ s.student.faculty }}</td>
-          <td>{{ s.student.grade }}</td>
-          <td><button class="button button2" onclick="">Marks</button></td>
+          <td>{{ s.course }}</td>
+          <td>{{ s.student.term }}</td>
+          <td>{{ s.student.marks }}</td>
+<!--          <td></td>-->
         </tr>
-        {% endfor %}
-    </table>
+      {% endfor %}
+<!--        <tr>-->
+<!--          <td>Eve</td>-->
+<!--          <td>Jackson</td>-->
+<!--          <td>94</td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--          <td>Adam</td>-->
+<!--          <td>Johnson</td>-->
+<!--          <td>67</td>-->
+<!--        </tr>-->
+      </table>
   </div>
 
 <!-- End page content -->

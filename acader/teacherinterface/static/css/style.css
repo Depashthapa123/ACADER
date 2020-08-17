@@ -55,3 +55,28 @@ body {
     display: table;
     margin:  auto;
   } 
+
+.searchbtn{
+    height: 42px;
+}
+.searchbtn img{
+  height: 20px;
+  width: 35px;
+  right: 13px;
+  bottom: 15px;
+}
+
+  .button {
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 10px;
+  }
+
+  .button2 {background-color: #355d98;} /* Blue */
