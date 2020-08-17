@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-{% load static %}
 <html lang="en">
 <title>Acader</title>
 <meta charset="UTF-8">
@@ -38,30 +37,23 @@
   <div class="w3-container" style="margin-top:80px" id="showcase">
 <!--      <h3><a href="{% url 'marks' %}" style="text-decoration: none;color: black;">Student Marks list</a></h3>-->
     <h3>Students List</h3>
-     <!-- Search form -->
-      <div class="search" style="margin:0px;max-width:300px">
-        <input type="text" placeholder="Search.." name="search">
-        <button  class="searchbtn" type="submit">Search</button>
-      </div>
-  </div>
-  <div class="w3-container" style="margin-top:20px" id="showcase">
     <table class="w3-table-all">
         <thead>
+            <h1>//Username</h1>
           <tr class="w3-blue">
-            <th>Student username</th>
-            <th>faculty</th>
-            <th>grade</th>
+            <th>course</th>
+            <th>term</th>
+            <th>marks</th>
           </tr>
         </thead>
         {% for s in students %}
         <tr>
-          <td>{{ s.username }}</td>
-          <td>{{ s.student.faculty }}</td>
-          <td>{{ s.student.grade }}</td>
-          <td><button class="marks" onclick="">Marks</button></td>
+          <td>{{ s.course }}</td>
+          <td>{{ s.student.term }}</td>
+          <td>{{ s.student.marks }}</td>
         </tr>
-        {% endfor %}
-    </table>
+      {% endfor %}
+      </table>
   </div>
 
 <!-- End page content -->
