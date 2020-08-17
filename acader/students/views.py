@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import CustomUser, Course, Marks, Terms, Grade, Faculty
+from .models import CustomUser, Course, Marks, Terms, Grade, Faculty, StudentCourse
 
 
 def loginpage(request):
@@ -21,7 +21,7 @@ def loginpage(request):
             login(request, user)
             if user.user_type == '3':
                 request.session['student_id'] = user.id
-                return redirect('')
+                return redirect('student-func')
             elif user.user_type == '2':
                 messages.warning(request, 'sory mf')
                 return redirect('loginpage')
@@ -281,7 +281,6 @@ def home(request):
     return render(request, 'students/home.html')
 
 
-
 def student_func(request):
     if request.session.has_key('admin_id'):
         admin_id = request.session['admin_id']
@@ -304,3 +303,36 @@ def do_logout(request):
     logout(request)
     return redirect('adminlogin')
     return redirect('loginpage')
+
+
+def studentcourse(request):
+    courses_model = Course.objects.all()
+    students_model = CustomUser.objects.filter(user_type=3)
+    terms_model = Terms.objects.all()
+    marks_model = Marks.objects.all()
+    if request.method == 'POST':
+        terms_id = request.POST['terms_name']
+        term = Terms.objects.get(id=terms_id)
+        student_id = request.POST['students']
+        student = CustomUser.objects.get(id=student_id)
+        course_id = request.POST['courses']
+        courses = Course.objects.get(id=course_id)
+        marks_id = request.POST['marks']
+        mark = Grade.objects.get(id=marks_id)
+
+        studentcourse1 = StudentCourse(
+            terms_id=term,
+            student_id=student,
+            course_id=courses,
+            marks_id=mark,
+        )
+        studentcourse1.save()
+        messages.success(request, 'welldone ma boy')
+
+    return render(request, '',
+                  {'courses_model' : courses_model,
+                   'students_model' : students_model,
+                   'terms_model' : terms_model,
+                   'marks_model' : marks_model})
+
+
