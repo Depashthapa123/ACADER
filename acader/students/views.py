@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import CustomUser, Course, Marks, Terms, Grade, Faculty
+from .models import CustomUser, Course, Marks, Terms, Grade, Faculty, StudentCourse
 
 
 def loginpage(request):
@@ -21,7 +21,7 @@ def loginpage(request):
             login(request, user)
             if user.user_type == '3':
                 request.session['student_id'] = user.id
-                return redirect('')
+                return redirect('student-func')
             elif user.user_type == '2':
                 messages.warning(request, 'sory mf')
                 return redirect('loginpage')
@@ -50,13 +50,10 @@ def teacherlogin(request):
         if user1 is not None:
             login(request, user1)
             if user1.user_type == '2':
-<<<<<<< HEAD
                 request.session['student_id'] = user1.id
-                return redirect('home')
-=======
+                return redirect('teacher_profile')
                 request.session['teacher_id'] = user1.id
                 return redirect('teacher_profile')
->>>>>>> depash
             elif user1.user_type == '3':
                 messages.warning(request, 'sorry ur not teacher')
                 return redirect('teacherlogin')
@@ -82,17 +79,14 @@ def adminlogin(request):
 
         user2 = authenticate(username=username, password=password)
 
-<<<<<<< HEAD
-        if user1 is not None:
-            login(request, user1)
-            if user1.user_type == '1':
-                request.session['admin_id'] = user1.id
-=======
         if user2 is not None:
             login(request, user2)
             if user2.user_type == '1':
                 request.session['admin_id'] = user2.id
->>>>>>> depash
+        if user2 is not None:
+            login(request, user2)
+            if user2.user_type == '1':
+                request.session['admin_id'] = user2.id
                 return redirect('student-func')
             elif user2.user_type == '3':
                 messages.warning(request, 'sorry ur not teacher')
@@ -283,13 +277,10 @@ def marks(request):
 
 
 @login_required()
-<<<<<<< HEAD
 def home(request):
     return render(request, 'students/home.html')
 
 
-=======
->>>>>>> depash
 def student_func(request):
     if request.session.has_key('admin_id'):
         admin_id = request.session['admin_id']
@@ -300,10 +291,6 @@ def student_func(request):
 
 
 def teacher_func(request):
-<<<<<<< HEAD
-    return render(request, 'students/teacher_func.html')
-
-=======
     if request.session.has_key('admin_id'):
         admin_id = request.session['admin_id']
         print(admin_id, 'found')
@@ -314,9 +301,37 @@ def teacher_func(request):
 
 def do_logout(request):
     logout(request)
-<<<<<<< HEAD
-    return redirect('adminlogin')
-=======
     return redirect('loginpage')
->>>>>>> depash
->>>>>>> 7da2c7b6c1ca7a0173d8fe1e5088b44835c733b1
+
+
+def studentcourse(request):
+    courses_model = Course.objects.all()
+    students_model = CustomUser.objects.filter(user_type=3)
+    terms_model = Terms.objects.all()
+    marks_model = Marks.objects.all()
+    if request.method == 'POST':
+        terms_id = request.POST['terms_name']
+        term = Terms.objects.get(id=terms_id)
+        student_id = request.POST['students']
+        student = CustomUser.objects.get(id=student_id)
+        course_id = request.POST['courses']
+        courses = Course.objects.get(id=course_id)
+        marks_id = request.POST['marks']
+        mark = Grade.objects.get(id=marks_id)
+
+        studentcourse1 = StudentCourse(
+            terms_id=term,
+            student_id=student,
+            course_id=courses,
+            marks_id=mark,
+        )
+        studentcourse1.save()
+        messages.success(request, 'welldone ma boy')
+
+    return render(request, '',
+                  {'courses_model' : courses_model,
+                   'students_model' : students_model,
+                   'terms_model' : terms_model,
+                   'marks_model' : marks_model})
+
+
