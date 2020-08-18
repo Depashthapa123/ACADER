@@ -50,6 +50,7 @@
     <table class="w3-table-all">
         <thead>
           <tr class="w3-blue">
+              <th>Student ID</th>
             <th>Student username</th>
             <th>faculty</th>
             <th>grade</th>
@@ -57,10 +58,15 @@
         </thead>
         {% for s in students %}
         <tr>
+            <td>{{ s.id }}</td>
           <td>{{ s.username }}</td>
           <td>{{ s.student.faculty }}</td>
           <td>{{ s.student.grade }}</td>
+<<<<<<< Updated upstream
           <td><button class="marks" ><a href="" style="text-decoration: none;color: black;">Marks</a></button></td>
+=======
+          <td><button class="marks"><a href="{% url 'teacher_displaymarks' student_id=s.id %}">Marks</a></button></td>
+>>>>>>> Stashed changes
         </tr>
         {% endfor %}
     </table>

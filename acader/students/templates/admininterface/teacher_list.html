@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
-<head>
 <title>Acader</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
 <link rel="stylesheet" href="{% static 'css/w3.css' %}">
 <link rel="stylesheet" href="{% static 'css/font.css' %}">
-</head>
 <body>
     <!-- Sidebar/menu -->
     <nav class="w3-sidebar w3-blue w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
@@ -17,10 +15,9 @@
         <h1 class="w3-padding-55"><b>Acader</b></h1>
       </div>
       <div class="w3-bar-block">
-        <a href="#" onclick="w3_close()" class=" w3-bar-item w3-button w3-hover-white">Profile</a><br>
-        <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Dashboard</a><br>
-        <a href="{% url 'teacher_marks' %}" onclick="w3_close()" class="active">Students Marks</a><br>
-        <a href="{% url 'do_logout1' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Logout</a>
+          <a href="{% url 'student-func' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Student</a><br>
+          <a href="{% url 'teacher_list' %}" onclick="w3_close()" class="active">Teacher list</a><br>
+          <a href="{% url 'do_logout' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Logout</a>
       </div>
     </nav>
 
@@ -39,24 +36,38 @@
   <!-- Header(main body) -->
   <div class="w3-container" style="margin-top:80px" id="showcase">
 <!--      <h3><a href="{% url 'marks' %}" style="text-decoration: none;color: black;">Student Marks list</a></h3>-->
-    <h3>Students Marks</h3>
+    <h3>Students List</h3>
+     <!-- Search form -->
+      <div class="search" style="margin:0px;max-width:300px">
+        <input type="text" placeholder="Search.." name="search">
+        <button  class="searchbtn" type="submit">Search</button>
+      </div>
+  </div>
+  <div class="w3-container" style="margin-top:20px" id="showcase">
     <table class="w3-table-all">
         <thead>
-<!--            <h1>{{ s. }}</h1>-->
           <tr class="w3-blue">
-            <th>Course</th>
-            <th>Term</th>
-            <th>Marks</th>
+              <th>Teacher ID</th>
+            <th>Teacher username</th>
+            <th>faculty</th>
+            <th>grade</th>
+            <th>section</th>
+            <th>gender</th>
+            <th>address</th>
           </tr>
         </thead>
-            {% for m in marks1 %}
-                <tr>
-                    <td>{{ m.course_id.course_name }}</td>
-                    <td>{{ m.terms_id.terms_name }}</td>
-                    <td>{{ m.obtained_marks }}</td>
-                </tr>
-            {% endfor %}
-      </table>
+        {% for t in teachers1 %}
+        <tr>
+            <td>{{ t.id }}</td>
+          <td>{{ t.username }}</td>
+          <td>{{ t.teacher.faculty }}</td>
+          <td>{{ t.teacher.grade }}</td>
+          <td>{{ t.teacher.section }}</td>
+          <td>{{ t.teacher.gender }}</td>
+          <td>{{ t.teacher.address }}</td>
+        </tr>
+        {% endfor %}
+    </table>
   </div>
 
 <!-- End page content -->
