@@ -71,7 +71,7 @@
           <td>{{ s.student.contact }}</td>
           <td>{{ s.student.DOB }}</td>
           <td>{{ s.student.parent_name }}</td>
-          <td><button class="marks"><a href="{% url 'student_displaymarks' student_id=s.id %}">Marks</a></button></td>
+          <td><button class="marks"><a href="{% url 'student_displaymarks' student_id=s.id %}" style="text-decoration: none;color: black;">Marks</a></button></td>
         </tr>
         {% endfor %}
     </table>

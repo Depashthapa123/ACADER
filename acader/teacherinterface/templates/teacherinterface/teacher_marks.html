@@ -62,11 +62,7 @@
           <td>{{ s.username }}</td>
           <td>{{ s.student.faculty }}</td>
           <td>{{ s.student.grade }}</td>
-<<<<<<< Updated upstream
-          <td><button class="marks" ><a href="" style="text-decoration: none;color: black;">Marks</a></button></td>
-=======
-          <td><button class="marks"><a href="{% url 'teacher_displaymarks' student_id=s.id %}">Marks</a></button></td>
->>>>>>> Stashed changes
+          <td><button class="marks" ><a href="{% url 'teacher_displaymarks' student_id=s.id %}" style="text-decoration: none;color: black;">Marks</a></button></td>
         </tr>
         {% endfor %}
     </table>
