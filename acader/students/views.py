@@ -36,22 +36,17 @@ def loginpage(request):
 
 
 def teacherlogin(request):
-    if request.session.has_key('teacher_id'):
-        teacher_id = request.session['teacher_id']
-        print(teacher_id, 'found')
-    else:
-        print('not found')
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
 
         user1 = authenticate(username=username, password=password)
+        print('login as', user1.user_type)
 
         if user1 is not None:
             login(request, user1)
+            # print('ggwp', login2)
             if user1.user_type == '2':
-                request.session['student_id'] = user1.id
-                return redirect('teacher_profile')
                 request.session['teacher_id'] = user1.id
                 return redirect('teacher_profile')
             elif user1.user_type == '3':

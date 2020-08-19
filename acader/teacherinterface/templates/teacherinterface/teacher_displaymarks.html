@@ -17,7 +17,7 @@
         <h1 class="w3-padding-55"><b>Acader</b></h1>
       </div>
       <div class="w3-bar-block">
-        <a href="#" onclick="w3_close()" class=" w3-bar-item w3-button w3-hover-white">Profile</a><br>
+        <a href="{% url 'teacher_profile' %}" onclick="w3_close()" class=" w3-bar-item w3-button w3-hover-white">Profile</a><br>
         <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Dashboard</a><br>
         <a href="{% url 'teacher_marks' %}" onclick="w3_close()" class="active">Students Marks</a><br>
         <a href="{% url 'do_logout1' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Logout</a>
