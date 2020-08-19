@@ -16,4 +16,7 @@ urlpatterns = [
     path('teacher-func/', views.teacher_func, name='teacher-func'),
     path('do_logout/', views.do_logout, name='do_logout'),
     path('studentcourse/', views.studentcourse, name='studentcourse'),
+    path('student_list/', views.student_list, name='student_list'),
+    path('student_displaymarks/<int:student_id>', views.student_displaymarks, name='student_displaymarks'),
+    path('teacher_list/', views.teacher_list, name='teacher_list'),
 ]

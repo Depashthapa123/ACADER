@@ -1,12 +1,14 @@
-<!DOCTYPE html>
 {% load static %}
+<!DOCTYPE html>
 <html lang="en">
+<head>
 <title>Acader</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
 <link rel="stylesheet" href="{% static 'css/w3.css' %}">
 <link rel="stylesheet" href="{% static 'css/font.css' %}">
+</head>
 <body>
     <!-- Sidebar/menu -->
     <nav class="w3-sidebar w3-blue w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
@@ -15,9 +17,9 @@
         <h1 class="w3-padding-55"><b>Acader</b></h1>
       </div>
       <div class="w3-bar-block">
-        <a href="#" onclick="w3_close()" class="active">Profile</a><br>
+        <a href="{% url 'teacher_profile' %}" onclick="w3_close()" class="active">Profile</a><br>
         <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Dashboard</a><br>
-        <a href="{% url 'teacher_marks' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Marks</a><br>
+        <a href="{% url 'teacher_marks' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Student list</a><br>
         <a href="{% url 'do_logout1' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Logout</a>
       </div>
     </nav>
@@ -40,6 +42,30 @@
       <img src="{% static 'image/profile.jpg' %}" alt="profile_picture" class="profile_img">   
       <h3 class="profile_name">Shaun</h3> 
     </div>
+      <p><h3>Basic Information</h3></p>
+    <p>First name:
+    </p>
+    <p>Last name:
+    </p>
+    <p>Parent name:
+    </p>
+    <p>E-mail:
+    </p>
+    <p>Contact:
+    </p>
+    <p>Address:
+    </p>
+    <p>Faculty:
+    </p>
+    <p>Class:
+    </p>
+    <p>Section:
+    </p>
+    <form action="" method="post">
+      {% csrf_token %}
+      <textarea rows="4" cols="50" name="comment" form="userform" placeholder="Write about yourself, come on don't be shy!!"></textarea>
+        <p><input type="submit"></p>
+    </form>
 
   </div>
 

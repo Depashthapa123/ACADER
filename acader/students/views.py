@@ -36,22 +36,17 @@ def loginpage(request):
 
 
 def teacherlogin(request):
-    if request.session.has_key('teacher_id'):
-        teacher_id = request.session['teacher_id']
-        print(teacher_id, 'found')
-    else:
-        print('not found')
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
 
         user1 = authenticate(username=username, password=password)
+        print('login as', user1.user_type)
 
         if user1 is not None:
             login(request, user1)
+            # print('ggwp', login2)
             if user1.user_type == '2':
-                request.session['student_id'] = user1.id
-                return redirect('teacher_profile')
                 request.session['teacher_id'] = user1.id
                 return redirect('teacher_profile')
             elif user1.user_type == '3':
@@ -329,9 +324,23 @@ def studentcourse(request):
         messages.success(request, 'welldone ma boy')
 
     return render(request, '',
-                  {'courses_model' : courses_model,
-                   'students_model' : students_model,
-                   'terms_model' : terms_model,
-                   'marks_model' : marks_model})
+                  {'courses_model': courses_model,
+                   'students_model': students_model,
+                   'terms_model': terms_model,
+                   'marks_model': marks_model})
 
 
+def student_list(request):
+    students1 = CustomUser.objects.filter(user_type=3)
+    return render(request, 'admininterface/student_list.html', {'students1': students1})
+
+
+def student_displaymarks(request, student_id):
+    students1 = CustomUser.objects.filter(user_type=3)
+    marks1 = Marks.objects.filter(student_id=student_id)
+    return render(request, 'admininterface/student_displaymarks.html', {'marks1': marks1, 'students1': students1})
+
+
+def teacher_list(request):
+    teachers1 = CustomUser.objects.filter(user_type=2)
+    return render(request, 'admininterface/teacher_list.html', {'teachers1': teachers1})

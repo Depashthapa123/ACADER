@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
+<head>
 <title>Acader</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
 <link rel="stylesheet" href="{% static 'css/w3.css' %}">
 <link rel="stylesheet" href="{% static 'css/font.css' %}">
+</head>
 <body>
 
 <!-- Sidebar/menu -->
@@ -41,7 +43,8 @@
     <div class="LineChart">
       <article><h3 class="w3-xxxlarge w3-text-blue"><b>Marksheet Of Terminal Examination.</b></h3>
                 <hr style="width:300px;border:5px solid blue" class="w3-round">
-                    <div style="position:absolute;right:0;top:15%"><h3>Teacher's email</h3>
+                    <div class="w3-display-topright!important">
+                      <h3>Teacher's email</h3>
                       <p>lol@gmail.com</p>
                       <p>lol@gmail.com</p>
                       <p>lol@gmail.com</p>
