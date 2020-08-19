@@ -128,7 +128,7 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIR = [
     os.path.join(BASE_DIR,"static"),
-    '/ACADER/acader/static/',
+    # '/ACADER/acader/static/',
 ]
 
 AUTH_USER_MODEL = 'students.CustomUser'
