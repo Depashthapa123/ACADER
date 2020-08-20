@@ -11,7 +11,7 @@
 </head>
 <body style="background-image: url({% static 'image/bg.jpg' %})">
     <div class="acaderlogo">
-        <img src="{% static 'image/acaderexcel.png' %}" style="margin-top: 65px;" alt="Logo" onclick="window.location.href='Admin_panel.html'">
+      <a href="{% url 'adminlogin' %}"><img src="{% static 'image/acaderexcel.png' %}" style="margin-top: 65px;" alt="Logo" ></a>
     </div>
     
     <!-- Sidebar/menu -->
