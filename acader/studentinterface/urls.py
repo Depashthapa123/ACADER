@@ -1,5 +1,7 @@
 from django.urls import path, include
 from . import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('course_content/', views.course_content, name='course_content'),
@@ -8,3 +10,6 @@ urlpatterns = [
     path('student_profile/', views.student_profile, name='student_profile'),
     path('do_logout2/', views.do_logout2, name='do_logout2'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

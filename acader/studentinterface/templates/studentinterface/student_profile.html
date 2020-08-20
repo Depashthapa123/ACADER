@@ -2,7 +2,7 @@
 {% load static %}
 <html lang="en">
 <head>
-<title>Acader</title>
+<title>Profile-student</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
@@ -39,35 +39,59 @@
 <div class="w3-main" style="margin-left:340px;margin-right:40px">
 
   <!-- Header(main body) -->
-  <div class="w3-container" style="margin-top:80px" id="showcase">
+  <p class="w3-container" style="margin-top:80px" id="showcase">
         <div class="coverpic!important" style="background-image: url({% static 'image/coverpic.jpg' %})">
-          <img src="{% static 'image/profile.jpg' %}" alt="profile_picture" class="profile_img">
-          <h3 class="profile_name">Shaun</h3>
+          <img src="{{ user3.profile.image.url }}" alt="profile_picture" class="profile_img">
+<!--          <img src="{% static 'image/profile.jpg' %}" alt="profile_picture" class="profile_img">-->
+
+          <h3 class="profile_name">{{user3.first_name}} {{user3.last_name}}</h3>
         </div>
-  <p><h3>Basic Information</h3></p>
-    <p>First name:
+  <p><h3>Basic Student Information</h3></p>
+    <p>First name: {{user3.first_name}}
     </p>
-    <p>Last name:
+    <p>Last name: {{user3.last_name}}
     </p>
-    <p>Parent name:
+    <p>Parent name: {{user3.student.parent_name}}
     </p>  
-    <p>E-mail:
+    <p>E-mail: {{user3.email}}
     </p>
-    <p>Contact:
+    <p>Contact: {{user3.student.contact}}
     </p>
-    <p>Address:
+    <p>Address: {{user3.student.address}}
     </p>
-    <p>Faculty:
+    <p>Faculty: {{user3.student.faculty}}
     </p>
-    <p>Class:
+    <p>Class: {{user3.student.grade}}
     </p>
-    <p>Section:
+    <p>Section: {{user3.student.section}}
     </p>
-    <form action="" method="post">
-      {% csrf_token %}
-      <textarea rows="4" cols="50" name="comment" form="userform" placeholder="Write about yourself, come on don't be shy!!"></textarea>
-        <p><input type="submit"></p>
+
+    <form action="" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+<!--      <textarea rows="4" cols="50" name="comment" form="userform"-->
+<!--                placeholder="Write about yourself, come on don't be shy!!">      -->
+
+<!--      </textarea>-->
+
+        About yourself
+        <p>
+            {{p_form.description.as_textarea}}
+        </p>
+        Upload profile Photo
+        <p>
+            {{p_form.image}}
+        </p>
+
+<!--        Update your picture-->
+<!--        <p>-->
+<!--            {{i_form}}-->
+<!--        </p>-->
+
+        <p>
+            <input type="submit">
+        </p>
     </form>
+
 <!-- End page content -->
 </div>
 <script src="{% static 'js/jsindex2.js' %}"></script>
