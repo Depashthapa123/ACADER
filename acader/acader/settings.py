@@ -133,3 +133,6 @@ STATICFILES_DIRS = [
 AUTH_USER_MODEL = 'students.CustomUser'
 
 LOGIN_URL = '/adminlogin/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'

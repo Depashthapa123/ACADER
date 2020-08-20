@@ -1,0 +1,173 @@
+body,h1,h2,h3,h4,h5 {
+    font-family: "Poppins", sans-serif
+}
+
+body {
+    overflow: hidden;
+    font-size:16px;
+    height: 100%;
+    width: 100%;
+    background-color: #cccccc;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+
+}
+
+.acaderlogo{
+    height: 100px;
+    margin-top: 20px;
+
+}
+
+.acaderlogo img{
+    height: 80px;
+    width: 340px;  
+    display: table;
+    margin:  auto;
+    cursor: pointer;
+}
+
+.side_bar{
+    display: none;
+}
+
+  .tabcontent {
+    width: 350px;
+    margin: auto;
+    display: table;
+    padding: 20px 20px;
+    border: 2px solid #ccc;
+    border-top: 5px;
+    display: table;
+    background-color: snow;
+}
+
+.field {
+    margin: 10px 40px 15px 20px;
+}
+
+
+input {
+    font-size: 18px;
+    display: block;
+    width: 100%;
+    padding: 5px 10px;
+    color: #355d98;
+    background: none;
+    border: 1px solid grey;
+    font-family: inherit;
+}
+
+label {
+    position: relative;
+    top: 30px;
+    left: 13px;
+    float: left;
+    color: #21529b;
+    font-family: inherit;
+    font-size: 18px;
+    transform: translate(0, -60px);
+}
+
+input:not(:placeholder-shown) + label {
+    position: relative;
+    padding-top: 33px; 
+    font-size: 13px;
+    width: 150px;
+    text-align: left;
+    transition: padding-top .8s;
+}
+
+input::placeholder {
+    color: transparent;
+}
+
+.button {
+    border: none;
+    cursor: pointer;
+    border-radius: 2px;
+    padding: 15px 0;
+    font-size: 20px;
+    text-transform: uppercase;
+    display: block;
+    width: 100%;
+    background-color: #6ba4ff;
+    transition: 0.7s;
+    font-family: inherit;
+    margin-top: 25px;
+  }
+
+.button:hover {
+    background-color: #355d98;
+    color: white;
+  }
+
+
+
+.forgot {
+    text-align: right;
+    margin-right: 10px;
+    font-size: 13px;
+   
+}
+
+.forgot a {
+    font-family: inherit;
+    color: #05619e;
+    text-decoration: none;
+}
+
+.dropbtn {
+    background-color: #3498DB;
+    height: 25px;
+    width: 25px;
+    color: white;
+    padding: 25px;
+    font-size: 16px;
+    border-radius: 50%;
+    border-style: double;
+
+    
+  }
+
+.dropbtn img{
+  height: 30px;
+  width: 25px;
+  position: relative;
+  right: 13px;
+  bottom: 15px;
+}
+  /* For dropup button */
+  
+  .dropup {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropup-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    bottom: 50px;
+    z-index: 1;
+  }
+  
+  .dropup-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropup-content a:hover {background-color: #ccc}
+  
+  .dropup:hover .dropup-content {
+    display: block;
+  }
+  
+  .dropup:hover .dropbtn {
+    background-color: #355d98;
+  }

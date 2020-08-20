@@ -4,9 +4,9 @@
 <title>Acader</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="{% static 'students/css/style.css' %}">
-<link rel="stylesheet" href="{% static 'students/css/w3.css' %}">
-<link rel="stylesheet" href="{% static 'students/css/font.css' %}">
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" href="{% static 'css/w3.css' %}">
+<link rel="stylesheet" href="{% static 'css/font.css' %}">
 <body>
     <!-- Sidebar/menu -->
     <nav class="w3-sidebar w3-blue w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
@@ -36,12 +36,12 @@
   <!-- Header(main body) -->
   <div class="w3-container" style="margin-top:80px" id="showcase">
 <!--      <h3><a href="{% url 'marks' %}" style="text-decoration: none;color: black;">Student Marks list</a></h3>-->
-    <h3>Students List</h3>
+    <h3>Teacher List</h3>
      <!-- Search form -->
-      <div class="search" style="margin:0px;max-width:300px">
-        <input type="text" placeholder="Search.." name="search">
-        <button  class="searchbtn" type="submit">Search</button>
-      </div>
+     <div class="example" style="margin:0px;max-width:300px">
+      <input type="text" placeholder="Search.." name="search">
+      <button  class="searchbtn" type="submit"><a href="#"><img src="{% static 'image/search.svg' %} " alt=""></a></button>
+    </div>
   </div>
   <div class="w3-container" style="margin-top:20px" id="showcase">
     <table class="w3-table-all">
@@ -72,6 +72,6 @@
 
 <!-- End page content -->
 </div>
-<script src="{% static 'students/js/loginpage.js' %}"></script>
+<script src="{% static 'js/loginpage.js' %}"></script>
 </body>
 </html>
