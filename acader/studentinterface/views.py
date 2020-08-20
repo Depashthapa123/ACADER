@@ -29,7 +29,6 @@ def student_profile(request):
         return render(request, 'studentinterface/student_profile.html', context)
 
 
-
 def course_content(request):
     return render(request, 'studentinterface/course_content.html')
 

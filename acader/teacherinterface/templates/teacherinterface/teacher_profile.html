@@ -18,7 +18,7 @@
       </div>
       <div class="w3-bar-block">
         <a href="{% url 'teacher_profile' %}" onclick="w3_close()" class="active">Profile</a><br>
-        <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Dashboard</a><br>
+        <a href="{% url 'teacher_dashboard' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Dashboard</a><br>
         <a href="{% url 'teacher_marks' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Student list</a><br>
         <a href="{% url 'do_logout1' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Logout</a>
       </div>
@@ -39,32 +39,55 @@
   <!-- Header(main body) -->
   <div class="w3-container" style="margin-top:80px" id="showcase">
         <div class="coverpic!important" style="background-image: url({% static 'image/coverpic.jpg' %})">
-      <img src="{% static 'image/profile.jpg' %}" alt="profile_picture" class="profile_img">   
-      <h3 class="profile_name">Shaun</h3> 
-    </div>
-      <p><h3>Basic Information</h3></p>
-    <p>First name:
+      <img src="{{ user2.profile1.image.url }}" alt="profile_picture" class="profile_img">
+<!--          <img src="{% static 'image/profile.jpg' %}" alt="profile_picture" class="profile_img">-->
+
+          <h3 class="profile_name">{{user2.first_name}} {{user2.last_name}}</h3>
+        </div>
+  <p><h3>Basic Student Information</h3></p>
+    <p>First name: {{user2.first_name}}
     </p>
-    <p>Last name:
+    <p>Last name: {{user2.last_name}}
     </p>
-    <p>Parent name:
+    <p>Parent name: {{user2.teacher.parent_name}}
     </p>
-    <p>E-mail:
+    <p>E-mail: {{user2.email}}
     </p>
-    <p>Contact:
+    <p>Contact: {{user2.teacher.contact}}
     </p>
-    <p>Address:
+    <p>Address: {{user2.teacher.address}}
     </p>
-    <p>Faculty:
+    <p>Faculty: {{user2.teacher.faculty}}
     </p>
-    <p>Class:
+    <p>Class: {{user2.teacher.grade}}
     </p>
-    <p>Section:
+    <p>Section: {{user2.teacher.section}}
     </p>
-    <form action="" method="post">
-      {% csrf_token %}
-      <textarea rows="4" cols="50" name="comment" form="userform" placeholder="Write about yourself, come on don't be shy!!"></textarea>
-        <p><input type="submit"></p>
+
+    <form action="" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+<!--      <textarea rows="4" cols="50" name="comment" form="userform"-->
+<!--                placeholder="Write about yourself, come on don't be shy!!">      -->
+
+<!--      </textarea>-->
+
+        About yourself
+        <p>
+            {{p_form.description.as_textarea}}
+        </p>
+        Upload profile Photo
+        <p>
+            {{p_form.image}}
+        </p>
+
+<!--        Update your picture-->
+<!--        <p>-->
+<!--            {{i_form}}-->
+<!--        </p>-->
+
+        <p>
+            <input type="submit">
+        </p>
     </form>
 
   </div>

@@ -3,10 +3,29 @@ from django.contrib.auth import login, authenticate, logout
 from students.models import CustomUser, Course, Marks, Terms, Grade, Faculty, StudentCourse, Student, Teacher
 # from django.contrib import messages
 # from django.contrib.auth.decorators import login_required
+from .forms import BioUpdate1
 
 
 def teacher_profile(request):
-    return render(request, 'teacherinterface/teacher_profile.html')
+    user2 = CustomUser.objects.get(user_type=2, id=request.user.id)
+    if request.method == 'POST':
+        # p_form = BioUpdate(request.POST, instance=request.user.profile)
+        p_form = BioUpdate1(request.POST, request.FILES, instance=request.user.profile1)
+
+        if p_form.is_valid():
+            p_form.save()
+
+            return redirect('teacher_profile')
+    else:
+        p_form = BioUpdate1(instance=request.user.profile1)
+        # i_form = ImageUpdate(instance=request.user.profile)
+
+    context = {
+        'user2': user2,
+        'p_form': p_form,
+        # 'i_form': i_form
+    }
+    return render(request, 'teacherinterface/teacher_profile.html', context)
 
 
 def teacher_dashboard(request):
@@ -37,3 +56,5 @@ def teacher_displaymarks(request, student_id):
 def do_logout1(request):
     logout(request)
     return redirect('loginpage')
+
+
