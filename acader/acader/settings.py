@@ -51,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
 ]
 
 ROOT_URLCONF = 'acader.urls'
@@ -83,7 +84,7 @@ DATABASES = {
         'NAME': 'ACADERproject',
         'USER': 'postgres',
         'PASSWORD': '123',
-        'HOST': 'localhost'
+        'HOST': 'localhost',
     }
 }
 
@@ -130,9 +131,9 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR,"static"),
 ]
 
-AUTH_USER_MODEL = 'students.CustomUser'
-
-LOGIN_URL = '/adminlogin/'
-
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+AUTH_USER_MODEL = 'students.CustomUser'
+
+

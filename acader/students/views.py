@@ -1,8 +1,9 @@
+from django.db.models import Q
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import CustomUser, Course, Marks, Terms, Grade, Faculty, StudentCourse
+from .models import CustomUser, Course, Marks, Terms, Grade, Faculty, StudentCourse, Student
 
 
 def loginpage(request):
@@ -344,3 +345,35 @@ def student_displaymarks(request, student_id):
 def teacher_list(request):
     teachers1 = CustomUser.objects.filter(user_type=2)
     return render(request, 'admininterface/teacher_list.html', {'teachers1': teachers1})
+
+
+
+def search_student(request):
+    search = request.GET['query']
+    # if len(search) == 0:
+    #     return render(request, 'blog/search.html')
+    if search:
+        list = CustomUser.objects.filter(user_type=3, username__icontains=search)
+        context = {
+            'list':list,
+            'search':search
+        }
+        return render(request, 'admininterface/search_student.html', context)
+    else:
+        return render(request, 'admininterface/search_student.html')
+
+
+
+def search_teacher(request):
+    search = request.GET['query']
+    # if len(search) == 0:
+    #     return render(request, 'blog/search.html')
+    if search:
+        list = CustomUser.objects.filter(user_type=2, username__icontains=search)
+        context = {
+            'list':list,
+            'search':search
+        }
+        return render(request, 'admininterface/search_teacher.html', context)
+    else:
+        return render(request, 'admininterface/search_teacher.html')

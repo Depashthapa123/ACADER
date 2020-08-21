@@ -101,6 +101,27 @@ body {
   height: 20px;
 }
 
+/* marksbutton */
+.marks {
+  display: inline-block;
+  padding: 5px 15px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #2196F3;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
 
+.marks:hover {background-color: #0b7dda}
 
+.marks:active {
+  background-color: #2196F3;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
 

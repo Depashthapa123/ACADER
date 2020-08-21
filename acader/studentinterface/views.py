@@ -3,9 +3,9 @@ from django.contrib.auth import login, authenticate, logout
 # from django.contrib import messages
 # from django.contrib.auth.decorators import login_required
 # from students.models import CustomUser, Course, Marks, Terms, Grade, Faculty
-from students.models import CustomUser
+from students.models import CustomUser, Marks, Course
 from .forms import BioUpdate
-
+from django.db.models import Q
 
 def student_profile(request):
         user3 = CustomUser.objects.get(user_type=3, id=request.user.id)
@@ -40,6 +40,9 @@ def student_dashboard(request):
 def student_marks(request):
     # students = CustomUser.objects.filter(user_type=3)
     return render(request, 'studentinterface/student_marks.html')
+
+
+
 
 
 def do_logout2(request):

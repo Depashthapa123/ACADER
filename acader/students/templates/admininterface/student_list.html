@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
+<head>
 <title>Acader</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
 <link rel="stylesheet" href="{% static 'css/w3.css' %}">
 <link rel="stylesheet" href="{% static 'css/font.css' %}">
+</head>
 <body>
     <!-- Sidebar/menu -->
     <nav class="w3-sidebar w3-blue w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
@@ -39,8 +41,10 @@
     <h3>Students List</h3>
      <!-- Search form -->
      <div class="example" style="margin:0px;max-width:300px">
-      <input type="text" placeholder="Search.." name="search">
-      <button  class="searchbtn" type="submit"><a href="#"><img src="{% static 'image/search.svg' %} " alt=""></a></button>
+    <form action="/search_student" method="GET">
+      <input type="text" placeholder="Search.." name="query">
+      <button  class="searchbtn" type="submit"><img src="{% static 'image/search.svg' %} " alt=""></button>
+   </form>
     </div>
   </div>
   <div class="w3-container" style="margin-top:20px" id="showcase">
