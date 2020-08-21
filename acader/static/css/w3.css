@@ -2,7 +2,7 @@ html{
     box-sizing:border-box;
     -ms-text-size-adjust:100%;
     -webkit-text-size-adjust:100%;
-    overflow-x:hidden;
+    /* overflow-x:hidden; */
 }
 
 *,*:before,*:after{
@@ -232,13 +232,13 @@ hr{
 }
 
 .w3-padding-55{
-    padding-top:55px;
-    padding-bottom:55px
+    padding-top:45px!important;
+    padding-bottom:45px!important;
 }
 
 .w3-display-right{position:absolute;top:50%;right:0%;transform:translate(0%,-50%);-ms-transform:translate(0%,-50%)}
 
-.w3-display-topright{position:absolute;right:0;top:15%}
+.w3-display-topright{position:absolute;right:2%;top:15%}
 
 /* Colors */
 .w3-blue,.w3-hover-blue:hover{
