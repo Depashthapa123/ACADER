@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import login, authenticate, logout
 from students.models import CustomUser, Course, Marks, Terms, Grade, Faculty, StudentCourse, Student, Teacher
+from django.contrib.auth import login, authenticate, logout
 # from django.contrib import messages
 # from django.contrib.auth.decorators import login_required
 from .forms import BioUpdate1
+from .models import postmessage
+import sys
 
 
 def teacher_profile(request):
@@ -29,6 +31,39 @@ def teacher_profile(request):
 
 
 def teacher_dashboard(request):
+    if request.session.has_key('teacher_id'):
+        teacher_id = request.session['teacher_id']
+    else:
+        return redirect('teacherlogin/')
+
+    if request.method == 'POST':
+        requestParams = request.POST
+        # print('teacher_id ', teacher_id)
+
+        try:
+            teacher = Teacher.objects.filter(teacher_id=teacher_id)
+            teacher_faculty = Teacher.objects.filter(teacher_id=teacher_id).values('faculty')
+            teacher_grade = Teacher.objects.filter(teacher_id=teacher_id).values('grade')
+            teacher_createtime = Teacher.objects.filter(teacher_id=teacher_id).values('created_at')
+            message = requestParams['message']
+            name = Teacher.objects.filter(teacher_id=teacher_id).values('name')
+
+            # print(teacher_faculty, teacher_grade)
+            message = postmessage(
+                teacher_id=teacher[0],
+                faculty=teacher_faculty[0]['faculty'],
+                grade=teacher_grade[0]['grade'],
+                created_at=teacher_createtime[0]['created_at'],
+                name=name,
+                message=message,
+
+            )
+            # print(message)
+            messagepostresponse = message.save()
+            print('-------------------------------> ', messagepostresponse)
+        except:
+            print('An exception occured', sys.exc_info())
+
     return render(request, 'teacherinterface/teacher_dashboard.html')
 
 
@@ -58,3 +93,25 @@ def do_logout1(request):
     return redirect('loginpage')
 
 
+# def postmessage(request):
+#     user3 = CustomUser.objects.get(user_type=2, id=request.user.id)
+#     teacher_id2 = None
+#     if request.session.has_key('teacher_id'):
+#         teacher_id2 = request.session['teacher_id']
+#     else:
+#         return redirect(request, 'teacherlogin/')
+#     teacher_faculty1 = Teacher.objects.filter(teacher_id=teacher_id2).values('faculty')
+#     teacher_grade1 = Teacher.objects.filter(teacher_id=teacher_id2).values('grade')
+#     teacher_section = Teacher.objects.filter(teacher_id=teacher_id2).values('section')
+#
+#     if request.POST == 'POST':
+#         m_form = Message(request.POST, request.FILES, instance=request.user.postmessage)
+#
+#         if m_form.is_valid():
+#             m_form.save()
+#             return redirect('teacher_dashboard/')
+#         else:
+#             m_form = Message(instance=request.user.postmessage)
+#
+#     return render(request, 'teacherinterface/teacher_dashboard.html', {'students1': students1, 'm_form': m_form, 'user3': user3})
+#

@@ -42,7 +42,7 @@ def teacherlogin(request):
         password = request.POST['password']
 
         user1 = authenticate(username=username, password=password)
-        print('login as', user1.user_type)
+        print('login as', user1)
 
         if user1 is not None:
             login(request, user1)

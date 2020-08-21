@@ -55,6 +55,24 @@
                 <canvas id="lineChart" height="400px" width="400px"></canvas>
       </article>
   </div>
+    <div class="w3-container" style="margin-top:20px" id="showcase">
+    <table class="w3-table-all">
+        <thead>
+          <tr class="w3-blue">
+              <th>Notice</th>
+              <th>Time</th>
+              <th>Name</th>
+          </tr>
+        </thead>
+        {% for t in teacher1 %}
+            <tr>
+                <td>{{ t.message }}</td>
+                <td>{{ t.created_at }}</td>
+                <td>{{ t.name }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+  </div>
   
   
 

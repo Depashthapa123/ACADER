@@ -3,9 +3,16 @@ from django.contrib.auth import login, authenticate, logout
 # from django.contrib import messages
 # from django.contrib.auth.decorators import login_required
 # from students.models import CustomUser, Course, Marks, Terms, Grade, Faculty
+<<<<<<< Updated upstream
 from students.models import CustomUser, Marks, Course
 from .forms import BioUpdate
 from django.db.models import Q
+=======
+from students.models import CustomUser, Teacher, Student
+from .forms import BioUpdate
+from teacherinterface.models import postmessage
+
+>>>>>>> Stashed changes
 
 def student_profile(request):
         user3 = CustomUser.objects.get(user_type=3, id=request.user.id)
@@ -34,7 +41,17 @@ def course_content(request):
 
 
 def student_dashboard(request):
-    return render(request, 'studentinterface/student_dashboard.html')
+    student_id = None
+    if request.session.has_key('student_id'):
+        student_id = request.session['student_id']
+    else:
+        return redirect('studentlogin/')
+    student_faculty = Student.objects.filter(student_id=student_id).values('faculty')
+    student_grade = Student.objects.filter(student_id=student_id).values('grade')
+
+    teacher1 = postmessage.objects.filter(faculty=student_faculty[0]['faculty'], grade=student_grade[0]['grade'])
+
+    return render(request, 'studentinterface/student_dashboard.html', {'teacher1': teacher1})
 
 
 def student_marks(request):

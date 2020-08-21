@@ -1,5 +1,5 @@
 from django.db import models
-from students.models import CustomUser
+from students.models import CustomUser, Student, Faculty, Grade, Teacher
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
@@ -24,3 +24,13 @@ def create_teacher_profile(sender, instance, created, **kwargs):
 def save_teacher_profile(sender, instance, **kwargs):
     if instance.user_type == 2:
         instance.profile1.save()
+
+
+class postmessage(models.Model):
+    id = models.AutoField(primary_key=True)
+    teacher_id = models.ForeignKey(Teacher, on_delete=models.CASCADE, default=1)
+    faculty = models.TextField(default=1)
+    grade = models.IntegerField(default=1)
+    created_at = models.DateTimeField(auto_now_add=True, null=True)
+    message = models.CharField(blank=False, max_length=500)
+    name = models.TextField(default=1)
