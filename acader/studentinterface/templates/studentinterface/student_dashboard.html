@@ -39,7 +39,7 @@
 <div class="w3-main" style="margin-left:340px;margin-right:40px">
 
   <!-- Header(main body) -->
-  <div class="w3-container" style="margin-top:80px" id="showcase">
+  <div class="w3-container-bgcolor" style="margin-top:80px" id="showcase">
     <div class="LineChart">
       <article><h3 class="w3-xxxlarge w3-text-blue"><b>Marksheet Of Terminal Examination.</b></h3>
                 <hr style="width:300px;border:5px solid blue" class="w3-round">
@@ -54,39 +54,19 @@
                     </div>
                 <canvas id="lineChart" height="400px" width="400px"></canvas>
       </article>
+    </div>
   </div>
-    <div class="w3-container" style="margin-top:20px" id="showcase">
-    <table class="w3-table-all">
-        <thead>
-          <tr class="w3-blue">
-              <th>Notice</th>
-              <th>Time</th>
-              <th>Name</th>
-          </tr>
-        </thead>
+    <div class="w3-container-bgcolor" style="margin-top:20px" id="showcase">
+        <h1>Notice:</h1>
         {% for t in teacher1 %}
-            <tr>
-                <td>{{ t.message }}</td>
-                <td>{{ t.created_at }}</td>
-                <td>{{ t.name }}</td>
-            </tr>
+                <div class="notice" style="border: solid 1px black;">
+                  <h3>{{ t.name }}</h3>
+                  <p style="font-size: 10px;margin-top:-25px;">{{ t.created_at }}</p>
+                  <p>{{ t.message }}</p>
+                </div>
+                <br>
         {% endfor %}
-    </table>
-  </div>
-  
-  
-
-  <!-- Notice -->
-  <div class="w3-container" id="services" style="margin-top:75px">
-    <h1 class="w3-xxxlarge w3-text-blue"><b>Notice</b></h1>
-    <hr style="width:50px;border:5px solid blue" class="w3-round">
-    <p>We are a interior design service that focus on what's best for your home and what's best for you!</p>
-    <p>Some text about our services - what we do and what we offer. We are lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-    dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor
-    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-    </p>
-  </div>
-  
+    </div>
 <!-- End page content -->
 </div>
 
