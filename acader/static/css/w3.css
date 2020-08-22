@@ -11,7 +11,7 @@ html{
 
 body{
     margin:0;
-    background-color: #f4f5fa;
+    background-color: white;
 
 }
 
@@ -222,7 +222,7 @@ hr{
 }
 
 .w3-container-bgcolor{
-    background-color:white;
+    background-color:#efefef;
     /* border: solid 1px whi ; */
     border-radius: 15px;
     padding:16px 16px;

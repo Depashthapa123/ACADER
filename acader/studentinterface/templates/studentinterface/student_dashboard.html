@@ -57,15 +57,18 @@
     </div>
   </div>
     <div class="w3-container-bgcolor" style="margin-top:20px" id="showcase">
-        <h1>Notice:</h1>
-        {% for t in teacher1 %}
-                <div class="notice" style="border: solid 1px black;">
-                  <h3>{{ t.name }}</h3>
-                  <p style="font-size: 10px;margin-top:-25px;">{{ t.created_at }}</p>
-                  <p>{{ t.message }}</p>
-                </div>
-                <br>
+      <h1>Notice:</h1>
+      {% for t in teacher1 %}
+      <div class="announcement darker">
+        <img src="{% static 'image/profile.jpg'%}" alt="Avatar" class="right" style="width:100%;">
+        <h2>{{ t.name }}</h2>
+        <p style="font-size: 10px;margin-top:-25px;">{{ t.created_at }}</p>
+        <span class="time-left">{{ t.message }}</span>
+      </div>
+          <br>
         {% endfor %}
+     
+    </div>
     </div>
 <!-- End page content -->
 </div>
