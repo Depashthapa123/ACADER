@@ -20,7 +20,7 @@
   <div class="w3-bar-block">
     <a href="{% url 'student_profile' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Profile</a><br>
     <a href="{% url 'student_dashboard' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Dashboard</a><br>
-    <a href="{% url 'student_marks' %}" onclick="w3_close()" class="active">Marks</a> <br>
+    <a href="{% url 'student_marks' %}" onclick="w3_close()"  class="active">Marks</a> <br>
     <a href="{% url 'course_content' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Course Content</a> <br>
     <a href="{% url 'do_logout2' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Logout</a>
   </div>
@@ -35,48 +35,34 @@
 <!-- Overlay effect when opening sidebar on small screens -->
 <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
-<!-- !PAGE CONTENT! -->
 <div class="w3-main" style="margin-left:340px;margin-right:40px">
 
-  <!-- Header(main body) -->
-  <div class="w3-container" id="services" style="margin-top:75px">
-    <h1 class="w3-xxxlarge w3-text-blue"><b>Your marks</b></h1>
-    <hr style="width:50px;border:5px solid blue" class="w3-round">
-  <!-- Search form -->
-  <div class="example" style="margin:0px;max-width:300px">
-  <form method="GET" action="/search_marks">
-      <input type="text" placeholder="Enter subject or term" name="query">
-      <button  class="searchbtn" type="submit"><img src="{% static 'image/search.svg' %} " alt=""></a></button>
-  </form>
-  </div>
-    <br>
+
+    <div class="w3-container" style="margin-top:20px" id="showcase">
+        <h3>Marks of {{search}}</h3>
+
     <table class="w3-table-all">
         <thead>
-<!--            <h1>{{ s. }}</h1>-->
           <tr class="w3-blue">
             <th>Subject</th>
             <th>Term</th>
-            <th>Marks</th>
+            <th>Marks obtained</th>
           </tr>
         </thead>
 <!--        {% if request.user.is_authenticated %}-->
-            {% for m in marks %}
+            {% for m in marklist %}
                 <tr>
                     <td>{{ m.course_id.course_name }}</td>
-                    <td>{{ m.terms_id.terms_name }}</td>
-                    <td>{{ m.obtained_marks }}</td>
+                  <td>{{ m.terms_id.terms_name }}</td>
+                  <td>{{ m.obtained_marks }}</td>
                 </tr>
             {% endfor %}
-<!--      {% endif %}-->
-      </table>
-  </>
-  <div class="w3-container" id="services" style="margin-top:75px">
-    <h1 class="w3-xxxlarge w3-text-blue"><b>Prediction</b></h1>
-    <hr style="width:50px;border:5px solid blue" class="w3-round">
+<!--        {% endif %}-->
+    </table>
+  </div>
 
 <!-- End page content -->
 </div>
-<script src="{% static 'js/jsindex2.js' %}"></script>
-
+<script src="{% static 'js/loginpage.js' %}"></script>
 </body>
 </html>

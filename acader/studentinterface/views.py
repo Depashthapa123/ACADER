@@ -1,12 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
-# from django.contrib import messages
+from django.contrib import messages
 # from django.contrib.auth.decorators import login_required
 # from students.models import CustomUser, Course, Marks, Terms, Grade, Faculty
-from students.models import CustomUser, Marks, Course
-from .forms import BioUpdate
+from students.models import CustomUser, Marks, Course, Teacher, Student
 from django.db.models import Q
-from students.models import CustomUser, Teacher, Student
 from .forms import BioUpdate
 from teacherinterface.models import postmessage
 
@@ -52,11 +50,37 @@ def student_dashboard(request):
 
 
 def student_marks(request):
-    # students = CustomUser.objects.filter(user_type=3)
-    return render(request, 'studentinterface/student_marks.html')
+    student_id = None
+    if request.session.has_key('student_id'):
+        student_id = request.session['student_id']
+        print(student_id, 'found')
+    else:
+        return redirect('studentlogin/')
+
+    marks = Marks.objects.filter(student_id=student_id)
+
+    return render(request, 'studentinterface/student_marks.html', {'marks':marks})
 
 
+def search_marks(request):
+    student_id = None
+    if request.session.has_key('student_id'):
+        student_id = request.session['student_id']
+        print(student_id, 'found')
+    else:
+        return redirect('studentlogin/')
 
+    search = request.GET['query']
+    if search:
+        marklist = Marks.objects.filter(Q(student_id=student_id, course_id__course_name__icontains=search) |
+                                          Q(student_id=student_id, terms_id__terms_name__icontains=search))
+        context = {
+            'marklist': marklist,
+            'search': search
+        }
+        return render(request, 'studentinterface/search_marks.html', context)
+    else:
+        return render(request, 'studentinterface/search_marks.html')
 
 
 def do_logout2(request):
