@@ -2,7 +2,7 @@ html{
     box-sizing:border-box;
     -ms-text-size-adjust:100%;
     -webkit-text-size-adjust:100%;
-    /* overflow-x:hidden; */
+    overflow-x:auto;
 }
 
 *,*:before,*:after{
@@ -10,7 +10,9 @@ html{
 }
 
 body{
-    margin:0
+    margin:0;
+    background-color: #f4f5fa;
+
 }
 
 article,aside,details,figcaption,figure,footer,header,main,menu,nav,section{
@@ -65,7 +67,7 @@ hr{
     display:inline-block;
     padding:8px 16px;
     vertical-align:middle;
-    overflow:hidden;
+    overflow:auto;
     text-decoration:none;
     color:inherit;
     background-color:inherit;
@@ -106,7 +108,7 @@ hr{
     background-color:#fff;
     position:fixed;
     z-index:1;
-    overflow:none;
+    overflow:auto;
 }
 
 .w3-bar-block ,.w3-bar-block .w3-bar-block .w3-button,.w3-bar-block .w3-button{
@@ -121,7 +123,7 @@ hr{
 
 .w3-bar{
     width:100%;
-    overflow:hidden;
+    overflow:auto;
     display:inline-block;
     width:auto
 }
@@ -219,6 +221,14 @@ hr{
     padding:0.01em 16px
 }
 
+.w3-container-bgcolor{
+    background-color:white;
+    /* border: solid 1px whi ; */
+    border-radius: 15px;
+    padding:16px 16px;
+
+}
+
 .w3-margin-right{
     margin-right:16px!important
 }
@@ -238,7 +248,7 @@ hr{
 
 .w3-display-right{position:absolute;top:50%;right:0%;transform:translate(0%,-50%);-ms-transform:translate(0%,-50%)}
 
-.w3-display-topright{position:absolute;right:2%;top:15%}
+.w3-display-topright{position:absolute;right:4%;top:15%}
 
 /* Colors */
 .w3-blue,.w3-hover-blue:hover{

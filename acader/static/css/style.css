@@ -125,3 +125,24 @@ body {
   transform: translateY(4px);
 }
 
+/* forannouncement */
+.comment {
+  float: left;
+  width: 100%;
+  height: auto;
+}
+
+.comment-text-area {
+  float: left;
+  width: 100%;
+  height: auto;
+}
+
+.textinput {
+  float: left;
+  width: 100%;
+  min-height: 75px;
+  outline: none;
+  resize: none;
+  border: 1px solid grey;
+}

@@ -37,26 +37,17 @@
 <div class="w3-main" style="margin-left:340px;margin-right:40px">
 
   <!-- Header(main body) -->
-  <div class="w3-container" style="margin-top:80px" id="showcase">
-      <h3><a href="#" style="text-decoration: none;color: black;">Announcements</a></h3>
-      <h3><a href="{% url 'teacher_dashboard' %}" style="text-decoration: none;color: black;">dashboard</a></h3>
-  </div>
+  <div class="w3-container-bgcolor" style="margin-top:80px" id="showcase">
+      <h3><a href="#" style="text-decoration: none;color: black;">Announcement</a></h3> 
     <form action="" method="POST" id="message_form">
         {% csrf_token %}
-        <div>
-            <label style="display: block">Enter your post here</label>
-            <textarea
-                    rows="20"
-                    cols="50"
-                    name="message"
-                    placeholder="Enter your message"
-                    form="message_form"
-            >
-            </textarea>
-        </div>
-
-        <input type="submit">
-    </form>
+              <div class="comment">
+                  <textarea class="textinput"  name="message" form="message_form" placeholder="Comment" required></textarea>
+              </div>
+        <br><br><br><br>
+        <input class="marks" type="submit">
+      </form>
+  </div>
 
 <!-- End page content -->
 </div>
