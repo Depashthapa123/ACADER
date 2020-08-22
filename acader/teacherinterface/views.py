@@ -93,25 +93,16 @@ def do_logout1(request):
     return redirect('loginpage')
 
 
-# def postmessage(request):
-#     user3 = CustomUser.objects.get(user_type=2, id=request.user.id)
-#     teacher_id2 = None
-#     if request.session.has_key('teacher_id'):
-#         teacher_id2 = request.session['teacher_id']
-#     else:
-#         return redirect(request, 'teacherlogin/')
-#     teacher_faculty1 = Teacher.objects.filter(teacher_id=teacher_id2).values('faculty')
-#     teacher_grade1 = Teacher.objects.filter(teacher_id=teacher_id2).values('grade')
-#     teacher_section = Teacher.objects.filter(teacher_id=teacher_id2).values('section')
-#
-#     if request.POST == 'POST':
-#         m_form = Message(request.POST, request.FILES, instance=request.user.postmessage)
-#
-#         if m_form.is_valid():
-#             m_form.save()
-#             return redirect('teacher_dashboard/')
-#         else:
-#             m_form = Message(instance=request.user.postmessage)
-#
-#     return render(request, 'teacherinterface/teacher_dashboard.html', {'students1': students1, 'm_form': m_form, 'user3': user3})
-#
+def search_student1(request):
+    search = request.GET['query']
+    # if len(search) == 0:
+    #     return render(request, 'blog/search.html')
+    if search:
+        list = CustomUser.objects.filter(user_type=3, username__icontains=search)
+        context = {
+            'list':list,
+            'search':search
+        }
+        return render(request, 'teacherinterface/search_student1.html', context)
+    else:
+        return render(request, 'teacherinterface/search_student1.html')

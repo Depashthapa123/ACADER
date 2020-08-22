@@ -7,11 +7,11 @@ from .models import CustomUser, Course, Marks, Terms, Grade, Faculty, StudentCou
 
 
 def loginpage(request):
-    if request.session.has_key('student_id'):
-        student_id = request.session['student_id']
-        print(student_id, 'found')
-    else:
-        print('not found')
+    # if request.session.has_key('student_id'):
+    #     student_id = request.session['student_id']
+    #     print(student_id, 'found')
+    # else:
+    #     print('not found')
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -64,11 +64,11 @@ def teacherlogin(request):
 
 
 def adminlogin(request):
-    if request.session.has_key('admin_id'):
-        admin_id = request.session['admin_id']
-        print(admin_id, 'found')
-    else:
-        print('not found')
+    # if request.session.has_key('admin_id'):
+    #     admin_id = request.session['admin_id']
+    #     print(admin_id, 'found')
+    # else:
+    #     print('not found')
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -347,7 +347,6 @@ def teacher_list(request):
     return render(request, 'admininterface/teacher_list.html', {'teachers1': teachers1})
 
 
-
 def search_student(request):
     search = request.GET['query']
     # if len(search) == 0:
@@ -361,7 +360,6 @@ def search_student(request):
         return render(request, 'admininterface/search_student.html', context)
     else:
         return render(request, 'admininterface/search_student.html')
-
 
 
 def search_teacher(request):

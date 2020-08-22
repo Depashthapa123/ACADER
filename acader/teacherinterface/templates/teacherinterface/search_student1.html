@@ -29,26 +29,16 @@
   <a href="javascript:void(0)" class="w3-button w3-blue w3-margin-right" onclick="w3_open()">☰</a>
   <span>Acader</span>
 </header>
-
-<!-- Overlay effect when opening sidebar on small screens -->
+    <!-- Overlay effect when opening sidebar on small screens -->
 <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
 <!-- !PAGE CONTENT! -->
 <div class="w3-main" style="margin-left:340px;margin-right:40px">
 
-  <!-- Header(main body) -->
-  <div class="w3-container" style="margin-top:80px" id="showcase">
-<!--      <h3><a href="{% url 'marks' %}" style="text-decoration: none;color: black;">Student Marks list</a></h3>-->
-    <h3>Students List</h3>
-     <!-- Search form -->
-     <div class="example" style="margin:0px;max-width:300px">
-    <form action="/search_student1" method="GET">
-      <input type="text" placeholder="Search.." name="query">
-      <button  class="searchbtn" type="submit"><img src="{% static 'image/search.svg' %} " alt=""></button>
-   </form>
-    </div>
-  </div>
-  <div class="w3-container" style="margin-top:20px" id="showcase">
+
+    <div class="w3-container" style="margin-top:20px" id="showcase">
+        <h3>Searched List of "{{search}}"</h3>
+
     <table class="w3-table-all">
         <thead>
           <tr class="w3-blue">
@@ -57,18 +47,27 @@
             <th>Faculty</th>
             <th>Grade</th>
             <th>Section</th>
-            <th></th>
+            <th>Gender</th>
+            <th>Address</th>
+            <th>Contact</th>
+            <th>DOB</th>
+            <th>Parent name</th>
           </tr>
         </thead>
-        {% for s in students %}
-            <tr>
-                <td>{{ s.id }}</td>
-                <td>{{ s.name }}</td>
-                <td>{{ s.faculty }}</td>
-                <td>{{ s.grade }}</td>
-                <td>{{ s.section }}</td>
-                <td><button class="marks" ><a href="{% url 'teacher_displaymarks' student_id=s.student_id %}" style="text-decoration: none;color: black;">Marks</a></button></td>
-            </tr>
+        {% for s in list %}
+        <tr>
+            <td>{{ s.id }}</td>
+          <td>{{ s.username }}</td>
+          <td>{{ s.student.faculty }}</td>
+          <td>{{ s.student.grade }}</td>
+          <td>{{ s.student.section }}</td>
+          <td>{{ s.student.gender }}</td>
+          <td>{{ s.student.address }}</td>
+          <td>{{ s.student.contact }}</td>
+          <td>{{ s.student.DOB }}</td>
+          <td>{{ s.student.parent_name }}</td>
+          <td><button class="marks"><a href="{% url 'student_displaymarks' student_id=s.id %}" style="text-decoration: none;color: black;">Marks</a></button></td>
+        </tr>
         {% endfor %}
     </table>
   </div>
@@ -78,3 +77,5 @@
 <script src="{% static 'js/loginpage.js' %}"></script>
 </body>
 </html>
+
+
