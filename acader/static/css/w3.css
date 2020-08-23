@@ -11,7 +11,7 @@ html{
 
 body{
     margin:0;
-    background-color: #f4f5fa;
+    background-color: white;
 
 }
 
@@ -57,7 +57,7 @@ hr{
 
 /* for table */
 .w3-table-all{border-collapse:collapse;border-spacing:0;width:100%;display:table}
-.w3-table-all tr:nth-child(even){background-color:#f1f1f1}
+.w3-table-all tr:nth-child(even){background-color:white}
 .w3-table-all td,.w3-table-all th{padding:8px 8px;display:table-cell;text-align:left;vertical-align:top}
 .w3-table-all th:first-child,.w3-table-all td:first-child{padding-left:16px}
 
@@ -222,7 +222,7 @@ hr{
 }
 
 .w3-container-bgcolor{
-    background-color:white;
+    background-color:#efefef;
     /* border: solid 1px whi ; */
     border-radius: 15px;
     padding:16px 16px;

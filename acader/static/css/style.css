@@ -55,6 +55,7 @@ body {
   border-radius: 5px;
   display: table;
   margin:  auto;
+  border: 2px solid black;
 } 
 
 
@@ -145,4 +146,45 @@ body {
   outline: none;
   resize: none;
   border: 1px solid grey;
+}
+
+.announcement {
+  border: 2px solid #dedede;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.darker {
+  border-color: #ccc;
+  background-color:#d5dae0;
+}
+
+.announcement::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.announcement img {
+  float: left;
+  max-width: 60px;
+  width: 100%;
+  margin-right: 20px;
+  border-radius: 50%;
+}
+
+.announcement img.right {
+  float: right;
+  margin-left: 20px;
+  margin-right:0;
+}
+
+.time-left {
+  float: left;
+  color:black;
+  font-size: 20px;
+  background-color: #f1f2f6;
+  border-radius: 5px;
 }
