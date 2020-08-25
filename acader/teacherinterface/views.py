@@ -5,9 +5,11 @@ from django.contrib.auth import login, authenticate, logout
 # from django.contrib.auth.decorators import login_required
 from .forms import BioUpdate1
 from .models import postmessage
+from students.restrictions import unauthenticated_teacher
 import sys
 
 
+@unauthenticated_teacher
 def teacher_profile(request):
     user2 = CustomUser.objects.get(user_type=2, id=request.user.id)
     if request.method == 'POST':
@@ -30,12 +32,16 @@ def teacher_profile(request):
     return render(request, 'teacherinterface/teacher_profile.html', context)
 
 
+@unauthenticated_teacher
 def teacher_dashboard(request):
     if request.session.has_key('teacher_id'):
         teacher_id = request.session['teacher_id']
-    else:
-        return redirect('teacherlogin/')
 
+    teacher = Teacher.objects.filter(teacher_id=teacher_id)[0]
+    post_messages = postmessage.objects.filter(teacher_id=teacher)
+
+    context = {'post_message': post_messages}
+    print(context)
     if request.method == 'POST':
         requestParams = request.POST
         # print('teacher_id ', teacher_id)
@@ -45,8 +51,11 @@ def teacher_dashboard(request):
             teacher_faculty = Teacher.objects.filter(teacher_id=teacher_id).values('faculty')
             teacher_grade = Teacher.objects.filter(teacher_id=teacher_id).values('grade')
             teacher_createtime = Teacher.objects.filter(teacher_id=teacher_id).values('created_at')
-            message = requestParams['message']
+            message1 = requestParams['message']
             name = Teacher.objects.filter(teacher_id=teacher_id).values('name')
+
+            # teacher2 = postmessage.objects.filter(faculty=teacher_faculty[0]['faculty'],
+            #                                       grade=teacher_grade[0]['grade'], name=name[0]['name'])
 
             # print(teacher_faculty, teacher_grade)
             message = postmessage(
@@ -55,7 +64,7 @@ def teacher_dashboard(request):
                 grade=teacher_grade[0]['grade'],
                 created_at=teacher_createtime[0]['created_at'],
                 name=name,
-                message=message,
+                message=message1,
 
             )
             # print(message)
@@ -64,15 +73,14 @@ def teacher_dashboard(request):
         except:
             print('An exception occured', sys.exc_info())
 
-    return render(request, 'teacherinterface/teacher_dashboard.html')
+    return render(request, 'teacherinterface/teacher_dashboard.html', context)
 
 
+@unauthenticated_teacher
 def teacher_marks(request):
     teacher_id1 = None
     if request.session.has_key('teacher_id'):
         teacher_id1 = request.session['teacher_id']
-    else:
-        return redirect(request, 'teacherlogin/')
 
     teacher_faculty = Teacher.objects.filter(teacher_id=teacher_id1).values('faculty')
     teacher_grade = Teacher.objects.filter(teacher_id=teacher_id1).values('grade')
@@ -82,6 +90,7 @@ def teacher_marks(request):
     return render(request, 'teacherinterface/teacher_marks.html', {'students': students})
 
 
+@unauthenticated_teacher
 def teacher_displaymarks(request, student_id):
     # students = Student.objects.filter(student_id=student_id)
     marks1 = Marks.objects.filter(student_id=student_id)
@@ -93,6 +102,7 @@ def do_logout1(request):
     return redirect('loginpage')
 
 
+@unauthenticated_teacher
 def search_student1(request):
     search = request.GET['query']
     # if len(search) == 0:

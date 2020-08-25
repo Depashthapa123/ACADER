@@ -7,8 +7,10 @@ from students.models import CustomUser, Marks, Course, Teacher, Student
 from django.db.models import Q
 from .forms import BioUpdate
 from teacherinterface.models import postmessage
+from students.restrictions import unauthenticated_student
 
 
+@unauthenticated_student
 def student_profile(request):
         user3 = CustomUser.objects.get(user_type=3, id=request.user.id)
         if request.method == 'POST':
@@ -31,16 +33,18 @@ def student_profile(request):
         return render(request, 'studentinterface/student_profile.html', context)
 
 
+@unauthenticated_student
 def course_content(request):
     return render(request, 'studentinterface/course_content.html')
 
 
+@unauthenticated_student
 def student_dashboard(request):
-    student_id = None
     if request.session.has_key('student_id'):
         student_id = request.session['student_id']
-    else:
-        return redirect('studentlogin/')
+
+    # print(student_id)
+
     student_faculty = Student.objects.filter(student_id=student_id).values('faculty')
     student_grade = Student.objects.filter(student_id=student_id).values('grade')
 
@@ -49,26 +53,28 @@ def student_dashboard(request):
     return render(request, 'studentinterface/student_dashboard.html', {'teacher1': teacher1})
 
 
+@unauthenticated_student
 def student_marks(request):
     student_id = None
     if request.session.has_key('student_id'):
         student_id = request.session['student_id']
         print(student_id, 'found')
     else:
-        return redirect('studentlogin/')
+        return redirect('loginpage/')
 
     marks = Marks.objects.filter(student_id=student_id)
 
     return render(request, 'studentinterface/student_marks.html', {'marks':marks})
 
 
+@unauthenticated_student
 def search_marks(request):
     student_id = None
     if request.session.has_key('student_id'):
         student_id = request.session['student_id']
         print(student_id, 'found')
     else:
-        return redirect('studentlogin/')
+        return redirect('loginpage/')
 
     search = request.GET['query']
     if search:

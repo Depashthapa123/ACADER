@@ -4,31 +4,79 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import CustomUser, Course, Marks, Terms, Grade, Faculty, StudentCourse, Student
+from .restrictions import unauthenticated_admin, unauthenticated_teacher, unauthenticated_student, login_authenticate
 
 
+@login_authenticate
 def loginpage(request):
-    # if request.session.has_key('student_id'):
-    #     student_id = request.session['student_id']
-    #     print(student_id, 'found')
+    # print(request.session.test_cookie_worked())
+    # if request.session.has_key('username') and request.session.has_key('password'):
+    #
+    #     saved_username = request.session['username']
+    #     saved_password = request.session['password']
+    #
+    #     user = authenticate(username=saved_username,password=saved_password)
+    #
+    #     if user is not None:
+    #         login(request, user)
+    #
+    #         if user.user_type == '3':
+    #             request.session['student_id'] = user.id
+    #             return redirect('student_dashboard')
+    #         elif user.user_type == '2':
+    #             messages.warning(request, 'sory mf')
+    #         else:
+    #             messages.warning(request, 'sory mf')
+    #             return redirect('loginpage')
+    #     else:
+    #         messages.warning(request, "invalid")
+    #         return redirect('/')
+    #     return
     # else:
-    #     print('not found')
+    #     print('I do not have cookies')
+
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
+        userType = str(request.POST['user-type'])
 
         user = authenticate(username=username,password=password)
+        # print('userType is ', userType)
+        # print(type(userType))
+        # print('server userType is ', user.user_type)
+
+        # print(userType == user.user_type)
 
         if user is not None:
             login(request, user)
-            if user.user_type == '3':
-                request.session['student_id'] = user.id
-                return redirect('student_dashboard')
-            elif user.user_type == '2':
-                messages.warning(request, 'sory mf')
-                return redirect('loginpage')
+
+            if userType == '1':
+                if userType == user.user_type:
+                    return redirect('student-func')
+                else:
+                    logout(request)
+                    messages.warning(request, "invalid")
+                    return redirect('/')
+            elif userType == '2':
+                if userType == user.user_type:
+                    # print('redirecting to teacher')
+                    request.session['teacher_id'] = user.id
+                    return redirect('teacher_dashboard')
+                else:
+                    logout(request)
+                    # print('redirecting to default')
+                    messages.warning(request, "invalid")
+                    return redirect('/')
             else:
-                messages.warning(request, 'sory mf')
-                return redirect('loginpage')
+                # print('in student function')
+                if userType == user.user_type:
+                    request.session['student_id'] = user.id
+                    return redirect('student_dashboard')
+                else:
+                    logout(request)
+                    # print('Not valid')
+                    messages.warning(request, "invalid")
+                    return redirect('/')
         else:
             messages.warning(request, "invalid")
             return redirect('/')
@@ -36,67 +84,30 @@ def loginpage(request):
         return render(request, 'students/loginpage.html')
 
 
-def teacherlogin(request):
-    if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-
-        user1 = authenticate(username=username, password=password)
-        print('login as', user1)
-
-        if user1 is not None:
-            login(request, user1)
-            # print('ggwp', login2)
-            if user1.user_type == '2':
-                request.session['teacher_id'] = user1.id
-                return redirect('teacher_profile')
-            elif user1.user_type == '3':
-                messages.warning(request, 'sorry ur not teacher')
-                return redirect('teacherlogin')
-            else:
-                messages.warning(request, 'sorry ur not a teacher')
-                return redirect('teacherlogin')
-        else:
-            messages.warning(request, 'invalid')
-            return redirect('teacherlogin')
-    else:
-        return render(request, 'students/teacherlogin.html')
+# @login_authenticate
+# def teacherlogin(request):
+#     if request.method == 'POST':
+#         username = request.POST['username']
+#         password = request.POST['password']
+#
+#         user1 = authenticate(username=username, password=password)
+#         print('login as', user1)
+#
+#         if user1 is not None:
+#             login(request, user1)
+#             # print('ggwp', login2)
+#             if user1.user_type == '2':
+#                 request.session['teacher_id'] = user1.id
+#                 return redirect('teacher_profile')
+#             elif user1.user_type == '3':
+#                 messages.warning(request, 'sorry ur not teacher')
+#             else:
+#                 messages.warning(request, 'sorry ur not a teacher')
+#         else:
+#             messages.warning(request, 'invalid')
 
 
-def adminlogin(request):
-    # if request.session.has_key('admin_id'):
-    #     admin_id = request.session['admin_id']
-    #     print(admin_id, 'found')
-    # else:
-    #     print('not found')
-    if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-
-        user2 = authenticate(username=username, password=password)
-
-        if user2 is not None:
-            login(request, user2)
-            if user2.user_type == '1':
-                request.session['admin_id'] = user2.id
-        if user2 is not None:
-            login(request, user2)
-            if user2.user_type == '1':
-                request.session['admin_id'] = user2.id
-                return redirect('student-func')
-            elif user2.user_type == '3':
-                messages.warning(request, 'sorry ur not teacher')
-                return redirect('adminlogin')
-            else:
-                messages.warning(request, 'sorry ur not a teacher')
-                return redirect('adminlogin')
-        else:
-            messages.warning(request, 'invalid')
-            return redirect('adminlogin')
-    else:
-        return render(request, 'students/adminlogin.html')
-
-
+@unauthenticated_admin
 def register(request):
 
     if request.method == 'POST':
@@ -134,6 +145,7 @@ def register(request):
     return render(request, 'students/register.html')
 
 
+@unauthenticated_admin
 def studentregister(request):
 
     if request.method == 'POST':
@@ -176,6 +188,7 @@ def studentregister(request):
     return render(request, 'students/studentregister.html')
 
 
+@unauthenticated_admin
 def course(request):
     if request.method == 'POST':
         course_name = request.POST['course_name']
@@ -197,6 +210,7 @@ def course(request):
     return render(request, 'students/course.html')
 
 
+@unauthenticated_admin
 def terms(request):
     if request.method == 'POST':
         terms_name = request.POST['terms_name']
@@ -208,6 +222,7 @@ def terms(request):
     return render(request, 'students/term.html')
 
 
+@unauthenticated_admin
 def grades(request):
     if request.method == 'POST':
         grade1 = request.POST['grade']
@@ -219,6 +234,7 @@ def grades(request):
     return render(request, 'students/grade.html')
 
 
+@unauthenticated_admin
 def facultys(request):
     if request.method == 'POST':
         faculty1 = request.POST['faculty']
@@ -230,6 +246,7 @@ def facultys(request):
     return render(request, 'students/faculty.html')
 
 
+@unauthenticated_admin
 def marks(request):
     if request.session.has_key('student_id'):
         student_id = request.session['student_id']
@@ -277,6 +294,7 @@ def home(request):
     return render(request, 'students/home.html')
 
 
+@unauthenticated_admin
 def student_func(request):
     if request.session.has_key('admin_id'):
         admin_id = request.session['admin_id']
@@ -286,6 +304,7 @@ def student_func(request):
     return render(request, 'students/student_func.html')
 
 
+@unauthenticated_admin
 def teacher_func(request):
     if request.session.has_key('admin_id'):
         admin_id = request.session['admin_id']
@@ -300,6 +319,7 @@ def do_logout(request):
     return redirect('loginpage')
 
 
+@unauthenticated_admin
 def studentcourse(request):
     courses_model = Course.objects.all()
     students_model = CustomUser.objects.filter(user_type=3)
@@ -331,22 +351,26 @@ def studentcourse(request):
                    'marks_model': marks_model})
 
 
+@unauthenticated_admin
 def student_list(request):
     students1 = CustomUser.objects.filter(user_type=3)
     return render(request, 'admininterface/student_list.html', {'students1': students1})
 
 
+@unauthenticated_admin
 def student_displaymarks(request, student_id):
     students1 = CustomUser.objects.filter(user_type=3)
     marks1 = Marks.objects.filter(student_id=student_id)
     return render(request, 'admininterface/student_displaymarks.html', {'marks1': marks1, 'students1': students1})
 
 
+@unauthenticated_admin
 def teacher_list(request):
     teachers1 = CustomUser.objects.filter(user_type=2)
     return render(request, 'admininterface/teacher_list.html', {'teachers1': teachers1})
 
 
+@unauthenticated_admin
 def search_student(request):
     search = request.GET['query']
     # if len(search) == 0:
@@ -362,6 +386,7 @@ def search_student(request):
         return render(request, 'admininterface/search_student.html')
 
 
+@unauthenticated_admin
 def search_teacher(request):
     search = request.GET['query']
     # if len(search) == 0:
