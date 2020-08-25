@@ -38,7 +38,7 @@
 
   <!-- Header(main body) -->
   <div class="w3-container-bgcolor" style="margin-top:80px" id="showcase">
-      <h3><a href="#" style="text-decoration: none;color: black;">Announcement</a></h3> 
+      <h3><a href="#" style="text-decoration: none;color: black;">Announcement</a></h3>
     <form action="" method="POST" id="message_form">
         {% csrf_token %}
               <div class="comment">
@@ -48,6 +48,13 @@
         <input class="marks" type="submit">
       </form>
   </div>
+    <div class="w3-container-bgcolor" style="margin-top:80px" id="showcase">
+          <h3><a href="#" style="text-decoration: none;color: black;">Message</a></h3>
+      {% for postMessage in post_message %}
+            <p>{{postMessage.message}}</p>
+            <p>{{postMessage.created_at}}</p>
+      {% endfor %}
+    </div>
 
 <!-- End page content -->
 </div>
