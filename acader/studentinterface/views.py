@@ -83,6 +83,8 @@ def search_marks(request):
         return render(request, 'studentinterface/search_marks.html')
 
 
+
+
 def do_logout2(request):
     logout(request)
     return redirect('loginpage')

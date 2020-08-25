@@ -106,3 +106,6 @@ def search_student1(request):
         return render(request, 'teacherinterface/search_student1.html', context)
     else:
         return render(request, 'teacherinterface/search_student1.html')
+
+
+

@@ -49,6 +49,7 @@ class Student(models.Model):
     objects = models.Manager()
 
 
+
 class Course(models.Model):
     id = models.AutoField(primary_key=True)
     course_name = models.TextField()

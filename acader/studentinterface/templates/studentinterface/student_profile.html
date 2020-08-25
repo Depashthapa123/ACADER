@@ -38,13 +38,21 @@
       <div class="w3-main" style="margin-left:340px;margin-right:40px">
 
         <!-- Header(main body) -->
-        <div class="w3-container-bgcolor" style="margin-top:80px" id="showcase">
-              <div class="coverpic!important" style="background-image: url({% static 'image/coverpic.jpg' %})">
-                <img src="{{ user3.profile.image.url }}" alt="profile_picture" class="profile_img">
-      <!--          <img src="{% static 'image/profile.jpg' %}" alt="profile_picture" class="profile_img">-->
-
+        <form action="" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+        <div class="w3-container-bgcolor" style="margin-top:80px;" id="showcase">
+            <div class="coverpic!important" style="background-image: url({% static 'image/coverpic.jpg' %})">
+              <div class="profile_img">
+                <img src="{{ user3.profile.image.url }}" alt="profile_picture" >
+                <div style="display: block; width: 100px; height: 20px;position: relative;top:-50px;left: 25px; overflow: hidden;">
+                  <button style="width: 110px; height: 30px; position: relative; top: -5px; left: -5px;"><a href="javascript: void(0)" style="text-decoration: none;color: black;">Upload Profile</a></button>
+                  <input type="file" name="image" accept="image/*" id="id_image" style="font-size: 50px; width: 120px; opacity: 0; filter:alpha(opacity=0);  position: relative; top: -40px;; left: -20px" >
+                </div>
+              </div>
                 <h3 class="profile_name">{{user3.first_name}} {{user3.last_name}}</h3>
               </div>
+
+
           <p><h3>Basic Student Information</h3></p>
           <p>First name: {{user3.first_name}}
           </p>
@@ -65,29 +73,12 @@
           <p>Section: {{user3.student.section}}
           </p>
 
-          <form action="" method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-      <!--      <textarea rows="4" cols="50" name="comment" form="userform"-->
-      <!--                placeholder="Write about yourself, come on don't be shy!!">      -->
-      <!-- {{p_form.description}} -->
-      <!--      </textarea>-->
-
+          
               About yourself
+                <p>  {{p_form.description}}</p>
+               
               <p>
-                  {{p_form.description.as_textarea}}
-              </p>
-              Upload profile Photo
-              <p>
-                  {{p_form.image}}
-              </p>
-
-      <!--        Update your picture-->
-      <!--        <p>-->
-      <!--            {{i_form}}-->
-      <!--        </p>-->
-
-              <p>
-                  <input class="marks" type="submit">
+                <br><br><br><br><br><br><br><br><input class="marks" type="submit">
               </p>
           </form>
         </div>
