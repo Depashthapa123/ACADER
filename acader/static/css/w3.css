@@ -2,7 +2,7 @@ html{
     box-sizing:border-box;
     -ms-text-size-adjust:100%;
     -webkit-text-size-adjust:100%;
-    overflow-x:auto;
+    overflow-x:none;
 }
 
 *,*:before,*:after{
