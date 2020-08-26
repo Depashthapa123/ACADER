@@ -124,7 +124,7 @@ body {
   background-color: #2196F3;
   border: none;
   border-radius: 15px;
-  box-shadow: 0 9px #999;
+  box-shadow: 0 6px #999;
 }
 
 .marks:hover {background-color: #0b7dda}
