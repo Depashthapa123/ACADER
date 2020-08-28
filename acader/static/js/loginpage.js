@@ -1,6 +1,6 @@
 const formTitle = document.getElementById('login-title')
 const userType = document.getElementById('user-type')
-userType.value
+userType.value = 3
 
 // Script to open and close sidebar
 function w3_open() {
@@ -33,14 +33,5 @@ function selectTeacherLogin() {
     document.getElementById("admin").className = "";
     document.getElementById("student").className = "";
     userType.value = 2
-    w3_close()
-}
-
-function selectStudent(){
-    formTitle.innerHTML = 'Student Login'
-    document.getElementById("student").className = "active";
-    document.getElementById("teacher").className = "";
-    document.getElementById("admin").className = "";
-    userType.value = 3
     w3_close()
 }
