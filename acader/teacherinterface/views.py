@@ -103,7 +103,8 @@ def delete_post(request, message_id):
     context = None
 
     if request.method == 'POST':
-        message = postmessage.objects.filter(id=message_id).delete()
+        message = postmessage.objects.filter(id=message_id)
+        message.delete()
         context = {'message': message}
         return redirect('teacher_dashboard')
 
