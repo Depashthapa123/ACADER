@@ -25,6 +25,7 @@
     <div class="w3-bar-block" >
         <a class="w3-bar-item w3-button w3-hover-white" onclick="selectAdmin()">Admin</a>
         <a class="w3-bar-item w3-button w3-hover-white" onclick="selectTeacherLogin()">Teacher</a>
+        <a href="{% url 'loginpage' %}" class="w3-bar-item w3-button w3-hover-white">Student</a>
     </div>
   </nav>
   </div>
@@ -85,8 +86,9 @@
       <div class="dropup">
       <button class="dropbtn"><img src="{% static 'image/arrow.svg' %}" alt=""></button>
         <div class="dropup-content">
-          <a class="w3-bar-item w3-button w3-hover-white" onclick="selectAdmin()">Admin</a>
-          <a class="w3-bar-item w3-button w3-hover-white" onclick="selectTeacherLogin()">Teacher</a>
+          <a id="admin" onclick="selectAdmin()">Admin</a>
+          <a id="teacher" onclick="selectTeacherLogin()">Teacher</a>
+          <a href="{% url 'loginpage' %}" id="student" onclick="selectStudentLogin()" class="active" >Student</a>
         </div>
       </div>
     </div>
