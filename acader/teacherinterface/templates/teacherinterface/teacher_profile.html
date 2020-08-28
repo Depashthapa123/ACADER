@@ -40,16 +40,17 @@
   <form action="" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
   <div class="w3-container-bgcolor" style="margin-top:80px" id="showcase">
-        <div class="coverpic!important" style="background-image: url({% static 'image/coverpic.jpg' %})">
-          <div class="profile_img">
-            <img src="{{ user2.profile1.image.url }}" alt="profile_picture" class="profile_img">
-            <div style="display: block; width: 100px; height: 20px;position: relative;top:-50px;left: 25px; overflow: hidden;">
-              <button style="width: 110px; height: 30px; position: relative; top: -5px; left: -5px;"><a href="javascript: void(0)" style="text-decoration: none;color: black;">Upload Profile</a></button>
-              <input type="file" name="image" accept="image/*" id="id_image" style="font-size: 50px; width: 120px; opacity: 0; filter:alpha(opacity=0);  position: relative; top: -40px;; left: -20px" >
-            </div>
-          </div>
-          <h3 class="profile_name">{{user2.first_name}} {{user2.last_name}}</h3>
+    <div class="coverpic!important"  style="background-image: url({% static 'image/classroom_cover.jpg' %});">
+      <div class="profile_img">
+        <div class="circle">
+          <!-- User Profile Image -->
+          <img class="profile-pic" src="{{ user2.profile1.image.url }}" alt="profile_picture">
         </div>
+          <i class="upload-button"><img src="{% static 'image/camera-icon.svg' %}" alt=""></i>
+          <input class="file-upload" name="image" type="file" accept="image/*"/>
+      </div>
+        <h3 class="profile_name">{{user2.first_name}} {{user2.last_name}}</h3>
+    </div>
   <p><h3>Basic Student Information</h3></p>
     <p>First name: {{user2.first_name}}
     </p>
@@ -72,14 +73,16 @@
 
         About yourself
         <p>  {{p_form.description}}</p>
-            <input class="marks" type="submit">
         </p>
+        <input class="marks" type="submit">
+
     </form>
 
   </div>
 
 <!-- End page content -->
 </div>
-<script src="{% static 'js/loginpage.js' %}"></script>
+<script src="{%static 'js/jquery-2.2.4.min.js' %}"></script>
+<script src="{% static 'js/jsindex2.js' %}"></script>
 </body>
 </html>

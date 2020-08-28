@@ -119,6 +119,8 @@ input::placeholder {
     text-decoration: none;
 }
 
+  /* For dropup button */
+
 .dropbtn {
     background-color: #3498DB;
     height: 25px;
@@ -139,7 +141,6 @@ input::placeholder {
   right: 13px;
   bottom: 15px;
 }
-  /* For dropup button */
   
   .dropup {
     position: relative;
@@ -150,9 +151,10 @@ input::placeholder {
     display: none;
     position: absolute;
     background-color: #f1f1f1;
-    min-width: 160px;
+    min-width: 70px;
     bottom: 50px;
     z-index: 1;
+    right: 1px;
   }
   
   .dropup-content a {
@@ -162,7 +164,10 @@ input::placeholder {
     display: block;
   }
   
-  .dropup-content a:hover {background-color: #ccc}
+  .dropup-content a:hover {
+    background-color: #ccc;
+    cursor: pointer;
+  }
   
   .dropup:hover .dropup-content {
     display: block;
@@ -170,4 +175,21 @@ input::placeholder {
   
   .dropup:hover .dropbtn {
     background-color: #355d98;
+  }
+
+  .active{
+    width:100%;
+    display:block;
+    padding:8px 16px;
+    text-align:left;
+    white-space:normal;
+    float:none;
+    outline:0;
+    border:none;
+    overflow:hidden;
+    text-decoration:none;
+    cursor:pointer;
+    white-space:nowrap;
+    color:#000!important;
+    background-color: #add8e6!important;
   }
