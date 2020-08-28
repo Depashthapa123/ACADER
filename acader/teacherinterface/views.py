@@ -1,7 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from students.models import CustomUser, Course, Marks, Terms, Grade, Faculty, StudentCourse, Student, Teacher
 from django.contrib.auth import login, authenticate, logout
-# from django.contrib import messages
+from django.contrib import messages
 # from django.contrib.auth.decorators import login_required
 from .forms import BioUpdate1
 from .models import postmessage
@@ -41,7 +41,8 @@ def teacher_dashboard(request):
     post_messages = postmessage.objects.filter(teacher_id=teacher)
 
     context = {'post_message': post_messages}
-    print(context)
+    # print(context)
+
     if request.method == 'POST':
         requestParams = request.POST
         # print('teacher_id ', teacher_id)
@@ -95,6 +96,18 @@ def teacher_displaymarks(request, student_id):
     # students = Student.objects.filter(student_id=student_id)
     marks1 = Marks.objects.filter(student_id=student_id)
     return render(request, 'teacherinterface/teacher_displaymarks.html', {'marks1': marks1})
+
+
+@unauthenticated_teacher
+def delete_post(request, message_id):
+    context = None
+
+    if request.method == 'POST':
+        message = postmessage.objects.filter(id=message_id).delete()
+        context = {'message': message}
+        return redirect('teacher_dashboard')
+
+    return render(request, 'teacherinterface/delete.html', context)
 
 
 def do_logout1(request):
