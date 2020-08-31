@@ -34,4 +34,8 @@ class postmessage(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, null=True)
     message = models.CharField(blank=False, max_length=500)
     name = models.TextField(default=1)
+<<<<<<< HEAD
     # image_id = models.ForeignKey(Profile1, on_delete=models.CASCADE, default=1)
+=======
+    # picture_id = models.ForeignKey(Profile1, on_delete=models.CASCADE, default=1)
+>>>>>>> d585ac393c6839884fde36a1a147ffba368c2990

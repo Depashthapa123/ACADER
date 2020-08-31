@@ -7,11 +7,17 @@ from .forms import BioUpdate1
 from .models import postmessage
 from students.restrictions import unauthenticated_teacher
 import sys
+from teacherinterface.models import Profile1
+
 
 
 @unauthenticated_teacher
 def teacher_profile(request):
+    if request.session.has_key('teacher_id'):
+        teacher_id1 = request.session['teacher_id']
     user2 = CustomUser.objects.get(user_type=2, id=request.user.id)
+    description = Profile1.objects.filter(teacher_id= teacher_id1)
+
     if request.method == 'POST':
         # p_form = BioUpdate(request.POST, instance=request.user.profile)
         p_form = BioUpdate1(request.POST, request.FILES, instance=request.user.profile1)
@@ -27,6 +33,7 @@ def teacher_profile(request):
     context = {
         'user2': user2,
         'p_form': p_form,
+        'description' : description,
         # 'i_form': i_form
     }
     return render(request, 'teacherinterface/teacher_profile.html', context)
@@ -118,11 +125,16 @@ def do_logout1(request):
 
 @unauthenticated_teacher
 def search_student1(request):
+    if request.session.has_key('teacher_id'):
+        teacher_id1 = request.session['teacher_id']
     search = request.GET['query']
     # if len(search) == 0:
     #     return render(request, 'blog/search.html')
     if search:
-        list = CustomUser.objects.filter(user_type=3, username__icontains=search)
+        teacher_faculty = Teacher.objects.filter(teacher_id=teacher_id1).values('faculty')
+        teacher_grade = Teacher.objects.filter(teacher_id=teacher_id1).values('grade')
+        # print(teacher_faculty[0]['faculty'], teacher_grade[0]['grade'])
+        list = Student.objects.filter(faculty=teacher_faculty[0]['faculty'], grade=teacher_grade[0]['grade'], student__username__icontains=search)
         context = {
             'list':list,
             'search':search
