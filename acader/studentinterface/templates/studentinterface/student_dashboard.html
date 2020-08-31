@@ -59,7 +59,7 @@
       <h1>Notice:</h1>
       {% for t in teacher1 %}
       <div class="announcement darker">
-          <img src="{{t.picture_id.image.url}}" alt="Avatar" class="right" style="width:100%;">
+          <img src="{% static 'image/profile.jpg' %}" alt="Avatar" class="right" style="width:100%;">
         <h2>{{ t.name }}</h2>
         <p style="font-size: 10px;margin-top:-25px;">{{ t.created_at }}</p>
         <span class="time-left">{{ t.message }}</span>
