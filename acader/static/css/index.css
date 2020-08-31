@@ -122,9 +122,9 @@ input::placeholder {
   /* For dropup button */
 
 .dropbtn {
-    background-color: #3498DB;
-    height: 25px;
-    width: 25px;
+    background-color: #191919;
+    height: 70px;
+    width: 70px;
     color: white;
     padding: 25px;
     font-size: 16px;
@@ -135,10 +135,10 @@ input::placeholder {
   }
 
 .dropbtn img{
-  height: 30px;
-  width: 25px;
+  height: 50px;
+  width: 40px;
   position: relative;
-  right: 13px;
+  right: 12px;
   bottom: 15px;
 }
   
@@ -177,7 +177,21 @@ input::placeholder {
     background-color: #355d98;
   }
 
-  .active{
+/* dropup pictures */
+#show_student{
+  display: block;
+}
+
+#show_user{
+  display: none;
+}
+
+#show_teacher{
+  display: none;
+}
+
+/* dropup active */
+.active{
     width:100%;
     display:block;
     padding:8px 16px;
@@ -192,4 +206,23 @@ input::placeholder {
     white-space:nowrap;
     color:#000!important;
     background-color: #add8e6!important;
+  }
+
+
+/* active in navbar */
+.active_navbar{
+    width:100%;
+    display:block;
+    padding:8px 16px;
+    text-align:left;
+    white-space:normal;
+    float:none;
+    outline:0;
+    border:none;
+    overflow:hidden;
+    text-decoration:none;
+    cursor:pointer;
+    white-space:nowrap;
+    color:#000!important;
+    background-color: white;
   }

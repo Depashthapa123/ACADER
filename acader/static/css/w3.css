@@ -167,7 +167,7 @@ hr{
 
 /* Tablet and laptop screen */
 @media (min-width:993px){
-    .w3-modal-content{width:900px}
+    /* .w3-modal-content{width:900px} */
     .w3-hide-large{display:none!important}
     .w3-sidebar.w3-collapse{display:block!important}
 
@@ -180,6 +180,32 @@ hr{
     .w3-main{margin-left:0!important;margin-right:0!important}
     .w3-auto{max-width:100%}
     .w3-display-topright{display: none;}
+    .modal{padding-left:0px!important;}
+}
+
+
+@media (max-width:400px){
+    .dropup{display:none}
+    .w3-sidebar.w3-collapse{display:none}
+    .w3-main{margin-left:0!important;margin-right:0!important}
+    .w3-auto{max-width:100%}
+    .w3-display-topright{display: none;}
+    .modal{padding-left:0px!important;}
+    #lineChart{height:70%!important;width: 70%!important;}
+    
+}
+
+
+@media (max-width:300px){
+    .dropup{display:none}
+    .w3-sidebar.w3-collapse{display:none}
+    .w3-main{margin-left:0!important;margin-right:0!important}
+    .w3-auto{max-width:100%}
+    .w3-display-topright{display: none;}
+    .modal{padding-left:0px!important;}
+    #lineChart{height:60%!important;width: 60%!important;}
+    h3{font-size: 18px;}
+    
 }
 
 .w3-top{

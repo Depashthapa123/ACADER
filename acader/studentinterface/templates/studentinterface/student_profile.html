@@ -40,51 +40,70 @@
         <!-- Header(main body) -->
         <form action="" method="POST" enctype="multipart/form-data">
           {% csrf_token %}
-        <div class="w3-container-bgcolor" style="margin-top:80px;" id="showcase">
-            <div class="coverpic!important"  style="background-image: url({% static 'image/classroom_cover.jpg' %});">
-              <div class="profile_img">
-                <div class="circle">
-                  <!-- User Profile Image -->
-                  <img class="profile-pic" src="{{ user3.profile.image.url }}" alt="profile_picture">
+          <div class="w3-container-bgcolor" style="margin-top:40px;" id="showcase">
+              <div class="coverpic!important"  style="background-image: url({% static 'image/classroom_cover.jpg' %});">
+                <div class="profile_img">
+                  <div class="circle">
+                    <!-- User Profile Image -->
+                    <img class="profile-pic" src="{{ user3.profile.image.url }}" alt="profile_picture">
+                  </div>
+                    <i class="upload-button"><img src="{% static 'image/camera-icon.svg' %}" alt=""></i>
+                    <input class="file-upload" name="image" type="file" accept="image/*"/>
                 </div>
-                  <i class="upload-button"><img src="{% static 'image/camera-icon.svg' %}" alt=""></i>
-                  <input class="file-upload" name="image" type="file" accept="image/*"/>
+                  <h3 class="profile_name">{{user3.first_name}} {{user3.last_name}}</h3>
               </div>
-                <h3 class="profile_name">{{user3.first_name}} {{user3.last_name}}</h3>
-            </div>
 
-          <p><h3>Basic Student Information</h3></p>
-          <p>First name: {{user3.first_name}}
-          </p>
-          <p>Last name: {{user3.last_name}}
-          </p>
-          <p>Parent name: {{user3.student.parent_name}}
-          </p>  
-          <p>E-mail: {{user3.email}}
-          </p>
-          <p>Contact: {{user3.student.contact}}
-          </p>
-          <p>Address: {{user3.student.address}}
-          </p>
-          <p>Faculty: {{user3.student.faculty}}
-          </p>
-          <p>Class: {{user3.student.grade}}
-          </p>
-          <p>Section: {{user3.student.section}}
-          </p>
-
-          
-              About yourself
-                <p>  {{p_form.description}}</p>
-               
-              <p>
-                <br><br><br><br><br><br><br><br><input class="marks" type="submit">
+              <p><h3>Basic Student Information</h3></p>
+              <p>First name: {{user3.first_name}}
               </p>
-          </form>
-        </div>
+              <p>Last name: {{user3.last_name}}
+              </p>
+              <p>Parent name: {{user3.student.parent_name}}
+              </p>  
+              <p>E-mail: {{user3.email}}
+              </p>
+              <p>Contact: {{user3.student.contact}}
+              </p>
+              <p>Address: {{user3.student.address}}
+              </p>
+              <p>Faculty: {{user3.student.faculty}}
+              </p>
+              <p>Class: {{user3.student.grade}}
+              </p>
+              <p>Section: {{user3.student.section}}
+              </p>
+
+              
+              About yourself: <br>
+                  {% for d in description %}
+                  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{d.description}}</p>
+                  {% endfor %} <br>
+                <div class="marks" id="myBtn" >Edit</div>
+                <!-- The Modal -->
+                  <div class="modal" id="myModal"  >
+
+                    <!-- Modal content -->
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <div class="close" id="close">&times;</div>
+                        <h2>About yourself:</h2>
+                      </div>
+                      <div class="modal-body">
+                             {{p_form.description}}                    
+                      </div>
+                      <div class="modal-footer">
+                          <button type="submit">Submit</button>
+                      </div>
+                    </div>
+                  </div>     
+                  <button class="marks" type="submit">Submit</button>         
+          </div>
+        </form>
+
 <!-- End page content -->
-</div>
+      </div>
 <script src="{%static 'js/jquery-2.2.4.min.js' %}"></script>
 <script src="{% static 'js/jsindex2.js' %}"></script>
+<script src="{% static 'js/aboutyourself.js' %}"></script>
 </body>
 </html>

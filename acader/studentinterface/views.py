@@ -8,11 +8,19 @@ from django.db.models import Q
 from .forms import BioUpdate
 from teacherinterface.models import postmessage
 from students.restrictions import unauthenticated_student
+from studentinterface.models import Profile
 
 
 @unauthenticated_student
 def student_profile(request):
+        if request.session.has_key('student_id'):
+            student_id = request.session['student_id']
+            print(student_id, 'found')
+        else:
+            return redirect('loginpage/')
+
         user3 = CustomUser.objects.get(user_type=3, id=request.user.id)
+        description = Profile.objects.filter(student_id= student_id)
         if request.method == 'POST':
             # p_form = BioUpdate(request.POST, instance=request.user.profile)
             p_form = BioUpdate(request.POST, request.FILES, instance=request.user.profile)
@@ -28,6 +36,7 @@ def student_profile(request):
         context = {
             'user3': user3,
             'p_form': p_form,
+            'description' : description,
             # 'i_form': i_form
         }
         return render(request, 'studentinterface/student_profile.html', context)

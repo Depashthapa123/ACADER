@@ -1,0 +1,11 @@
+{% extends 'teacherinterface/teacher_dashboard.html' %}
+{% load static %}
+{% block content %}
+    <p>Are you sure you want to delete?</p>
+
+    <form method="POST">
+        {% csrf_token %}
+        <a href="{% url 'teacher_dashboard' %}" class="marks">Cancel</a>
+        <input type="submit" class="marks" onkeyup="return onkeyup()">
+    </form>
+{% endblock %}

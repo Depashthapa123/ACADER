@@ -52,21 +52,22 @@
             <th>Contact</th>
             <th>DOB</th>
             <th>Parent name</th>
+            <th></th>
           </tr>
         </thead>
         {% for s in list %}
         <tr>
             <td>{{ s.id }}</td>
-          <td>{{ s.username }}</td>
-          <td>{{ s.student.faculty }}</td>
-          <td>{{ s.student.grade }}</td>
-          <td>{{ s.student.section }}</td>
-          <td>{{ s.student.gender }}</td>
-          <td>{{ s.student.address }}</td>
-          <td>{{ s.student.contact }}</td>
-          <td>{{ s.student.DOB }}</td>
-          <td>{{ s.student.parent_name }}</td>
-          <td><button class="marks"><a href="{% url 'student_displaymarks' student_id=s.id %}" style="text-decoration: none;color: black;">Marks</a></button></td>
+          <td>{{ s.student.username }}</td>
+          <td>{{ s.faculty }}</td>
+          <td>{{ s.grade }}</td>
+          <td>{{ s.section }}</td>
+          <td>{{ s.gender }}</td>
+          <td>{{ s.address }}</td>
+          <td>{{ s.contact }}</td>
+          <td>{{ s.DOB }}</td>
+          <td>{{ s.parent_name }}</td>
+          <td><button class="marks"><a href="{% url 'teacher_displaymarks' student_id=s.student_id %}" style="text-decoration: none;color: white;">Marks</a></button></td>
         </tr>
         {% endfor %}
     </table>
