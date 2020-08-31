@@ -38,7 +38,7 @@
 
   <!-- Header(main body) -->
   <div class="w3-container-bgcolor" style="margin-top:40px;" id="showcase">
-    <h3><a href="#" style="text-decoration: none;color: black;">Announcement</a></h3>
+    <h3>Announcement</h3>
     <form action="" method="POST" id="message_form">
         {% csrf_token %}
               <div class="comment">
@@ -48,24 +48,27 @@
         <input class="marks" type="submit">
       </form>
   </div>
-    <div class="w3-container-bgcolor" style="margin-top:80px" id="showcase">
+    <div class="w3-container-bgcolor" style="margin-top:20px" id="showcase">
 
-          <h3><a href="#" style="text-decoration: none;color: black;">Message</a></h3>
+          <h3>Message</h3>
       {% for postMessage in post_message %}
+      <div class="announcement darker">
+
             <p>{{postMessage.message}}</p>
             <p>{{postMessage.created_at}}</p>
-            <p><a
-                    href="{% url 'delete_post' message_id=postMessage.id %}"
-                    class="btn btn-sm btn-danger">Delete</a> </p>
-      {% endfor %}
+            <p><a href="{% url 'delete_post' message_id=postMessage.id %}" class="marks">Delete</a> </p>
+      </div>
+             {% endfor %}
+    </div>
 
     {% block content %}
         {% endblock %}
-    </div>
 
 <!-- End page content -->
 </div>
-<script src="{% static 'js/loginpage.js' %}"></script>
+<script src="{% static 'js/jquery-2.2.4.min.js' %}"></script>
+<script src="{% static 'js/jsindex2.js' %}"></script>
+<script src="{% static 'js/delete.js' %}"></script>
 </body>
 </html>
 

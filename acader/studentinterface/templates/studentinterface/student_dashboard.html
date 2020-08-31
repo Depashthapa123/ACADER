@@ -41,16 +41,15 @@
   <!-- Header(main body) -->
   <div class="w3-container-bgcolor" style="margin-top:40px;" id="showcase">
     <div class="LineChart">
-      <article><h3 class="w3-xxxlarge w3-text-blue"><b>Marksheet Of Terminal <br> Examination.</b></h3>
+      <article><h3 class="w3-xxxlarge w3-text-blue"><b>Marksheet Of Terminal <br> Examination</b></h3>
                 <!-- <hr style="width:300px;border:5px solid blue" class="w3-round"> -->
                     <div class="w3-display-topright">
                       <h3>Teacher's email</h3>
-                      <p>lol@gmail.com</p>
-                      <p>lol@gmail.com</p>
-                      <p>lol@gmail.com</p>
-                      <p>lol@gmail.com</p>
-                      <p>lol@gmail.com</p>
-                      <p>lol@gmail.com</p>
+                      <p><a href="#" style="color: black;">template@gmail.com</a></p>
+                      <p><a href="#" style="color: black;">template@gmail.com</a></p>
+                      <p><a href="#" style="color: black;">template@gmail.com</a></p>
+                      <p><a href="#" style="color: black;">template@gmail.com</a></p>
+                      <p><a href="#" style="color: black;">template@gmail.com</a></p>
                     </div>
                 <canvas id="lineChart" height="400px" width="400px"></canvas>
       </article>
@@ -60,7 +59,8 @@
       <h1>Notice:</h1>
       {% for t in teacher1 %}
       <div class="announcement darker">
-        <img src="{% static 'image/profile.jpg'%}" alt="Avatar" class="right" style="width:100%;">
+        <p></p>
+        <!-- <img src="{% static 'image/profile.jpg'%}" alt="Avatar" class="right" style="width:100%;"> -->
         <h2>{{ t.name }}</h2>
         <p style="font-size: 10px;margin-top:-25px;">{{ t.created_at }}</p>
         <span class="time-left">{{ t.message }}</span>

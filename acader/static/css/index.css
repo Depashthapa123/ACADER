@@ -193,3 +193,21 @@ input::placeholder {
     color:#000!important;
     background-color: #add8e6!important;
   }
+
+  
+.active_navbar{
+    width:100%;
+    display:block;
+    padding:8px 16px;
+    text-align:left;
+    white-space:normal;
+    float:none;
+    outline:0;
+    border:none;
+    overflow:hidden;
+    text-decoration:none;
+    cursor:pointer;
+    white-space:nowrap;
+    color:#000!important;
+    background-color: white;
+  }

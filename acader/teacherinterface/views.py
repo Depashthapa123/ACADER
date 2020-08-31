@@ -125,11 +125,16 @@ def do_logout1(request):
 
 @unauthenticated_teacher
 def search_student1(request):
+    if request.session.has_key('teacher_id'):
+        teacher_id1 = request.session['teacher_id']
     search = request.GET['query']
     # if len(search) == 0:
     #     return render(request, 'blog/search.html')
     if search:
-        list = CustomUser.objects.filter(user_type=3, username__icontains=search)
+        teacher_faculty = Teacher.objects.filter(teacher_id=teacher_id1).values('faculty')
+        teacher_grade = Teacher.objects.filter(teacher_id=teacher_id1).values('grade')
+        # print(teacher_faculty[0]['faculty'], teacher_grade[0]['grade'])
+        list = Student.objects.filter(faculty=teacher_faculty[0]['faculty'], grade=teacher_grade[0]['grade'], student__username__icontains=search)
         context = {
             'list':list,
             'search':search
