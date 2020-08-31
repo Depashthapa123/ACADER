@@ -49,16 +49,18 @@
       </form>
   </div>
     <div class="w3-container-bgcolor" style="margin-top:80px" id="showcase">
-        <h1>Notice:</h1>
-          {% for postMessage in post_message %}
-          <div class="announcement darker">
-          <!-- <img src="{% static 'image/profile.jpg'%}" alt="Avatar" class="right" style="width:100%;"> delete/edit -->
-          <h2>{{ t.name }}</h2>
-          <p style="font-size: 10px;margin-top:-25px;">{{postMessage.created_at}}</p>
-          <span class="time-left">{{postMessage.message}}</span>
-          </div>
-        <br>
+
+          <h3><a href="#" style="text-decoration: none;color: black;">Message</a></h3>
+      {% for postMessage in post_message %}
+            <p>{{postMessage.message}}</p>
+            <p>{{postMessage.created_at}}</p>
+            <p><a
+                    href="{% url 'delete_post' message_id=postMessage.id %}"
+                    class="btn btn-sm btn-danger">Delete</a> </p>
       {% endfor %}
+
+    {% block content %}
+        {% endblock %}
     </div>
 
 <!-- End page content -->
@@ -66,3 +68,6 @@
 <script src="{% static 'js/loginpage.js' %}"></script>
 </body>
 </html>
+
+
+
