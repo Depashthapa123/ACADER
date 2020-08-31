@@ -84,7 +84,11 @@
     </div>
     <div class="w3-display-bottomright">
       <div class="dropup">
-      <button class="dropbtn"><img src="{% static 'image/arrow.svg' %}" alt=""></button>
+      <button class="dropbtn">
+        <img src="{% static 'image/student.svg' %}" id="show_student" alt="">
+        <img src="{% static 'image/admin.svg' %}" id="show_admin" style="display: none;" alt="">
+        <img src="{% static 'image/teacher.svg' %}" id="show_teacher" style="display: none;"  alt="">
+      </button>
         <div class="dropup-content">
           <a id="admin" onclick="selectAdmin()">Admin</a>
           <a id="teacher" onclick="selectTeacherLogin()">Teacher</a>
