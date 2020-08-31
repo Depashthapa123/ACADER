@@ -102,7 +102,12 @@ def teacher_marks(request):
 def teacher_displaymarks(request, student_id):
     # students = Student.objects.filter(student_id=student_id)
     marks1 = Marks.objects.filter(student_id=student_id)
-    return render(request, 'teacherinterface/teacher_displaymarks.html', {'marks1': marks1})
+    student = Student.objects.filter(student_id=student_id)
+    context = {
+        'marks1': marks1,
+        'student': student,
+    }
+    return render(request, 'teacherinterface/teacher_displaymarks.html', context)
 
 
 @unauthenticated_teacher
