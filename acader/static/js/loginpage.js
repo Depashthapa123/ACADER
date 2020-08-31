@@ -26,6 +26,9 @@ function selectAdmin(){
     document.getElementById("nav_admin").className = "active_navbar";
     document.getElementById("nav_student").className = "w3-bar-item w3-button w3-hover-white";
     document.getElementById("nav_teacher").className = "w3-bar-item w3-button w3-hover-white";
+    document.getElementById("show_admin").style.display = "block";
+    document.getElementById("show_teacher").style.display = "none";
+    document.getElementById("show_student").style.display = "none";
     userType.value = 1
     w3_close()
 }
@@ -38,6 +41,9 @@ function selectTeacherLogin() {
     document.getElementById("nav_teacher").className = "active_navbar";
     document.getElementById("nav_admin").className = "w3-bar-item w3-button w3-hover-white";
     document.getElementById("nav_student").className = "w3-bar-item w3-button w3-hover-white";
+    document.getElementById("show_teacher").style.display = "block";
+    document.getElementById("show_admin").style.display = "none";
+    document.getElementById("show_student").style.display = "none";
     userType.value = 2
     w3_close()
 }
