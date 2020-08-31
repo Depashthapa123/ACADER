@@ -13,12 +13,11 @@ $(document).ready(function() {
         }
     }
     
-    
-    $(".file-upload").on('change', function(){
+$(".file-upload").on('change', function(){
         readURL(this);
     });
     
-    $(".upload-button").on('click', function() {
+$(".upload-button").on('click', function() {
        $(".file-upload").click();
     });
     });
@@ -29,14 +28,13 @@ function w3_open() {
     document.getElementById("mySidebar").style.display = "block";
     document.getElementById("myOverlay").style.display = "block";
     document.getElementById("side_bar").style.display = "block";
-
-   }
+}
    
-  function w3_close() {
+function w3_close() {
 
       document.getElementById("mySidebar").style.display = "none";
       document.getElementById("myOverlay").style.display = "none";
       document.getElementById("side_bar").style.display = "none";
     
-  }
+}
   

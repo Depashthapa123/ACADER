@@ -22,7 +22,6 @@ function selectAdmin(){
     document.getElementById("admin").className = "active";
     document.getElementById("teacher").className = "";
     document.getElementById("student").className = "";
-
     userType.value = 1
     w3_close()
 }

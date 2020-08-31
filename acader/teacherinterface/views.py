@@ -7,11 +7,17 @@ from .forms import BioUpdate1
 from .models import postmessage
 from students.restrictions import unauthenticated_teacher
 import sys
+from teacherinterface.models import Profile1
+
 
 
 @unauthenticated_teacher
 def teacher_profile(request):
+    if request.session.has_key('teacher_id'):
+        teacher_id1 = request.session['teacher_id']
     user2 = CustomUser.objects.get(user_type=2, id=request.user.id)
+    description = Profile1.objects.filter(teacher_id= teacher_id1)
+
     if request.method == 'POST':
         # p_form = BioUpdate(request.POST, instance=request.user.profile)
         p_form = BioUpdate1(request.POST, request.FILES, instance=request.user.profile1)
@@ -27,6 +33,7 @@ def teacher_profile(request):
     context = {
         'user2': user2,
         'p_form': p_form,
+        'description' : description,
         # 'i_form': i_form
     }
     return render(request, 'teacherinterface/teacher_profile.html', context)

@@ -39,8 +39,8 @@
   <!-- Header(main body) -->
   <form action="" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
-  <div class="w3-container-bgcolor" style="margin-top:80px" id="showcase">
-    <div class="coverpic!important"  style="background-image: url({% static 'image/classroom_cover.jpg' %});">
+    <div class="w3-container-bgcolor" style="margin-top:40px;" id="showcase">
+      <div class="coverpic!important"  style="background-image: url({% static 'image/classroom_cover.jpg' %});">
       <div class="profile_img">
         <div class="circle">
           <!-- User Profile Image -->
@@ -71,11 +71,29 @@
     <p>Section: {{user2.teacher.section}}
     </p>
 
-        About yourself
-        <p>  {{p_form.description}}</p>
-        </p>
-        <input class="marks" type="submit">
+        About yourself <br><br>
+        {% for d in description %}
+        <p>{{d.description}}</p>
+        {% endfor %} <br><br>
+        <div class="marks" id="myBtn" >Edit</div>
+        <!-- The Modal -->
+          <div class="modal" id="myModal"  >
 
+            <!-- Modal content -->
+            <div class="modal-content">
+              <div class="modal-header">
+                <div class="close" id="close">&times;</div>
+                <h2>About yourself:</h2>
+              </div>
+              <div class="modal-body">
+                     {{p_form.description}}                    
+              </div>
+              <div class="modal-footer">
+                  <button type="submit">Submit</button>
+              </div>
+            </div>
+          </div>     
+          <button class="marks" type="submit">Submit</button>  
     </form>
 
   </div>
@@ -84,5 +102,6 @@
 </div>
 <script src="{%static 'js/jquery-2.2.4.min.js' %}"></script>
 <script src="{% static 'js/jsindex2.js' %}"></script>
+<script src="{% static 'js/aboutyourself.js' %}"></script>
 </body>
 </html>
