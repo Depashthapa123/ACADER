@@ -10,7 +10,6 @@ import sys
 from teacherinterface.models import Profile1
 
 
-
 @unauthenticated_teacher
 def teacher_profile(request):
     if request.session.has_key('teacher_id'):

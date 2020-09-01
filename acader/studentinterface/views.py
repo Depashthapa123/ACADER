@@ -6,7 +6,7 @@ from django.contrib import messages
 from students.models import CustomUser, Marks, Course, Teacher, Student
 from django.db.models import Q
 from .forms import BioUpdate
-from teacherinterface.models import postmessage
+from teacherinterface.models import postmessage, Profile1
 from students.restrictions import unauthenticated_student
 from studentinterface.models import Profile
 
@@ -57,9 +57,22 @@ def student_dashboard(request):
     student_faculty = Student.objects.filter(student_id=student_id).values('faculty')
     student_grade = Student.objects.filter(student_id=student_id).values('grade')
 
-    teacher1 = postmessage.objects.filter(faculty=student_faculty[0]['faculty'], grade=student_grade[0]['grade'])
+    dashboard_messages = postmessage.objects.filter(faculty=student_faculty[0]['faculty'], grade=student_grade[0]['grade']).values('teacher_id', 'message', 'created_at', 'name')
 
-    return render(request, 'studentinterface/student_dashboard.html', {'teacher1': teacher1})
+    dashboard_context = []
+    for messages in dashboard_messages:
+        print(messages)
+        custom_user_id = Teacher.objects.filter(id=messages['teacher_id']).values('teacher_id')
+        teacher_image = Profile1.objects.filter(teacher_id=custom_user_id[0]['teacher_id']).values('image')
+        message_details = {**messages, 'profile_picture': teacher_image[0]['image']}
+        dashboard_context.append(message_details)
+
+    print('message_details ', dashboard_context)
+
+    context = {
+        'dashboard_context': dashboard_context,
+    }
+    return render(request, 'studentinterface/student_dashboard.html', context)
 
 
 @unauthenticated_student

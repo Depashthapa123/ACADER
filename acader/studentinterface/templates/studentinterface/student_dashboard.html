@@ -57,15 +57,15 @@
   </div>
     <div class="w3-container-bgcolor" style="margin-top:20px" id="showcase">
       <h1>Notice:</h1>
-      {% for t in teacher1 %}
-      <div class="announcement darker">
-          <img src="{% static 'image/profile.jpg' %}" alt="Avatar" class="right" style="width:100%;">
-        <h2>{{ t.name }}</h2>
-        <p style="font-size: 10px;margin-top:-25px;">{{ t.created_at }}</p>
-        <span class="time-left">{{ t.message }}</span>
-      </div>
-          <br>
-        {% endfor %}
+      {% for context in dashboard_context %}
+        <div class="announcement darker">
+          <img src="/media/{{context.profile_picture}}" alt="Avatar" class="right" style="width:100%;"/>
+          <h2>{{ context.name }}</h2>
+          <p style="font-size: 10px;margin-top:-25px;">{{ context.created_at }}</p>
+          <span class="time-left">{{ context.message }}</span>
+        </div>
+        <br>
+      {% endfor %}
      
     </div>
     </div>
