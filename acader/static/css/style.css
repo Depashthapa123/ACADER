@@ -101,7 +101,7 @@ cursor: pointer;
   background: #f1f1f1;
 }
 
-.example button {
+/* .example button {
   float: left;
   width: 20%;
   padding: 10px;
@@ -111,11 +111,11 @@ cursor: pointer;
   border: 1px solid grey;
   border-left: none;
   cursor: pointer;
-}
+} */
 
-.example button:hover {
+/* .example button:hover {
   background: #0b7dda;
-}
+} */
 
 .example::after {
   content: "";
@@ -124,11 +124,26 @@ cursor: pointer;
 }
 
 .searchbtn{
-    height: 42px;
+  float: left;
+  width: 15%;
+  padding: 10px;
+  background: #2196F3;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none;
+  /* cursor: pointer; */
+   height: 42px;
 }
+
+/* .searchbtn:hover {
+  background: #0b7dda;
+} */
+
 .searchbtn img{
   height: 20px;
 }
+
 
 /* marksbutton */
 .marks {
@@ -200,7 +215,7 @@ cursor: pointer;
   max-width: 60px;
   width: 100%;
   margin-right: 20px;
-  border-radius: 50%;
+  /* border-radius: 50%; */
 }
 
 .announcement img.right {
