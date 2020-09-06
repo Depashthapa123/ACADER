@@ -81,7 +81,7 @@ cursor: pointer;
   border-radius: 5px;
   display: table;
   margin:  auto;
-  border: 2px solid black;
+  /* border: 2px solid black; */
   /* position: relative;
   bottom: 10px; */
 } 
@@ -304,4 +304,30 @@ cursor: pointer;
   padding: 2px 16px;
   background-color: #355d98;
   color: white;
+}
+
+.layer{
+  text-transform: uppercase;
+    display: block;
+}
+
+.details{
+  color: #6b6969;
+  display: block;
+}
+
+.profile_layout{
+  /* border-bottom: .1px dotted grey; */
+  padding: 14px 0;
+  display: flex;
+}
+
+.aboutu textarea {
+  float: left;
+  width: 100%;
+  min-height: 100px;
+  outline: none;
+  resize: none;
+  border: 1px solid rgb(211, 210, 210);
+  background-color: #efefef;
 }

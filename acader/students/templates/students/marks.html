@@ -91,13 +91,15 @@
               {% if messages %}
                 {% for message in messages %}
                 {% if message.tags == 'warning' %}
-                <div class="alert alert-warning" style="margin-top:10px">{{ message }}</div>
+                  <div class="alert alert-warning" style="margin-top:10px">{{ message }}</div>
                 {% endif %}
                 {% if message.tags == 'success' %}
-                <div class="alert alert-success" style="margin-top:10px"><b>{{ message }}</b></div>
+                  <script>
+                    alert("Marks successfully registered");
+                  </script>                
                 {% endif %}
                 {% endfor %}
-              {% endif %}
+                {% endif %}
          </div>
     </form>
 

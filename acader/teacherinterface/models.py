@@ -34,4 +34,3 @@ class postmessage(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, null=True)
     message = models.CharField(blank=False, max_length=500)
     name = models.TextField(default=1)
-
