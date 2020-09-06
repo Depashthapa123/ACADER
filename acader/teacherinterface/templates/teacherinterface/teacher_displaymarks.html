@@ -39,6 +39,7 @@
   <!-- Header(main body) -->
   <div class="w3-container-bgcolor" style="margin-top:40px;" id="showcase">
     <!--      <h3><a href="{% url 'marks' %}" style="text-decoration: none;color: black;">Student Marks list</a></h3>-->
+<<<<<<< Updated upstream
     {% if marks1|length == 0 %}
       <h2>No searched results for your marks</h2>
 
@@ -64,6 +65,28 @@
               {% endfor %}
         </table>
     {% endif %}
+=======
+    {% for s in student %}
+    <h3>Students Marks:&nbsp;&nbsp;&nbsp;{{s.student.first_name}} {{s.student.last_name}}</h3><br>
+    {% endfor %}
+    <table class="w3-table-all">
+        <thead>
+<!--            <h1>{{ s. }}</h1>-->
+          <tr class="w3-blue">
+            <th>Course</th>
+            <th>Term</th>
+            <th>Marks</th>
+          </tr>
+        </thead>
+            {% for m in marks1 %}
+                <tr>
+                    <td>{{ m.course }}</td>
+                    <td>{{ m.terms_id }}</td>
+                    <td>{{ m.obtained_marks }}</td>
+                </tr>
+            {% endfor %}
+      </table>
+>>>>>>> Stashed changes
   </div>
 
 <!-- End page content -->

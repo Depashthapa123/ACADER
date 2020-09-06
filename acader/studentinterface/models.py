@@ -2,8 +2,6 @@ from django.db import models
 from students.models import CustomUser
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from django.core.files.storage import FileSystemStorage
-from django import forms
 
 
 class Profile(models.Model):

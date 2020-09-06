@@ -51,6 +51,7 @@
       </div>
         <h3 class="profile_name">{{user2.first_name}} {{user2.last_name}}</h3>
     </div>
+<<<<<<< Updated upstream
     <span class="layer">
       <h3>Basic Student Information</h3>
     </span>
@@ -102,6 +103,29 @@
 
     <div class="profile_layout">
         <span class="layer">About yourself: &nbsp;</span>
+=======
+  <p><h3>Basic Student Information</h3></div>
+    <p>First name: {{user2.first_name}}
+    </p>
+    <p>Last name: {{user2.last_name}}
+    </p>
+    <p>Parent name: {{user2.teacher.parent_name}}
+    </p>
+    <p>E-mail: {{user2.email}}
+    </p>
+    <p>Contact: {{user2.teacher.contact}}
+    </p>
+    <p>Address: {{user2.teacher.address}}
+    </p>
+    <p>Faculty: {{user2.teacher.faculty}}
+    </p>
+    <p>Class: {{user2.teacher.grade}}
+    </p>
+    <p>Section: {{user2.teacher.section}}
+    </p>
+
+        About yourself: <br><br>
+>>>>>>> Stashed changes
         {% for d in description %}
         <span class="details">
           <span class="aboutu"> <br><br><textarea cols="100" rows="10" style="color: #6b6969;" readonly>{{d.description}}</textarea><br><br><br><br><br><br><br>

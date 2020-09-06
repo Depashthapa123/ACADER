@@ -62,8 +62,8 @@
 <!--        {% if request.user.is_authenticated %}-->
             {% for m in marks %}
                 <tr>
-                    <td>{{ m.course_id.course_name }}</td>
-                    <td>{{ m.terms_id.terms_name }}</td>
+                    <td>{{ m.course }}</td>
+                    <td>{{ m.terms_id }}</td>
                     <td>{{ m.obtained_marks }}</td>
                 </tr>
             {% endfor %}
