@@ -42,31 +42,29 @@
      <!-- Search form -->
      <div class="example" style="margin:0px;max-width:300px">
     <form action="/search_student" method="GET">
-      <input type="text" placeholder="Search.." name="query">
-      <button  class="searchbtn" type="submit"><img src="{% static 'image/search.svg' %} " alt=""></button>
+      <input id="searchbtn" onkeyup="myFunction()" type="text" placeholder="Search.." name="query">
+      <div  class="searchbtn" ><img src="{% static 'image/search.svg' %} " alt=""></div>
    </form>
     </div>
   </div>
   <div class="w3-container-bgcolor" style="margin-top:20px" id="showcase">
-    <table class="w3-table-all">
+    <table class="w3-table-all" id="myTable">
         <thead>
           <tr class="w3-blue">
-              <th>Student ID</th>
-            <th>Student username</th>
-            <th>Faculty</th>
-            <th>Grade</th>
-            <th>Section</th>
-            <th>Gender</th>
-            <th>Address</th>
-            <th>Contact</th>
-            <th>DOB</th>
-            <th>Parent name</th>
+            <th><a href="#" onclick="sortTable(0)" style="text-decoration:none;color:white">Student username</a></th>
+            <th><a href="#" onclick="sortTable(1)" style="text-decoration:none;color:white">Faculty</a></th>
+            <th><a href="#" onclick="sortTable(2)" style="text-decoration:none;color:white">Grade</a></th>
+            <th><a href="#" onclick="sortTable(3)" style="text-decoration:none;color:white">Section</a></th>
+            <th><a href="#" onclick="sortTable(4)" style="text-decoration:none;color:white">Gender</a></th>
+            <th><a href="#" onclick="sortTable(5)" style="text-decoration:none;color:white">Address</a></th>
+            <th><a href="#" onclick="sortTable(6)" style="text-decoration:none;color:white">Contact</a></th>
+            <th><a href="#" onclick="sortTable(7)" style="text-decoration:none;color:white">DOB</a></th>
+            <th><a href="#" onclick="sortTable(8)" style="text-decoration:none;color:white">Parent name</a></th>
             <th></th>
           </tr>
         </thead>
         {% for s in students1 %}
         <tr>
-            <td>{{ s.id }}</td>
           <td>{{ s.username }}</td>
           <td>{{ s.student.faculty }}</td>
           <td>{{ s.student.grade }}</td>
@@ -76,7 +74,7 @@
           <td>{{ s.student.contact }}</td>
           <td>{{ s.student.DOB }}</td>
           <td>{{ s.student.parent_name }}</td>
-          <td><button class="marks"><a href="{% url 'student_displaymarks' student_id=s.id %}" style="text-decoration: none;color: black;">Marks</a></button></td>
+          <td><button class="marks"><a href="{% url 'student_displaymarks' student_id=s.id %}" style="text-decoration: none;color: white;">Marks</a></button></td>
         </tr>
         {% endfor %}
     </table>
@@ -85,5 +83,7 @@
 <!-- End page content -->
 </div>
 <script src="{% static 'js/loginpage.js' %}"></script>
+<script src="{% static 'js/search.js' %}"></script>
+<script src="{% static 'js/sort.js' %}"></script>
 </body>
 </html>

@@ -1,8 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
-# from django.contrib.auth.decorators import login_required
-# from students.models import CustomUser, Course, Marks, Terms, Grade, Faculty
 from students.models import CustomUser, Marks, Course, Teacher, Student
 from django.db.models import Q
 from .forms import BioUpdate
@@ -86,7 +84,7 @@ def student_marks(request):
 
     marks = Marks.objects.filter(student_id=student_id)
 
-    return render(request, 'studentinterface/student_marks.html', {'marks':marks})
+    return render(request, 'studentinterface/student_marks.html', {'marks': marks})
 
 
 @unauthenticated_student
@@ -109,8 +107,6 @@ def search_marks(request):
         return render(request, 'studentinterface/search_marks.html', context)
     else:
         return render(request, 'studentinterface/search_marks.html')
-
-
 
 
 def do_logout2(request):

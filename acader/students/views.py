@@ -248,46 +248,58 @@ def facultys(request):
 
 @unauthenticated_admin
 def marks(request):
-    if request.session.has_key('student_id'):
-        student_id = request.session['student_id']
-        print(student_id, 'found')
-    else:
-        print('not found')
-    courses_model = Course.objects.all()
-    students_model = CustomUser.objects.filter(user_type=3)
-    terms_model = Terms.objects.all()
-    grade_model = Grade.objects.all()
-    faculty_model = Faculty.objects.all()
-    if request.method == 'POST':
+    students_model = list(CustomUser.objects.filter(user_type=3))
+    terms = Terms.objects.all()
+
+    show_full_form = False
+
+    if 'Select' in request.POST:
+        student_id = request.POST['student-id']
+
+        # fetching grade and faculty based on student id
+        student_info = Student.objects.filter(student_id=student_id).values('grade', 'faculty')
+        selected_student = filter(lambda student: student.id == int(student_id), list(students_model))
+
+        student_grade = list(student_info)[0]['grade']
+        student_faculty = list(student_info)[0]['faculty']
+        courses = Course.objects.filter(faculty=student_faculty, grade=student_grade)
+        # print(courses)
+
+        show_full_form = True
+        context = {
+            'students_model': students_model,
+            'selected_student': list(selected_student)[0],
+            'student_grade': student_grade,
+            'student_faculty': student_faculty,
+            'terms': terms,
+            'show_full_form': show_full_form,
+            'course_subject': courses,
+        }
+        return render(request, 'students/marks.html', context)
+
+    elif 'Register' in request.POST:
+        student_id = request.POST['student-id']
+        grade = request.POST['grade']
+        faculty = request.POST['faculty']
+        term_id = request.POST['term']
+        course = request.POST['course']
         obtained_marks = request.POST['obtained_marks']
-        terms_id = request.POST['terms_name']
-        term = Terms.objects.get(id=terms_id)
-        student_id = request.POST['students']
-        student = CustomUser.objects.get(id=student_id)
-        course_id = request.POST['courses']
-        courses = Course.objects.get(id=course_id)
-        grade_id = request.POST['grade']
-        grade = Grade.objects.get(id=grade_id)
-        faculty_id = request.POST['faculty']
-        faculty = Faculty.objects.get(id=faculty_id)
 
-        marks1 = Marks(
+        marks = Marks(
             obtained_marks=obtained_marks,
-            terms_id=term,
-            student_id=student,
-            course_id=courses,
-            grade_id=grade,
-            faculty_id=faculty
+            terms_id=term_id,
+            student_id=student_id,
+            course=course,
+            grade=grade,
+            faculty=faculty,
         )
-        marks1.save()
-        messages.success(request, 'mark is added')
-    return render(request, 'students/marks.html',
-                  {'courses_model': courses_model,
-                   'students_model': students_model,
-                   'terms_model': terms_model,
-                   'grade_model': grade_model,
-                   'faculty_model': faculty_model})
+        marks.save()
+        messages.success(request, "successful")
 
+        # print('Registering')
+
+    context = {'students_model': students_model, 'show_full_form': show_full_form}
+    return render(request, 'students/marks.html',context)
 
 @login_required()
 def home(request):
@@ -322,33 +334,26 @@ def do_logout(request):
 @unauthenticated_admin
 def studentcourse(request):
     courses_model = Course.objects.all()
-    students_model = CustomUser.objects.filter(user_type=3)
-    terms_model = Terms.objects.all()
-    marks_model = Marks.objects.all()
+    students_model = CustomUser.objects.filter(user_type=3).values('id')
     if request.method == 'POST':
-        terms_id = request.POST['terms_name']
-        term = Terms.objects.get(id=terms_id)
-        student_id = request.POST['students']
-        student = CustomUser.objects.get(id=student_id)
-        course_id = request.POST['courses']
-        courses = Course.objects.get(id=course_id)
-        marks_id = request.POST['marks']
-        mark = Grade.objects.get(id=marks_id)
+        student_id = Student.objects.filter(student_id=students_model[0]['id']).values('faculty', 'grade')
+        course_subject = Course.objects.filter(grade=student_id[0]['grade'], faculty=student_id[0]['faculty'])
+        # course_id = request.POST['courses']
+        # courses = Course.objects.get(id=course_id)
 
-        studentcourse1 = StudentCourse(
-            terms_id=term,
-            student_id=student,
-            course_id=courses,
-            marks_id=mark,
-        )
-        studentcourse1.save()
-        messages.success(request, 'welldone ma boy')
+
+        # studentcourse1 = StudentCourse(
+        #     student_id=student,
+        #     course_id=courses,
+        # )
+        # studentcourse1.save()
+        # messages.success(request, 'welldone ma boy')
 
     return render(request, '',
                   {'courses_model': courses_model,
                    'students_model': students_model,
-                   'terms_model': terms_model,
-                   'marks_model': marks_model})
+                   'course_subject': course_subject,
+                   })
 
 
 @unauthenticated_admin

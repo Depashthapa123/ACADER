@@ -59,7 +59,6 @@ class Course(models.Model):
     pass_marks = models.IntegerField(default=0)
     total_marks = models.IntegerField(default=0)
 
-
 class Terms(models.Model):
     id = models.AutoField(primary_key=True)
     terms_name = models.TextField()
@@ -89,10 +88,8 @@ class Marks(models.Model):
 
 class StudentCourse(models.Model):
     id = models.AutoField(primary_key=True)
-    student_id = models.ForeignKey(Student, on_delete=models.CASCADE)
-    term_id = models.ForeignKey(Terms, on_delete=models.CASCADE, default=1)
-    course_id = models.ForeignKey(Course, on_delete=models.CASCADE, default=1)
-    marks_id = models.ForeignKey(Marks, on_delete=models.CASCADE, default=1)
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, default=1)
 
 
 @receiver(post_save, sender=CustomUser)

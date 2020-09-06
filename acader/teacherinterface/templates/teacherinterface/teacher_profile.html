@@ -51,7 +51,60 @@
       </div>
         <h3 class="profile_name">{{user2.first_name}} {{user2.last_name}}</h3>
     </div>
-  <p><h3>Basic Student Information</h3></p>
+<<<<<<< Updated upstream
+    <span class="layer">
+      <h3>Basic Student Information</h3>
+    </span>
+
+    <div class="profile_layout">
+    <span class="layer">First name:&nbsp;</span>
+    <span class="details"> {{user2.first_name}}</span>
+    </div>
+
+    <div class="profile_layout">
+    <span class="layer"> Last name:&nbsp; </span>
+    <span class="details">{{user2.last_name}}</span>
+    </div>
+
+    <div class="profile_layout">
+    <span class="layer">Parent name:&nbsp;</span>
+    <span class="details">{{user2.teacher.parent_name}}</span>
+    </div>
+
+    <div class="profile_layout">
+    <span class="layer">E-mail:&nbsp;</span>
+    <span class="details"> {{user2.email}}</span>
+    </div>
+
+    <div class="profile_layout">
+    <span class="layer">Contact: &nbsp;</span>
+    <span class="details">{{user2.teacher.contact}}</span>
+    </div>
+
+    <div class="profile_layout">
+    <span class="layer">Address:&nbsp;</span>
+    <span class="details"> {{user2.teacher.address}}</span>
+    </div>
+
+    <div class="profile_layout">
+    <span class="layer">Faculty:&nbsp;</span>
+    <span class="details"> {{user2.teacher.faculty}}</span>
+    </div>
+
+    <div class="profile_layout">
+    <span class="layer">Class:&nbsp;</span>
+    <span class="details"> {{user2.teacher.grade}}</span>
+    </div>
+
+    <div class="profile_layout">
+    <span class="layer">Section:&nbsp; </span>
+    <span class="details">{{user2.teacher.section}}</span>
+    </div>
+
+    <div class="profile_layout">
+        <span class="layer">About yourself: &nbsp;</span>
+=======
+  <p><h3>Basic Student Information</h3></div>
     <p>First name: {{user2.first_name}}
     </p>
     <p>Last name: {{user2.last_name}}
@@ -72,10 +125,15 @@
     </p>
 
         About yourself: <br><br>
+>>>>>>> Stashed changes
         {% for d in description %}
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{d.description}}</p>
+        <span class="details">
+          <span class="aboutu"> <br><br><textarea cols="100" rows="10" style="color: #6b6969;" readonly>{{d.description}}</textarea><br><br><br><br><br><br><br>
+            <div class="marks" id="myBtn" style="float: right;">Edit</div>
+          </span>
+        </span>
+    </div>
         {% endfor %} <br>
-        <div class="marks" id="myBtn" >Edit</div>
         <!-- The Modal -->
           <div class="modal" id="myModal"  >
 
@@ -93,7 +151,7 @@
               </div>
             </div>
           </div>     
-          <button class="marks" type="submit">Submit</button>  
+          <button class="marks" type="submit">Change</button>  
     </form>
 
   </div>
