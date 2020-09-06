@@ -91,6 +91,17 @@
     <div class="inputfield">
         <button type="submit" value="Register" class="btn">Register</button>
     </div>
+    <div class="container">
+      {% if messages %}
+        {% for message in messages %}
+            {% if message.tags == 'success' %}
+              <script>
+                alert("Successfully registered");
+              </script>
+            {% endif %}
+        {% endfor %}
+      {% endif %}
+    </div>
 </div>
 </form>
 </body>

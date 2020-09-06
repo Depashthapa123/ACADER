@@ -54,9 +54,9 @@
         <table class="w3-table-all">
             <thead>
               <tr class="w3-blue">
-                <th>Subject</th>
-                <th>Term</th>
-                <th>Marks obtained</th>
+                <th><a href="#" onclick="sortTable(0)" style="text-decoration:none;color:white">Subject</a></th>
+                <th><a href="#" onclick="sortTable(1)" style="text-decoration:none;color:white">Term</a></th>
+                <th><a href="#" onclick="sortTable(2)" style="text-decoration:none;color:white">Marks obtained</a></th>
               </tr>
             </thead>
     <!--        {% if request.user.is_authenticated %}-->
@@ -75,5 +75,6 @@
 <!-- End page content -->
 </div>
 <script src="{% static 'js/loginpage.js' %}"></script>
+<script src="{% static 'js/sort.js' %}"></script>
 </body>
 </html>

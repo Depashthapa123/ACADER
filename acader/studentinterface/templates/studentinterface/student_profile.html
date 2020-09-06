@@ -52,33 +52,66 @@
                 </div>
                   <h3 class="profile_name">{{user3.first_name}} {{user3.last_name}}</h3>
               </div>
+              <span class="layer">
+                <h3>Basic Student Information</h3>
+              </span>
 
-              <p><h3>Basic Student Information</h3></p>
-              <p>First name: {{user3.first_name}}
-              </p>
-              <p>Last name: {{user3.last_name}}
-              </p>
-              <p>Parent name: {{user3.student.parent_name}}
-              </p>  
-              <p>E-mail: {{user3.email}}
-              </p>
-              <p>Contact: {{user3.student.contact}}
-              </p>
-              <p>Address: {{user3.student.address}}
-              </p>
-              <p>Faculty: {{user3.student.faculty}}
-              </p>
-              <p>Class: {{user3.student.grade}}
-              </p>
-              <p>Section: {{user3.student.section}}
-              </p>
+              <div class="profile_layout">
+              <span class="layer">First name:&nbsp;</span> 
+              <span class="details"> {{user3.first_name}}</span>
+              </div>
 
-              
-              About yourself: <br>
+              <div class="profile_layout">
+              <span class="layer">Last name:&nbsp;</span>
+              <span class="details"> {{user3.last_name}}</span>
+              </div>
+
+              <div class="profile_layout">
+              <span class="layer">Parent name:&nbsp; </span>
+              <span class="details">{{user3.student.parent_name}} </span>
+              </div>
+
+              <div class="profile_layout">
+              <span class="layer">E-mail:&nbsp; </span>
+              <span class="details">{{user3.email}}</span>
+              </div>
+
+              <div class="profile_layout">
+              <span class="layer">Contact:&nbsp; </span>
+              <span class="details">{{user3.student.contact}}</span>
+              </div>
+
+              <div class="profile_layout">
+              <span class="layer">Address:&nbsp;</span>
+              <span class="details">{{user3.student.address}}</span>
+              </div>
+
+              <div class="profile_layout">
+              <span class="layer">Faculty:&nbsp; </span>
+              <span class="details">{{user3.student.faculty}}</span>
+              </div>
+
+              <div class="profile_layout">
+              <span class="layer">Class:&nbsp;</span>
+              <span class="details">{{user3.student.grade}}</span>
+              </div>
+
+              <div class="profile_layout">
+              <span class="layer">Section:&nbsp; </span>
+              <span class="details">{{user3.student.section}}</span>
+              </div>
+
+              <div class="profile_layout">
+              <span class="layer">About yourself: &nbsp;</span>
                   {% for d in description %}
-                  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{d.description}}</p>
+                  <span class="details">
+                   <span class="aboutu"><br><br> <textarea cols="100" rows="10" style="color: #6b6969;" readonly>{{d.description}}</textarea><br><br><br><br><br><br><br>
+                    <div class="marks" id="myBtn" >Edit</div>
+                   </span>
+                  </span>
+              </div>
                   {% endfor %} <br>
-                <div class="marks" id="myBtn" >Edit</div>
+              
                 <!-- The Modal -->
                   <div class="modal" id="myModal"  >
 
@@ -96,7 +129,7 @@
                       </div>
                     </div>
                   </div>     
-                  <button class="marks" type="submit">Submit</button>         
+                  <button class="marks" type="submit">Change</button>         
           </div>
         </form>
 

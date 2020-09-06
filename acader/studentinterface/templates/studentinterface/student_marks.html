@@ -45,18 +45,18 @@
   <!-- Search form -->
   <div class="example" style="margin:0px;max-width:300px">
   <form method="GET" action="/search_marks">
-      <input type="text" placeholder="Enter subject or term" name="query">
-      <button  class="searchbtn" type="submit"><img src="{% static 'image/search.svg' %} " alt=""></a></button>
+      <input id="searchbtn" onkeyup="myFunction()" type="text" placeholder="Enter subject or term" name="query">
+      <div  class="searchbtn"><img src="{% static 'image/search.svg' %} " alt=""></div>
   </form>
   </div>
     <br>
-    <table class="w3-table-all">
+    <table class="w3-table-all" id="myTable">
         <thead>
 <!--            <h1>{{ s. }}</h1>-->
           <tr class="w3-blue">
-            <th>Subject</th>
-            <th>Term</th>
-            <th>Marks</th>
+            <th><a href="#" onclick="sortTable(0)" style="text-decoration:none;color:white">Subject</a></th>
+            <th><a href="#" onclick="sortTable(1)" style="text-decoration:none;color:white">Term</a></th>
+            <th><a href="#" onclick="sortTable(2)" style="text-decoration:none;color:white">Marks</a> </th>
           </tr>
         </thead>
 <!--        {% if request.user.is_authenticated %}-->
@@ -77,6 +77,7 @@
 <!-- End page content -->
 </div>
 <script src="{% static 'js/jsindex2.js' %}"></script>
-
+<script src="{% static 'js/sort.js' %}"></script>
+<script src="{% static 'js/search.js' %}"></script>
 </body>
 </html>

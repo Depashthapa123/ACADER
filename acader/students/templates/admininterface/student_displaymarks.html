@@ -38,14 +38,18 @@
   <!-- Header(main body) -->
   <div class="w3-container-bgcolor" style="margin-top:80px" id="showcase">
 <!--      <h3><a href="{% url 'marks' %}" style="text-decoration: none;color: black;">Student Marks list</a></h3>-->
+  {% if marks1|length == 0 %}
+    <h2>No searched results for your marks</h2>
+
+  {% else %}
     <h3>Students Marks</h3>
-    <table class="w3-table-all">
+    <table class="w3-table-all" id="myTable">
         <thead>
 <!--            <h1>{{ s. }}</h1>-->
           <tr class="w3-blue">
-            <th>Course</th>
-            <th>Term</th>
-            <th>Marks</th>
+            <th><a href="#" onclick="sortTable(0)" style="text-decoration:none;color:white">Course</a></th>
+            <th><a href="#" onclick="sortTable(1)" style="text-decoration:none;color:white">Term</a></th>
+            <th><a href="#" onclick="sortTable(2)" style="text-decoration:none;color:white">Marks</a></th>
           </tr>
         </thead>
             {% for m in marks1 %}
@@ -56,10 +60,12 @@
                 </tr>
             {% endfor %}
       </table>
+  {% endif %}
   </div>
 
 <!-- End page content -->
 </div>
 <script src="{% static 'js/loginpage.js' %}"></script>
+<script src="{% static 'js/sort.js' %}"></script>
 </body>
 </html>
