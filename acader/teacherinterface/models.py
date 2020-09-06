@@ -35,8 +35,4 @@ class postmessage(models.Model):
     message = models.CharField(blank=False, max_length=500)
     name = models.TextField(default=1)
 
-<<<<<<< HEAD
 
-
-=======
->>>>>>> c92d34242d1162d0e41c18f1821f8030adc9e741
