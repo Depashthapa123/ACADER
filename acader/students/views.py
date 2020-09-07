@@ -124,16 +124,20 @@ def teacherregister(request):
         grade = request.POST['grade']
         section = request.POST['section']
 
-        if len(first_name)>10 and len(last_name)>10 : 
-            messages.warning(request,"First name or last must contain 15")
+        if len(first_name)>10 :
+            messages.warning(request,"First name must contain 10 alphabets")
             return redirect("teacherregister") 
 
+        if len(last_name)>10 :
+            messages.warning(request,"Last name must contain 10 alphabets")
+            return redirect("teacherregister")
+
         if not first_name.isalpha():
-            messages.warning(request,"firstname not contain _ and - @ #%^&*")
+            messages.warning(request,"The first name only requires alphabets")
             return redirect("teacherregister")
 
         if not last_name.isalpha():
-            messages.warning(request,"lastname not contain _ and - @ #%^&*")
+            messages.warning(request,"The last name only requires alphabets")
             return redirect("teacherregister") 
 
         if CustomUser.objects.filter(username=username).exists():
@@ -141,11 +145,11 @@ def teacherregister(request):
             return redirect("teacherregister")
 
         if len(username)>10:
-            messages.warning(request,"username too long")
+            messages.warning(request,"The username is too long")
             return redirect("teacherregister")
 
         if not username.isalnum():
-            messages.warning(request,"Username not contain _ and - @ #%^&*")
+            messages.warning(request,"Invalid username registered")
             return redirect("teacherregister") 
 
         if CustomUser.objects.filter(email=email).exists():
@@ -153,11 +157,11 @@ def teacherregister(request):
             return redirect("teacherregister")   
 
         if not contact.isnumeric():
-            messages.warning(request," contactnumber not contain _ and - @ #%^&*")
+            messages.warning(request,"The contact number should only contain numeric value")
             return redirect("teacherregister")                      
 
         if len(address)>15:
-            messages.warning(request,"address too long ")
+            messages.warning(request,"Address should contain maximum of 15 characters")
             return redirect("teacherregister")
 
         user = CustomUser.objects.create_user(first_name=first_name,
@@ -200,16 +204,20 @@ def studentregister(request):
         grade = request.POST['grade']
         section = request.POST['section']
 
-        if len(first_name)>10 and len(last_name)>10 : 
-            messages.warning(request,"First name or last must contain 15")
-            return redirect("studentregister") 
+        if len(first_name)>10:
+            messages.warning(request,"First name contain 10 alphabets")
+            return redirect("studentregister")
+
+        if len(last_name)>10:
+            messages.warning(request,"Last name must contain 10 alphabets")
+            return redirect("studentregister")
 
         if not first_name.isalpha():
-            messages.warning(request,"firstname not contain _ and - @ #%^&*")
+            messages.warning(request,"The first name only requires alphabets")
             return redirect("studentregister")
 
         if not last_name.isalpha():
-            messages.warning(request,"lastname not contain _ and - @ #%^&*")
+            messages.warning(request,"The last name only requires alphabets")
             return redirect("studentregister") 
 
         if CustomUser.objects.filter(username=username).exists():
@@ -217,11 +225,11 @@ def studentregister(request):
             return redirect("studentregister")
 
         if len(username)>10:
-            messages.warning(request,"username too long")
+            messages.warning(request,"The username is too long")
             return redirect("studentregister")
 
         if not username.isalnum():
-            messages.warning(request,"Username not contain _ and - @ #%^&*")
+            messages.warning(request,"Invalid username registered")
             return redirect("studentregister") 
 
         if CustomUser.objects.filter(email=email).exists():
@@ -229,15 +237,15 @@ def studentregister(request):
             return redirect("studentregister")   
 
         if len(parent_name)>15:
-            messages.warning(request,"parentname too long")
+            messages.warning(request,"The parent name is too long")
             return redirect("studentregister")
 
         if not contact.isnumeric():
-            messages.warning(request," contactnumber not contain _ and - @ #%^&*")
+            messages.warning(request,"The contact number should only contain numeric value")
             return redirect("studentregister")                      
 
         if len(address)>15:
-            messages.warning(request,"address too long ")
+            messages.warning(request,"Address should contain maximum of 15 characters")
             return redirect("studentregister")
 
 
@@ -373,7 +381,7 @@ def marks(request):
             faculty=faculty,
         )
         marks.save()
-        messages.success(request, "successful")
+        messages.success(request, "Successfull")
     
         # return redirect('student-func')
 
