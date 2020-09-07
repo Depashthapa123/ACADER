@@ -82,6 +82,7 @@ def teacher_dashboard(request):
 @unauthenticated_teacher
 def teacher_marks(request):
     teacher_id1 = None
+
     if request.session.has_key('teacher_id'):
         teacher_id1 = request.session['teacher_id']
 
