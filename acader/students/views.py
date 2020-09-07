@@ -108,21 +108,57 @@ def loginpage(request):
 
 
 @unauthenticated_admin
-def register(request):
+def teacherregister(request):
 
     if request.method == 'POST':
         name = request.POST['username']
-        first_name = request.POST['first_name']
-        last_name = request.POST['last_name']
+        first_name = (request.POST['first_name']).capitalize()
+        last_name = (request.POST['last_name']).capitalize()
         username = request.POST['username']
         email = request.POST['email']
         password = request.POST['password']
         gender = request.POST['gender']
-        address = request.POST['address']
+        address = (request.POST['address']).capitalize()
         contact = request.POST['contact']
         faculty = request.POST['faculty']
         grade = request.POST['grade']
         section = request.POST['section']
+
+        if len(first_name)>10 and len(last_name)>10 : 
+            messages.warning(request,"First name or last must contain 15")
+            return redirect("teacherregister") 
+
+        if not first_name.isalpha():
+            messages.warning(request,"firstname not contain _ and - @ #%^&*")
+            return redirect("teacherregister")
+
+        if not last_name.isalpha():
+            messages.warning(request,"lastname not contain _ and - @ #%^&*")
+            return redirect("teacherregister") 
+
+        if CustomUser.objects.filter(username=username).exists():
+            messages.warning(request,"This username already exists")
+            return redirect("teacherregister")
+
+        if len(username)>10:
+            messages.warning(request,"username too long")
+            return redirect("teacherregister")
+
+        if not username.isalnum():
+            messages.warning(request,"Username not contain _ and - @ #%^&*")
+            return redirect("teacherregister") 
+
+        if CustomUser.objects.filter(email=email).exists():
+            messages.warning(request,"This email already exists")
+            return redirect("teacherregister")   
+
+        if not contact.isnumeric():
+            messages.warning(request," contactnumber not contain _ and - @ #%^&*")
+            return redirect("teacherregister")                      
+
+        if len(address)>15:
+            messages.warning(request,"address too long ")
+            return redirect("teacherregister")
 
         user = CustomUser.objects.create_user(first_name=first_name,
                                               last_name=last_name,
@@ -140,9 +176,9 @@ def register(request):
 
         user.save()
         messages.success(request, 'A teacher is added')
-        return redirect('register')
+        # return redirect('teacher-func')
 
-    return render(request, 'students/register.html')
+    return render(request, 'students/teacherregister.html')
 
 
 @unauthenticated_admin
@@ -150,19 +186,60 @@ def studentregister(request):
 
     if request.method == 'POST':
         name = request.POST['username']
-        first_name = request.POST['first_name']
-        last_name = request.POST['last_name']
+        first_name = (request.POST['first_name']).capitalize()
+        last_name = (request.POST['last_name']).capitalize()
         username = request.POST['username']
         email = request.POST['email']
         password = request.POST['password']
         gender = request.POST['gender']
         DOB = request.POST['DOB']
-        parent_name = request.POST['parent_name']
-        address = request.POST['address']
+        parent_name = (request.POST['parent_name']).capitalize()
+        address = (request.POST['address']).capitalize()
         contact = request.POST['contact']
         faculty = request.POST['faculty']
         grade = request.POST['grade']
         section = request.POST['section']
+
+        if len(first_name)>10 and len(last_name)>10 : 
+            messages.warning(request,"First name or last must contain 15")
+            return redirect("studentregister") 
+
+        if not first_name.isalpha():
+            messages.warning(request,"firstname not contain _ and - @ #%^&*")
+            return redirect("studentregister")
+
+        if not last_name.isalpha():
+            messages.warning(request,"lastname not contain _ and - @ #%^&*")
+            return redirect("studentregister") 
+
+        if CustomUser.objects.filter(username=username).exists():
+            messages.warning(request,"This username already exists")
+            return redirect("studentregister")
+
+        if len(username)>10:
+            messages.warning(request,"username too long")
+            return redirect("studentregister")
+
+        if not username.isalnum():
+            messages.warning(request,"Username not contain _ and - @ #%^&*")
+            return redirect("studentregister") 
+
+        if CustomUser.objects.filter(email=email).exists():
+            messages.warning(request,"This email already exists")
+            return redirect("studentregister")   
+
+        if len(parent_name)>15:
+            messages.warning(request,"parentname too long")
+            return redirect("studentregister")
+
+        if not contact.isnumeric():
+            messages.warning(request," contactnumber not contain _ and - @ #%^&*")
+            return redirect("studentregister")                      
+
+        if len(address)>15:
+            messages.warning(request,"address too long ")
+            return redirect("studentregister")
+
 
         user = CustomUser.objects.create_user(first_name=first_name,
                                               last_name=last_name,
@@ -183,7 +260,7 @@ def studentregister(request):
         hello = user.save()
         print(hello)
         messages.success(request, 'A teacher is added')
-        return redirect('studentregister')
+        # return redirect('student-func')
 
     return render(request, 'students/studentregister.html')
 
@@ -206,6 +283,8 @@ def course(request):
         )
         course1.save()
         messages.success(request, "successful")
+        # return redirect('student-func')
+
 
     return render(request, 'students/course.html')
 
@@ -295,6 +374,9 @@ def marks(request):
         )
         marks.save()
         messages.success(request, "successful")
+    
+        # return redirect('student-func')
+
 
         # print('Registering')
 
