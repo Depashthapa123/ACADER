@@ -6,6 +6,6 @@
     <form method="POST">
         {% csrf_token %}
         <a href="{% url 'teacher_dashboard' %}" class="marks">Cancel</a>
-        <input type="submit" class="marks" onkeyup="return onkeyup()">
+        <input type="submit" class="marks" >
     </form>
 {% endblock %}

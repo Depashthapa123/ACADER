@@ -5,7 +5,8 @@
 	<meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Marks-Register Form</title>
-	<link rel="stylesheet" href="{% static 'css/course.css' %}">
+  <link rel="stylesheet" href="{% static 'css/course.css' %}">
+  <link rel="stylesheet" href="{% static 'css/alertmodal.css' %}">
 </head>
 <body>
     <form action="" method="POST">
@@ -97,16 +98,46 @@
               {% if messages %}
                 {% for message in messages %}
                 {% if message.tags == 'warning' %}
-                  <div class="alert alert-warning" style="margin-top:10px">{{ message }}</div>
+                <div id="myModal" class="modal">
+
+                  <!-- Modal content -->
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <span class="close">&times;</span>
+                      <h2>Alert</h2>
+                    </div>
+                    <div class="modal-body">
+                      <p>{{message}}</p>
+                    </div>
+                  </div>  
+
+                </div>  
                 {% endif %}
                 {% if message.tags == 'success' %}
-                  <script>
-                    alert("Marks successfully registered");
-                  </script>                
+                <div id="myModal" class="modal">
+
+                  <!-- Modal content -->
+                  <div class="modal-content" style="  border: 4px solid #007029!important;">
+                    <div class="modal-header" style="background-color: #007029!important;">
+                      <span class="close">&times;</span>
+                      <h2>Alert</h2>
+                    </div>
+                    <div class="modal-body">
+                      <p>{{message}}</p>
+                    </div>
+                    <div class="modal-footer">
+                      <span class="marks" style="background-color: #007029!important;margin-top:90px;"><a href="{% url 'student_list' %}" style="text-decoration: none;color: white;">Okay</a></span>
+                    </div>
+                  </div>  
+                </div>
+                  <!-- <script>
+                    alert('Sucessfully registered') ; window.location.href = "{% url 'student-func' %}"
+                  </script>                 -->
                 {% endif %}
                 {% endfor %}
                 {% endif %}
          </div>
     </form>
+<script src="{% static 'js/alertmodal.js' %}"></script>
 </body>
 </html>
