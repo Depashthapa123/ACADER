@@ -39,6 +39,7 @@ body {
     display: table;
     padding: 20px 20px;
     border: 2px solid #ccc;
+    border-radius: 8px;
     border-top: 5px;
     display: table;
     background-color: snow;
@@ -57,6 +58,7 @@ input {
     color: #355d98;
     background: none;
     border: 1px solid grey;
+    border-radius: 4px;
     font-family: inherit;
 }
 
@@ -87,7 +89,7 @@ input::placeholder {
 .button {
     border: none;
     cursor: pointer;
-    border-radius: 2px;
+    border-radius: 4px;
     padding: 15px 0;
     font-size: 20px;
     text-transform: uppercase;

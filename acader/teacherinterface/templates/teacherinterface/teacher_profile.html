@@ -106,7 +106,11 @@
 
         {% for d in description %}
         <span class="details">
-          <span class="aboutu"> <br><br><textarea cols="100" rows="10" style="color: #6b6969;" readonly>{{d.description}}</textarea><br><br><br><br><br><br><br>
+          <span class="aboutu"> <br><br>
+            <!-- <textarea cols="100" rows="10" style="color: #6b6969;" readonly> -->
+            {{d.description}}
+          <!-- </textarea> -->
+            <br><br><br><br><br><br><br>
             <div class="marks" id="myBtn" style="float: right;">Edit</div>
           </span>
         </span>
