@@ -1,8 +1,9 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
 from students.models import CustomUser, Course, Marks, Terms, Grade, Faculty, StudentCourse, Student, Teacher
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from .forms import BioUpdate1
+from teacherinterface.forms import UploadFileForm
 from .models import postmessage
 from students.restrictions import unauthenticated_teacher
 import sys

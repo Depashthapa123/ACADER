@@ -20,6 +20,7 @@ class BioUpdate1(forms.ModelForm):
         fields = ['description','image']
 
 
-
+class UploadFileForm(forms.Form):
+    file = forms.FileField(label='Upload document')
 
 

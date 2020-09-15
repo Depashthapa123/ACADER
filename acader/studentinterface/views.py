@@ -42,7 +42,28 @@ def student_profile(request):
 
 @unauthenticated_student
 def course_content(request):
-    return render(request, 'studentinterface/course_content.html')
+    if request.session.has_key('student_id'):
+        student_id = request.session['student_id']
+
+    student_details = Student.objects.filter(student_id=student_id).values('faculty', 'grade')
+    teacher_filter = Teacher.objects.filter(faculty=student_details[0]['faculty'], grade=student_details[0]['grade']).values('teacher_id')
+    print(teacher_filter)
+
+    course_subject = Course.objects.filter(faculty=student_details[0]['faculty'], grade=student_details[0]['grade'])
+
+    teacher_context = []
+    for teacher in teacher_filter:
+        teacher_filter1 = CustomUser.objects.filter(id=teacher['teacher_id']).values('first_name', 'last_name', 'email')
+        teacher_details = {'First_name': teacher_filter1[0]['first_name'], 'Last_name': teacher_filter1[0]['last_name'], 'Email': teacher_filter1[0]['email']}
+        teacher_context.append(teacher_details)
+
+    print('teacher details=', teacher_context)
+
+    context = {
+        'teacher_context': teacher_context,
+        'course_subject': course_subject
+    }
+    return render(request, 'studentinterface/course_content.html', context)
 
 
 @unauthenticated_student
