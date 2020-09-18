@@ -1,6 +1,13 @@
+// $(document).ready(function() {
+//     $('img.logo').click(function() {
+//         window.location.href = "{% url '/' %}";
+//     });
+// });
+
 const formTitle = document.getElementById('login-title')
 const userType = document.getElementById('user-type')
 userType.value = 3
+
 
 // Script to open and close sidebar
 function w3_open() {

@@ -337,6 +337,7 @@ cursor: pointer;
   background-color: #efefef;
 }
 
+<<<<<<< Updated upstream
 .custom-file-upload {
     cursor: pointer;
     padding: 12px 24px;
@@ -349,4 +350,10 @@ cursor: pointer;
     padding: 12px 24px;
     background-color: #2196F3;
     color: white;
+=======
+.aboutyou{
+  margin: auto;
+  /* display: table; */
+  /* text-align: center; */
+>>>>>>> Stashed changes
 }

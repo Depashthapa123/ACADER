@@ -14,7 +14,7 @@
       <nav class="w3-sidebar w3-blue w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
         <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:12px">Close Menu</a>
         <div class="w3-container">
-          <h1 class="w3-padding-55" ><b>Acader</b></h1>
+          <h1 class="w3-padding-55"><a href="{% url 'student_dashboard' %}" style="text-decoration:none;color:white;"><b>Acader</b></a></h1>
         </div>
         <div class="w3-bar-block">
           <a href="{% url 'student_profile' %}" onclick="w3_close()" class="active">Profile</a><br>
@@ -28,7 +28,7 @@
       <!-- Top menu on small screens -->
       <header class="w3-container w3-top w3-hide-large w3-blue w3-xlarge w3-padding">
         <a href="javascript:void(0)" class="w3-button w3-blue w3-margin-right" onclick="w3_open()">☰</a>
-        <span>Acader</span>
+        <span><a href="{% url 'student_dashboard' %}" style="text-decoration:none;color:white;">Acader</a></span>
       </header>
 
       <!-- Overlay effect when opening sidebar on small screens -->
@@ -52,6 +52,40 @@
                 </div>
                   <h3 class="profile_name">{{user3.first_name}} {{user3.last_name}}</h3>
               </div>
+              <div class="aboutyou">
+                <span class="layer"><h3  style="  text-decoration-line: underline;font-family:  Geneva">About yourself</h3></span>
+                    {% for d in description %}
+                    <span class="details">
+                     <span class="aboutu">
+                      <!-- <textarea cols="100" rows="10" style="color: #6b6969;" readonly> -->
+                        <div class="announcement darker">
+                         <h4 >" {{d.description}}"</h4>
+                         </div>
+                      <!-- </textarea> -->
+                      <div class="marks" id="myBtn" >Edit</div>
+                     </span>
+                    </span>
+              </div>
+                    {% endfor %} <br>
+                
+                  <!-- The Modal -->
+                    <div class="modal" id="myModal"  >
+  
+                      <!-- Modal content -->
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <div class="close" id="close">&times;</div>
+                          <h2>About yourself:</h2>
+                        </div>
+                        <div class="modal-body">
+                               {{p_form.description}}                    
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit">Submit</button>
+                        </div>
+                      </div>
+                    </div>  
+
               <span class="layer">
                 <h3>Basic Student Information</h3>
               </span>
@@ -101,38 +135,7 @@
               <span class="details">{{user3.student.section}}</span>
               </div>
 
-              <div class="profile_layout">
-              <span class="layer">About yourself: &nbsp;</span>
-                  {% for d in description %}
-                  <span class="details">
-                   <span class="aboutu"><br><br> 
-                    <!-- <textarea cols="100" rows="10" style="color: #6b6969;" readonly> -->
-                      {{d.description}}
-                    <!-- </textarea> -->
-                    <br><br><br><br><br><br><br>
-                    <div class="marks" id="myBtn" >Edit</div>
-                   </span>
-                  </span>
-              </div>
-                  {% endfor %} <br>
-              
-                <!-- The Modal -->
-                  <div class="modal" id="myModal"  >
-
-                    <!-- Modal content -->
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <div class="close" id="close">&times;</div>
-                        <h2>About yourself:</h2>
-                      </div>
-                      <div class="modal-body">
-                             {{p_form.description}}                    
-                      </div>
-                      <div class="modal-footer">
-                          <button type="submit">Submit</button>
-                      </div>
-                    </div>
-                  </div>     
+                 
                   <button class="marks" type="submit">Update</button>         
           </div>
         </form>

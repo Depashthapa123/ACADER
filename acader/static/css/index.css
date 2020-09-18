@@ -26,7 +26,7 @@ body {
     width: 340px;  
     display: table;
     margin:  auto;
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 
 .side_bar{
@@ -99,6 +99,7 @@ input::placeholder {
     transition: 0.7s;
     font-family: inherit;
     margin-top: 25px;
+    color: black;
   }
 
 .button:hover {
