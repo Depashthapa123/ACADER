@@ -39,10 +39,16 @@
   <!-- Header(main body) -->
   <div class="w3-container-bgcolor" style="margin-top:40px;" id="showcase">
     <h3>Announcement</h3>
-    <form action="" method="POST" id="message_form">
+    <form action="" method="POST" id="message_form" enctype="multipart/form-data">
         {% csrf_token %}
               <div class="comment">
-                  <textarea class="textinput"  name="message" form="message_form" placeholder="Comment" required></textarea>
+                  <textarea class="textinput"  name="message" form="message_form" placeholder="Comment"></textarea>
+                  <div style="flex-direction: row ">
+                    <label>Upload a file</label>
+                    <input type="file" name="file" />
+<!--                      <label>Upload a file</label>-->
+<!--                    <input type="file" name="image" />-->
+                  </div>
               </div>
         <br><br><br><br><br>
         <input class="marks" type="submit">
@@ -53,12 +59,16 @@
           <h3>Message</h3>
       {% for postMessage in post_message %}
       <div class="announcement darker">
-
             <p>{{postMessage.message}}</p>
             <p>{{postMessage.created_at}}</p>
+           {% if postMessage.file_type != 'image' %}
+            <p><a style="color: blue; cursor: pointer" onclick="handleURL('{{ postMessage.file_upload }}')">Download pdf</a></p>
+          {% else %}
+            <image class="image" src="/media/{{postMessage.file_upload}}"/>
+          {% endif %}
             <p><a href="{% url 'delete_post' message_id=postMessage.id %}" class="marks">Delete</a> </p>
       </div>
-             {% endfor %}
+        {% endfor %}
     </div>
 
     {% block content %}
@@ -69,6 +79,7 @@
 <script src="{% static 'js/jquery-2.2.4.min.js' %}"></script>
 <script src="{% static 'js/jsindex2.js' %}"></script>
 <script src="{% static 'js/delete.js' %}"></script>
+
 </body>
 </html>
 

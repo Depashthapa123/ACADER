@@ -33,7 +33,6 @@ class postmessage(models.Model):
     grade = models.IntegerField(default=1)
     created_at = models.DateTimeField(auto_now_add=True, null=True)
     message = models.CharField(blank=False, max_length=500)
-    file_upload = models.FileField(upload_to='uploads/pdfs/', )
     name = models.TextField(default=1)
-
+    file_upload = models.FileField(upload_to='files/pdfs/', default=None)
 

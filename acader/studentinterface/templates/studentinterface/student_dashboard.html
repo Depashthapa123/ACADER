@@ -12,7 +12,7 @@
 <body>
 
 <!-- Sidebar/menu -->
-<nav class="w3-sidebar w3-blue w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
+<nav class="w3-sidebar w3-blue w3-collapse announcementw3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
   <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:12px">Close Menu</a>
   <div class="w3-container">
     <h1 class="w3-padding-55"><b>Acader</b></h1>
@@ -57,16 +57,23 @@
   </div>
     <div class="w3-container-bgcolor" style="margin-top:20px" id="showcase">
       <h1>Notice:</h1>
-      {% for context in dashboard_context %}
+      {% for items in dashboard_context %}
         <div class="announcement darker">
-          <img src="/media/{{context.profile_picture}}" alt="Avatar" class="right" style="width:100%;"/>
-          <h2>{{ context.name }}</h2>
-          <p style="font-size: 10px;margin-top:-25px;">{{ context.created_at }}</p>
-          <span class="time-left">{{ context.message }}</span>
+          <img id="profile-image" src="/media/{{items.profile_picture}}" alt="Avatar" class="right"/>
+          <h2>{{ items.name }}</h2>
+          <p style="font-size: 10px;margin-top:-25px;">{{ items.created_at }}</p>
+
+          {% if items.file_type != 'image' %}
+            <div><a style="color: blue; cursor: pointer" onclick="handleURL('{{items.file_upload}}')">Download pdf</a></div>
+          {% else %}
+            <image class="image" src="/media/{{items.file_upload}}"/>
+          {% endif %}
+
+          <span class="time-left">{{ items.message }}</span>
         </div>
         <br>
       {% endfor %}
-     
+
     </div>
     </div>
 <!-- End page content -->

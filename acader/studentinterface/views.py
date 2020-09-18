@@ -34,7 +34,7 @@ def student_profile(request):
         context = {
             'user3': user3,
             'p_form': p_form,
-            'description' : description,
+            'description': description,
             # 'i_form': i_form
         }
         return render(request, 'studentinterface/student_profile.html', context)
@@ -76,21 +76,35 @@ def student_dashboard(request):
     student_faculty = Student.objects.filter(student_id=student_id).values('faculty')
     student_grade = Student.objects.filter(student_id=student_id).values('grade')
 
-    dashboard_messages = postmessage.objects.filter(faculty=student_faculty[0]['faculty'], grade=student_grade[0]['grade']).values('teacher_id', 'message', 'created_at', 'name')
+    dashboard_messages = postmessage\
+        .objects.filter(faculty=student_faculty[0]['faculty'], grade=student_grade[0]['grade']).values('teacher_id', 'message', 'created_at', 'name', 'file_upload').order_by('-created_at')
 
     dashboard_context = []
     for messages in dashboard_messages:
+        type = None
         print(messages)
         custom_user_id = Teacher.objects.filter(id=messages['teacher_id']).values('teacher_id')
         teacher_image = Profile1.objects.filter(teacher_id=custom_user_id[0]['teacher_id']).values('image')
-        message_details = {**messages, 'profile_picture': teacher_image[0]['image']}
-        dashboard_context.append(message_details)
+        extension = messages['file_upload'].split('.')[1]
 
-    print('message_details ', dashboard_context)
+        if extension == 'pdf' or extension == 'docx':
+            type = 'file'
+        elif extension == 'jpg' or extension == 'png':
+            type = 'image'
+
+        message_details = {
+                **messages,
+                'profile_picture': teacher_image[0]['image'],
+                'file_type': type
+            }
+        dashboard_context.append(message_details)
+        print(dashboard_context)
 
     context = {
         'dashboard_context': dashboard_context,
+        'dashboard_messages': dashboard_messages
     }
+
     return render(request, 'studentinterface/student_dashboard.html', context)
 
 
