@@ -1,28 +1,13 @@
-$(document).ready(function() {
+//document.querySelector('.image').addEventListener('mouseenter', function (event){
+//    event.target.style.width = '120px'
+//    event.target.style.height = '120px'
+//})
+//
+//document.querySelector('.image').addEventListener('mouseout', function (event){
+//    event.target.style.width = '60px'
+//    event.target.style.height = '60px'
+//})
 
-    
-    var readURL = function(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-    
-            reader.onload = function (e) {
-                $('.profile-pic').attr('src', e.target.result);
-            }
-    
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-    
-$(".file-upload").on('change', function(){
-        readURL(this);
-    });
-    
-$(".upload-button").on('click', function() {
-       $(".file-upload").click();
-    });
-    });
-
-    
 // Script to open and close sidebar
 function w3_open() {
     document.getElementById("mySidebar").style.display = "block";
@@ -37,4 +22,7 @@ function w3_close() {
       document.getElementById("side_bar").style.display = "none";
     
 }
-  
+
+function handleURL(url) {
+    window.open(`/media/${url}`, '_blank')
+}

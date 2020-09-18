@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from distutils import extension
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
 from students.models import CustomUser, Course, Marks, Terms, Grade, Faculty, StudentCourse, Student, Teacher
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
@@ -7,6 +8,7 @@ from .models import postmessage
 from students.restrictions import unauthenticated_teacher
 import sys
 from teacherinterface.models import Profile1
+from django.core.files.storage import FileSystemStorage
 
 
 @unauthenticated_teacher
@@ -43,14 +45,29 @@ def teacher_dashboard(request):
         teacher_id = request.session['teacher_id']
 
     teacher = Teacher.objects.filter(teacher_id=teacher_id)[0]
-    post_messages = postmessage.objects.filter(teacher_id=teacher)
+    post_messages = postmessage.objects.filter(teacher_id=teacher).values().order_by('-created_at')
+    dashboard_context = []
 
-    context = {'post_message': post_messages}
-    # print(context)
+    for messages in post_messages:
+        type = None
+        extension = messages['file_upload'].split('.')[1]
+
+        if extension == 'pdf' or extension == 'docx':
+            type = 'file'
+        elif extension == 'jpg' or extension == 'png':
+            type = 'image'
+
+        dashboard_context.append({**messages, 'file_type': type})
+
+    print(dashboard_context)
 
     if request.method == 'POST':
         requestParams = request.POST
-        # print('teacher_id ', teacher_id)
+        file = request.FILES['file']
+
+        # image = request.FILES['file']
+        # if extension != 'jpg':
+        #     return redirect('teacher_dashboard')
 
         try:
             teacher = Teacher.objects.filter(teacher_id=teacher_id)
@@ -59,7 +76,6 @@ def teacher_dashboard(request):
             teacher_createtime = Teacher.objects.filter(teacher_id=teacher_id).values('created_at')
             message1 = requestParams['message']
             name = Teacher.objects.filter(teacher_id=teacher_id).values('name')
-
             # print(teacher_faculty, teacher_grade)
             message = postmessage(
                 teacher_id=teacher[0],
@@ -68,13 +84,15 @@ def teacher_dashboard(request):
                 created_at=teacher_createtime[0]['created_at'],
                 name=name,
                 message=message1,
-
+                file_upload=file,
             )
+
             # print(message)
             messagepostresponse = message.save()
-            print('-------------------------------> ', messagepostresponse)
         except:
             print('An exception occured', sys.exc_info())
+
+    context = {'post_message': dashboard_context}
 
     return render(request, 'teacherinterface/teacher_dashboard.html', context)
 
@@ -82,6 +100,7 @@ def teacher_dashboard(request):
 @unauthenticated_teacher
 def teacher_marks(request):
     teacher_id1 = None
+
     if request.session.has_key('teacher_id'):
         teacher_id1 = request.session['teacher_id']
 

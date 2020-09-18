@@ -9,43 +9,20 @@ from .restrictions import unauthenticated_admin, unauthenticated_teacher, unauth
 
 @login_authenticate
 def loginpage(request):
-    # print(request.session.test_cookie_worked())
-    # if request.session.has_key('username') and request.session.has_key('password'):
+    # userType = 3
     #
-    #     saved_username = request.session['username']
-    #     saved_password = request.session['password']
-    #
-    #     user = authenticate(username=saved_username,password=saved_password)
-    #
-    #     if user is not None:
-    #         login(request, user)
-    #
-    #         if user.user_type == '3':
-    #             request.session['student_id'] = user.id
-    #             return redirect('student_dashboard')
-    #         elif user.user_type == '2':
-    #             messages.warning(request, 'sory mf')
-    #         else:
-    #             messages.warning(request, 'sory mf')
-    #             return redirect('loginpage')
-    #     else:
-    #         messages.warning(request, "invalid")
-    #         return redirect('/')
-    #     return
-    # else:
-    #     print('I do not have cookies')
-
+    # if request.method == 'GET':
+    #     if 'user-type' in request.COOKIES:
+    #         # userType = request.COOKIES['user-type']
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
         userType = str(request.POST['user-type'])
 
         user = authenticate(username=username,password=password)
-        # print('userType is ', userType)
-        # print(type(userType))
-        # print('server userType is ', user.user_type)
 
-        # print(userType == user.user_type)
+        # request.COOKIES['user'] = user.id
+        # request.COOKIES['user-type'] = userType
 
         if user is not None:
             login(request, user)
