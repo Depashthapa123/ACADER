@@ -8,11 +8,13 @@
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
 <link rel="stylesheet" href="{% static 'css/w3.css' %}">
 <link rel="stylesheet" href="{% static 'css/font.css' %}">
+<link rel="stylesheet" href="{% static 'css/picture_modal.css' %}">
+
 </head>
 <body>
 
 <!-- Sidebar/menu -->
-<nav class="w3-sidebar w3-blue w3-collapse announcementw3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
+<nav class="w3-sidebar w3-blue w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
   <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:12px">Close Menu</a>
   <div class="w3-container">
     <h1 class="w3-padding-55"><a href="{% url 'student_dashboard' %}" style="text-decoration:none;color:white;"><b>Acader</b></a></h1>
@@ -62,14 +64,18 @@
           <img id="profile-image" src="/media/{{items.profile_picture}}" alt="Avatar" class="right"/>
           <h2>{{ items.name }}</h2>
           <p style="font-size: 10px;margin-top:-25px;">{{ items.created_at }}</p>
-
+          <span class="time-left">{{ items.message }}</span><br><br>
           {% if items.file_type != 'image' %}
             <div><a style="color: blue; cursor: pointer" onclick="handleURL('{{items.file_upload}}')">Download pdf</a></div>
           {% else %}
-            <image class="image" src="/media/{{items.file_upload}}"/>
+            <image id="myImg" src="/media/{{items.file_upload}}"/><br><br>
+                      <!-- The Modal -->
+            <div id="myModal" class="modal">
+              <span class="close">&times;</span>
+              <img class="modal-content" id="img01">
+              <!-- <div id="caption"></div> -->
+            </div>
           {% endif %}
-
-          <span class="time-left">{{ items.message }}</span>
         </div>
         <br>
       {% endfor %}
@@ -82,5 +88,7 @@
 <script src="{% static 'js/Chart.min.js' %}">/*https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js*/</script>
 <script src="{% static 'js/linechart.js' %}"></script>
 <script src="{% static 'js/jsindex2.js' %}"></script>
+<script src="{% static 'js/picture_modal.js' %}"></script>
+
 </body>
 </html>
