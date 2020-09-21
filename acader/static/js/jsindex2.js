@@ -26,3 +26,13 @@ function w3_close() {
 function handleURL(url) {
     window.open(`/media/${url}`, '_blank')
 }
+
+
+// function reload(){
+//     setTimeout(function () {
+//         if(window.location.hash != '#r') {
+//             window.location.hash = 'r';
+//             window.location.reload(1);
+//         }
+//     },2000);
+// }

@@ -39,44 +39,48 @@
 <div class="w3-main" style="margin-left:340px;margin-right:40px">
 
   <!-- ClassXI-Science -->
-  <br>
-  <table class="w3-table-all" id="myTable">
-        <thead>
-          <tr class="w3-blue">
-            <th><a href="#" onclick="sortTable(0)" style="text-decoration:none;color:white">Teacher Name</a></th>
-            <th><a href="#" onclick="sortTable(1)" style="text-decoration:none;color:white">email</a></th>
-            <th></th>
-          </tr>
-        </thead>
-        {% for context in teacher_context %}
-        <tr>
-          <td>{{ context.First_name }} {{ context.Last_name }}</td>
-          <td>{{ context.Email }}</td>
-        </tr>
-        {% endfor %}
+  <div class="w3-container-bgcolor" style="margin-top:20px;" id="showcase">
+                    <table class="w3-table-all" id="myTable">
+                          <thead>
+                            <tr class="w3-blue">
+                              <th><a href="#" onclick="sortTable(0)" style="text-decoration:none;color:white">Teacher Name</a></th>
+                              <th><a href="#" onclick="sortTable(1)" style="text-decoration:none;color:white">email</a></th>
+                            </tr>
+                          </thead>
+                          {% for context in teacher_context %}
+                          <tr>
+                            <td>{{ context.First_name }} {{ context.Last_name }}</td>
+                            <td>{{ context.Email }}</td>
+                          </tr>  
+                          {% endfor %}
+                    </table>
+  </div>
+  
+  
+  
   <!-- ClassXI-Management -->
-    <br>
-  <table class="w3-table-all" id="myTable">
-        <thead>
-          <tr class="w3-blue">
-            <th><a href="#" onclick="sortTable(0)" style="text-decoration:none;color:white">Subjects</a></th>
-            <th><a href="#" onclick="sortTable(0)" style="text-decoration:none;color:white">Pass marks</a></th>
-            <th><a href="#" onclick="sortTable(0)" style="text-decoration:none;color:white">Full marks</a></th>
-            <th></th>
+  <div class="w3-container-bgcolor" style="margin-top:20px;" id="showcase">
+    <table class="w3-table-all" id="myTable">
+          <thead>
+            <tr class="w3-blue">
+              <th><a href="#" style="text-decoration:none;color:white">Subjects</a></th>
+              <th><a href="#" style="text-decoration:none;color:white">Pass marks</a></th>
+              <th><a href="#" style="text-decoration:none;color:white">Full marks</a></th>
+            </tr>
+          </thead>
+          {% for c in course_subject %}
+          <tr>
+            <td>{{ c.course_name }}</td>
+            <td>{{ c.pass_marks }}</td>
+            <td>{{ c.total_marks }}</td>
           </tr>
-        </thead>
-        {% for c in course_subject %}
-        <tr>
-          <td>{{ c.course_name }}</td>
-          <td>{{ c.pass_marks }}</td>
-          <td>{{ c.total_marks }}</td>
-        </tr>
-        {% endfor %}
-
+          {% endfor %}
+    </table>
+  </div>
 <!-- End page content -->
 </div>
 
 <script src="{% static 'js/jsindex2.js' %}"></script>
-
+<script src="{% static 'js/sort.js' %}"></script>
 </body>
 </html>

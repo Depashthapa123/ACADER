@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
 <link rel="stylesheet" href="{% static 'css/w3.css' %}">
 <link rel="stylesheet" href="{% static 'css/font.css' %}">
+<link rel="stylesheet" href="{% static 'css/picture_modal.css' %}">
 </head>
 <body>
     <!-- Sidebar/menu -->
@@ -42,16 +43,16 @@
     <form action="" method="POST" id="message_form" enctype="multipart/form-data">
         {% csrf_token %}
               <div class="comment">
-                  <textarea class="textinput"  name="message" form="message_form" placeholder="Comment"></textarea>
+                  <textarea class="textinput"  name="message" form="message_form" placeholder="Comment" ></textarea>
                   <div style="flex-direction: row ">
-                    <label>Upload a file</label>
-                    <input type="file" name="file" />
+                    <input type="file" name="file" class="file-upload">
 <!--                      <label>Upload a file</label>-->
 <!--                    <input type="file" name="image" />-->
                   </div>
               </div>
         <br><br><br><br><br>
-        <input class="marks" type="submit">
+        <label class="marks" id="upload">Upload a file</label>
+        <button class="marks" type="submit" >Submit</button>
       </form>
   </div>
     <div class="w3-container-bgcolor" style="margin-top:20px" id="showcase">
@@ -59,24 +60,34 @@
           <h3>Message</h3>
       {% for postMessage in post_message %}
       <div class="announcement darker">
-            <p>{{postMessage.message}}</p>
-            <p>{{postMessage.created_at}}</p>
+            <p style="font-size: 10px">{{postMessage.created_at}}</p>
+            <span class="time-left">{{postMessage.message}}</span><br><br>
            {% if postMessage.file_type != 'image' %}
             <p><a style="color: blue; cursor: pointer" onclick="handleURL('{{ postMessage.file_upload }}')">Download pdf</a></p>
-          {% else %}
-            <image class="image" src="/media/{{postMessage.file_upload}}"/>
-          {% endif %}
+           {% else %}
+            <image class="myImg" src="/media/{{postMessage.file_upload}}"/>
+                                  <!-- The Modal -->
+                                  <div class="myModal" class="modal">
+                                    <span class="close">&times;</span>
+                                    <img class="modal-content" >
+                                     <i class="img01"></i>
+                                    <!-- <div id="caption"></div> -->
+                                  </div>
+           {% endif %}
             <p><a href="{% url 'delete_post' message_id=postMessage.id %}" class="marks">Delete</a> </p>
       </div>
-        {% endfor %}
+           {% endfor %}
+           {% block content %}
+           {% endblock %}
     </div>
 
-    {% block content %}
-        {% endblock %}
+
 
 <!-- End page content -->
 </div>
 <script src="{% static 'js/jquery-2.2.4.min.js' %}"></script>
+<script src="{% static 'js/picture_modal.js' %}"></script>
+<script src="{% static 'js/file_upload.js' %}"></script>
 <script src="{% static 'js/jsindex2.js' %}"></script>
 <script src="{% static 'js/delete.js' %}"></script>
 
