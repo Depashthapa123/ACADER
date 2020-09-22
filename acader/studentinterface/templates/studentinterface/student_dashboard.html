@@ -68,13 +68,13 @@
           {% if items.file_type != 'image' %}
             <div><a style="color: blue; cursor: pointer" onclick="handleURL('{{items.file_upload}}')">Download pdf</a></div>
           {% else %}
-            <image id="myImg" src="/media/{{items.file_upload}}"/><br><br>
-                      <!-- The Modal -->
-            <div id="myModal" class="modal">
-              <span class="close">&times;</span>
-              <img class="modal-content" id="img01">
-              <!-- <div id="caption"></div> -->
-            </div>
+            <image class="modal_image" src="/media/{{items.file_upload}}"/><br><br>
+                                  <!-- The Modal -->
+                                  <div id="myModal" class="modal">
+                                    <span class="close">&times;</span>
+                                    <img class="modal-content" id="img01">
+                                    <!-- <div id="caption"></div> -->
+                                  </div>
           {% endif %}
         </div>
         <br>

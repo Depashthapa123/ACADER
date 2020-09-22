@@ -45,13 +45,14 @@
               <div class="comment">
                   <textarea class="textinput"  name="message" form="message_form" placeholder="Comment" ></textarea>
                   <div style="flex-direction: row ">
-                    <input type="file" name="file" class="file-upload" >
-<!--                      <label>Upload a file</label>-->
+                    <input type="file" name="file" class="file-upload" id="inputtypefile" multiple>
+                    <div id="showfileslist"></div>
+                    <!--                      <label>Upload a file</label>-->
 <!--                    <input type="file" name="image" />-->
                   </div>
               </div>
         <br><br><br><br><br>
-        <label class="marks" id="upload">Upload a file</label>
+        <label class="marks" id="upload" onclick="addphotos()">Upload a file</label>
         <button class="marks" type="submit" >Submit</button>
       </form>
   </div>
@@ -65,7 +66,7 @@
            {% if postMessage.file_type != 'image' %}
             <p><a style="color: blue; cursor: pointer" onclick="handleURL('{{ postMessage.file_upload }}')">Download pdf</a></p>
            {% else %}
-            <image id="myImg" src="/media/{{postMessage.file_upload}}"/>
+            <image class="modal_image"  src="/media/{{postMessage.file_upload}}"/>
                                   <!-- The Modal -->
                                   <div id="myModal" class="modal">
                                     <span class="close">&times;</span>
