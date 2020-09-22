@@ -231,6 +231,14 @@ cursor: pointer;
   border-radius: 5px;
 }
 
+
+.closeit{
+  padding: 5px;
+  background: lightblue;
+  color: black;
+  float: right;
+  cursor: pointer;
+}
 /* About me pop up */
 
 /* The Modal (background) */
