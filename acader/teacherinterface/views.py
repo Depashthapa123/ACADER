@@ -50,24 +50,28 @@ def teacher_dashboard(request):
 
     for messages in post_messages:
         type = None
-        extension = messages['file_upload'].split('.')[1]
+        extension = None
+        file_name = None
+        print(messages)
+        if messages['file_upload'] != '':
+            file_name = messages['file_upload'].split('/')[2]
+            extension = messages['file_upload'].split('.')[1]
 
         if extension == 'pdf' or extension == 'docx':
             type = 'file'
         elif extension == 'jpg' or extension == 'png':
             type = 'image'
 
-        dashboard_context.append({**messages, 'file_type': type})
+        dashboard_context.append({**messages, 'file_type': type, 'file_name': file_name})
 
+    print('calling after checking extension')
     print(dashboard_context)
 
     if request.method == 'POST':
         requestParams = request.POST
-        file = request.FILES['file']
-
-        # image = request.FILES['file']
-        # if extension != 'jpg':
-        #     return redirect('teacher_dashboard')
+        file = None
+        if 'file' in request.FILES:
+            file = request.FILES['file']
 
         try:
             teacher = Teacher.objects.filter(teacher_id=teacher_id)
@@ -89,11 +93,11 @@ def teacher_dashboard(request):
 
             # print(message)
             messagepostresponse = message.save()
+            return redirect('/')
         except:
             print('An exception occured', sys.exc_info())
 
     context = {'post_message': dashboard_context}
-
     return render(request, 'teacherinterface/teacher_dashboard.html', context)
 
 
