@@ -65,16 +65,16 @@
           <h2>{{ items.name }}</h2>
           <p style="font-size: 10px;margin-top:-25px;">{{ items.created_at }}</p>
           <span class="time-left">{{ items.message }}</span><br><br>
-          {% if items.file_type != 'image' %}
-            <div><a style="color: blue; cursor: pointer" onclick="handleURL('{{items.file_upload}}')">Download pdf</a></div>
-          {% else %}
-            <image class="modal_image" src="/media/{{items.file_upload}}"/><br><br>
+          {% if items.file_type == 'image' %}
+          <image class="modal_image" src="/media/{{items.file_upload}}"/><br><br>
                                   <!-- The Modal -->
                                   <div id="myModal" class="modal">
                                     <span class="close">&times;</span>
                                     <img class="modal-content" id="img01">
                                     <!-- <div id="caption"></div> -->
                                   </div>
+          {% elif items.file_type == 'file' %}
+                        <div><a style="color: blue; cursor: pointer" onclick="handleURL('{{items.file_upload}}')">{{ items.file_name }}</a></div>
           {% endif %}
         </div>
         <br>
