@@ -82,11 +82,14 @@ def student_dashboard(request):
     dashboard_context = []
     for messages in dashboard_messages:
         type = None
+        extension = None
+        file_name = None
         print(messages)
         custom_user_id = Teacher.objects.filter(id=messages['teacher_id']).values('teacher_id')
         teacher_image = Profile1.objects.filter(teacher_id=custom_user_id[0]['teacher_id']).values('image')
-        extension = messages['file_upload'].split('.')[1]
-
+        if messages['file_upload'] != '':
+            extension = messages['file_upload'].split('.')[1]
+            file_name = messages['file_upload'].split('/')[2]
         if extension == 'pdf' or extension == 'docx':
             type = 'file'
         elif extension == 'jpg' or extension == 'png':
@@ -95,7 +98,8 @@ def student_dashboard(request):
         message_details = {
                 **messages,
                 'profile_picture': teacher_image[0]['image'],
-                'file_type': type
+                'file_type': type,
+                'file_name': file_name
             }
         dashboard_context.append(message_details)
         print(dashboard_context)
