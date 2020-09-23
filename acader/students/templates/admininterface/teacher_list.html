@@ -17,9 +17,9 @@
         <h1 class="w3-padding-55"><a href="{% url 'student-func' %}" style="text-decoration:none;color:white;"><b>Acader</b></a></h1>
       </div>
       <div class="w3-bar-block">
-          <a href="{% url 'student-func' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Student</a><br>
-          <a href="{% url 'teacher_list' %}" onclick="w3_close()" class="active">Teacher list</a><br>
-          <a href="{% url 'do_logout' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Logout</a>
+          <a href="{% url 'student-func' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white"><img src="{% static 'image/studentlist.png' %}" alt="">Student</a><br>
+          <a href="{% url 'teacher_list' %}" onclick="w3_close()" class="active"><img src="{% static 'image/teacherlist.png' %}" alt="">Teacher list</a><br>
+          <a href="{% url 'do_logout' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white"><img src="{% static 'image/logout.png' %}" alt="">Logout</a>
       </div>
     </nav>
 

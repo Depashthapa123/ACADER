@@ -18,11 +18,11 @@
     <h1 class="w3-padding-55"><a href="{% url 'student_dashboard' %}" style="text-decoration:none;color:white;"><b>Acader</b></a></h1>
   </div>
   <div class="w3-bar-block">
-    <a href="{% url 'student_profile' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Profile</a><br>
-    <a href="{% url 'student_dashboard' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Dashboard</a><br>
-    <a href="{% url 'student_marks' %}" onclick="w3_close()" class="active">Marks</a> <br>
-    <a href="{% url 'course_content' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Course</a> <br>
-    <a href="{% url 'do_logout2' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Logout</a>
+    <a href="{% url 'student_profile' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white"><img src="{% static 'image/profile.png' %}" alt="">Profile</a><br>
+    <a href="{% url 'student_dashboard' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white"><img src="{% static 'image/dashboard.png' %}" alt="">Dashboard</a><br>
+    <a href="{% url 'student_marks' %}" onclick="w3_close()" class="active"><img src="{% static 'image/marks.png' %}" alt="">Marks</a> <br>
+    <a href="{% url 'course_content' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white"><img src="{% static 'image/course.png' %}" alt="">Course</a> <br>
+    <a href="{% url 'do_logout2' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white"><img src="{% static 'image/logout.png' %}" alt="">Logout</a>
   </div>
 </nav>
 

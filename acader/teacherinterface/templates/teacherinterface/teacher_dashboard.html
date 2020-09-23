@@ -18,10 +18,10 @@
         <h1 class="w3-padding-55"><a href="{% url 'teacher_dashboard' %}"  style="text-decoration:none;color:white;"><b>Acader</b></a></h1>
       </div>
       <div class="w3-bar-block">
-        <a href="{% url 'teacher_profile' %}" onclick="w3_close()" class=" w3-bar-item w3-button w3-hover-white">Profile</a><br>
-        <a href="{% url 'teacher_dashboard' %}" onclick="w3_close()" class="active">Dashboard</a><br>
-        <a href="{% url 'teacher_marks' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Student list</a><br>
-        <a href="{% url 'do_logout1' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Logout</a>
+        <a href="{% url 'teacher_profile' %}" onclick="w3_close()" class=" w3-bar-item w3-button w3-hover-white"><img src="{% static 'image/profile.png' %}" alt=""> Profile</a><br>
+        <a href="{% url 'teacher_dashboard' %}" onclick="w3_close()" class="active"><img src="{% static 'image/dashboard.png' %}" alt="">Dashboard</a><br>
+        <a href="{% url 'teacher_marks' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white"><img src="{% static 'image/studentlist.png' %}" alt="">Student list</a><br>
+        <a href="{% url 'do_logout1' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white"><img src="{% static 'image/logout.png' %}" alt="">Logout</a>
       </div>
     </nav>
 
@@ -54,7 +54,7 @@
         <br><br><br><br><br>
         <label class="marks" id="upload" onclick="addphotos()">Upload a file</label>
         <button class="marks" type="submit" >Submit</button>
-      </form>
+    
   </div>
     <div class="w3-container-bgcolor" style="margin-top:20px" id="showcase">
 
@@ -90,7 +90,7 @@
 <script src="{% static 'js/file_upload.js' %}"></script>
 <script src="{% static 'js/jsindex2.js' %}"></script>
 <script src="{% static 'js/delete.js' %}"></script>
-
+</form>
 </body>
 </html>
 

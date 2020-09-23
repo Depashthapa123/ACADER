@@ -6,6 +6,7 @@ body {
   font-size:16px;
 }
 
+
 .active{
   width:100%;
   display:block;
@@ -21,6 +22,10 @@ body {
   white-space:nowrap;
   color:#000!important;
   background-color:#fff!important;
+  border-left: 3px solid transparent;
+  border-left-color: black!important;
+  text-align: center;
+
 }
 
 .LineChart{
@@ -358,3 +363,4 @@ cursor: pointer;
   /* display: table; */
   /* text-align: center; */
 }
+
