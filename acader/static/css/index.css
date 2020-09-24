@@ -193,7 +193,7 @@ input::placeholder {
 }
 
 /* dropup active */
-.active{
+/* .active{
     width:100%;
     display:block;
     padding:8px 16px;
@@ -208,7 +208,8 @@ input::placeholder {
     white-space:nowrap;
     color:#000!important;
     background-color: #add8e6!important;
-  }
+    border-radius: 4px;
+  } */
 
 
 /* active in navbar */
@@ -220,13 +221,15 @@ input::placeholder {
     white-space:normal;
     float:none;
     outline:0;
-    border:none;
     overflow:hidden;
     text-decoration:none;
     cursor:pointer;
     white-space:nowrap;
     color:#000!important;
     background-color: white;
+    border-radius: 4px;
+    border-left: 3px solid transparent;
+    border-left-color: black!important;
   }
 
 
