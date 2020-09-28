@@ -321,24 +321,7 @@ cursor: pointer;
   border: 1px solid rgb(211, 210, 210);
   background-color: #efefef;
 }
-/* 
-.custom-file-upload {
-    cursor: pointer;
-    padding: 12px 24px;
-    border: 1px solid gray;
-    border-radius: 60px;
-}
-
-.custom-file-upload:hover {
-    border: 1px solid blue;
-    padding: 12px 24px;
-    background-color: #2196F3;
-    color: white;
-} */
 
 .aboutyou{
   margin: auto;
-  /* display: table; */
-  /* text-align: center; */
 }
-

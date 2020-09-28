@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Student Registration Form</title>
+  <link rel="stylesheet" href="{% static 'css/registerstudent.css' %}">
+  <link rel="stylesheet" href="{% static 'css/alertmodal.css' %}">
+</head>
+<body>
+  <form action="" method="POST">
+      {% csrf_token %}
+<div class="wrapper">
+    <div class="title">
+        <h3>Edit Student </h3>
+        <p style="font-size: 13px;">For Username: {{student_slug.student.username}} </p>
+    </div>
+    <div class="form">
+
+    <input type="hidden" name="student_id" value="{{student_slug.student.id}}">
+
+    <div class="inputfield">
+        <label>Username</label>
+        <input type="text" class="input" name="username" value="{{student_slug.student.username}}">
+    </div>
+
+        <div class="inputfield">
+        <label>Faculty</label>
+    <div class="custom_select">
+      <select name="faculty" required>
+         <option {% if student_slug.faculty == "Science" %} selected {% endif %}>Science</option>
+            <option {% if student_slug.faculty == "Management" %} selected {% endif %}>Management</option>
+      </select>
+    </div>
+    </div>
+
+   <div class="inputfield">
+      <label>Grade</label>
+    <div class="custom_select">
+    <select name="grade" required>
+            <option {% if student_slug.grade == "11" %} selected {% endif %}>11</option>
+            <option {% if student_slug.grade == "12" %} selected {% endif %}>12</option>
+        </select>
+        </div>
+    </div>
+
+
+   <div class="inputfield">
+        <label>Section</label>
+        <div class="custom_select">
+        <select name="section" required>
+            <option {% if student_slug.section == "A" %} selected {% endif %}>A</option>
+            <option {% if student_slug.section == "B" %} selected {% endif %}>B</option>
+        </select>
+        </div>
+    </div>
+
+
+    <div class="inputfield">
+          <label>Address</label>
+          <input type="text" class="input" name="address" value="{{student_slug.address}}">
+    </div>
+
+
+        <div class="inputfield">
+          <label>Contact</label>
+          <input type="text" class="input" name="contact" value="{{student_slug.contact}}">
+    </div>
+
+        <div class="inputfield">
+          <label>DOB</label>
+          <input type="date" class="input" name="DOB" value="{{student_slug.DOB|date:'Y-m-d'}}">
+    </div>
+
+        <div class="inputfield">
+          <label>Parent Name</label>
+          <input type="text" class="input" name="parent_name" value="{{student_slug.parent_name}}">
+    </div>
+
+
+    <div class="inputfield">
+        <button type="submit" value="Register" class="btn">Save changes</button>
+    </div>
+
+    <div class="container">
+      {% if messages %}
+        {% for message in messages %}
+            {% if message.tags == 'success' %}
+            <div id="myModal" class="modal">
+
+              <!-- Modal content -->
+              <div class="modal-content" >
+
+                  <span class="close">&times;</span>
+                <div class="modal-body">
+                  <p><img src="{% static 'image/success.png' %}" alt="">{{message}}</p>
+                </div>
+                <span style="float:left;font-size:12px;">
+                  <a href="/student-func/" style="text-decoration: none;color: #155724;"> Go To Dashboard</a>
+                </span>
+              </div>  
+            </div> 
+            {% endif %}
+            {% if message.tags == 'warning' %}
+            <div id="myModal" class="modal" >
+
+              <!-- Modal content -->
+              <div class="modal-content" style="  background-color: #f7d7da!important; color: #721c24!important;">
+                  <span class="close" style="color: #721c24!important;">&times;</span>
+                <div class="modal-body">
+                  <p><img src="{% static 'image/error.png' %}" alt="">{{message}}</p>
+                </div>
+              </div> 
+            </div>                <!-- <script>
+                 alert('Username not written correctly. You have to register again!') ; window.location.href = "{% url 'studentregister' %}"
+            </script> -->
+            {% endif %}
+        {% endfor %}
+      {% endif %}
+    </div>
+</div>
+</form>
+<script src="{% static 'js/alertmodal.js' %}"></script>
+</body>
+</html>

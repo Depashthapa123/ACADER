@@ -61,6 +61,8 @@
             <th><a href="#" onclick="sortTable(7)" style="text-decoration:none;color:white">DOB</a></th>
             <th><a href="#" onclick="sortTable(8)" style="text-decoration:none;color:white">Parent name</a></th>
             <th></th>
+            <th></th>
+
           </tr>
         </thead>
         {% for s in students1 %}
@@ -75,6 +77,7 @@
           <td>{{ s.student.DOB }}</td>
           <td>{{ s.student.parent_name }}</td>
           <td><button class="marks"><a href="{% url 'student_displaymarks' student_id=s.id %}" style="text-decoration: none;color: white;">Marks</a></button></td>
+          <td><button class="marks"><a href="{% url 'edit_student' student_id_slug=s.id %}" style="text-decoration: none;color: white;">Edit</a></button></td>
         </tr>
         {% endfor %}
     </table>
@@ -82,7 +85,7 @@
 
 <!-- End page content -->
 </div>
-<script src="{% static 'js/jsindex2.js' %}"></script>
+<script src="{% static 'js/adminnav.js' %}"></script>
 <script src="{% static 'js/search.js' %}"></script>
 <script src="{% static 'js/sort.js' %}"></script>
 </body>

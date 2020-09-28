@@ -41,7 +41,7 @@ class Student(models.Model):
     contact = models.CharField(max_length=100)
     DOB = models.DateField(null=True)
     section = models.CharField(max_length=5)
-    grade = models.IntegerField(default=0)
+    grade = models.CharField(max_length=5)
     faculty = models.TextField(max_length=50)
     parent_name = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
