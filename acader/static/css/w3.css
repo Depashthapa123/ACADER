@@ -2,7 +2,8 @@ html{
     box-sizing:border-box;
     -ms-text-size-adjust:100%;
     -webkit-text-size-adjust:100%;
-    overflow-x:none;
+    /* overflow-x:none; */
+    overflow: auto;
 }
 
 *,*:before,*:after{
@@ -19,6 +20,14 @@ article,aside,details,figcaption,figure,footer,header,main,menu,nav,section{
     display:block
 }
 
+nav img{
+    height: 25px;
+    width: 25px;
+    float: left;
+    /* background: #355d98; */
+    /* background: black; */
+  }
+
 a{
     background-color:transparent;
 }
@@ -32,11 +41,11 @@ b{
 
 
 h1{
-    font-size:36px
+    font-size:30px
 }
 
 h2{
-    font-size:30px
+    font-size:28px
 }
 
 h3{
@@ -108,13 +117,38 @@ hr{
     background-color:#fff;
     position:fixed;
     z-index:1;
-    overflow:auto;
+    overflow-x:none;
+    overflow-y: auto;
 }
+
+
+
+.active{
+    width:100%;
+    display:block;
+    padding:8px 16px;
+    float:none;
+    outline:0;
+    overflow:hidden;
+    text-decoration:none;
+    cursor:pointer;
+    color:#000!important;
+    background-color:#fff!important;
+    border-left: 3px solid transparent;
+    border-left-color: black!important;
+    text-align: center;
+    border-radius: 4px;
+
+  
+  }
+  
 
 .w3-bar-block ,.w3-bar-block .w3-bar-block .w3-button,.w3-bar-block .w3-button{
     width:100%;
     text-align:left;
-    padding:8px 16px
+    overflow: hidden;
+    padding:8px 16px;
+    border-radius: 4px;
 }
 
 .w3-main,#main{
@@ -153,7 +187,9 @@ hr{
     border:none;
     white-space:normal;
     float:none;
-    outline:0
+    outline:0;
+    border-left: 3px solid transparent;
+    text-align: center;
 }
 
 .w3-bar-block .w3-center .w3-bar-item{
@@ -177,35 +213,26 @@ hr{
 @media (max-width:992px){
     .dropup{display:none}
     .w3-sidebar.w3-collapse{display:none}
-    .w3-main{margin-left:0!important;margin-right:0!important}
+    .w3-container-bgcolor{overflow: auto;}
+    .w3-main{margin-left:20px!important;margin-right:20px!important;margin-top: 70px!important}
     .w3-auto{max-width:100%}
     .w3-display-topright{display: none;}
     .modal{padding-left:0px!important;}
 }
-
 
 @media (max-width:400px){
-    .dropup{display:none}
-    .w3-sidebar.w3-collapse{display:none}
-    .w3-main{margin-left:0!important;margin-right:0!important}
-    .w3-auto{max-width:100%}
-    .w3-display-topright{display: none;}
-    .modal{padding-left:0px!important;}
-    #lineChart{height:70%!important;width: 70%!important;}
-    
+        /* For login page */
+        .tabcontent{width: 270px!important;} 
+        .acaderlogo img{height: 70px!important;width: 280px!important}
+
+
 }
 
-
 @media (max-width:300px){
-    .dropup{display:none}
-    .w3-sidebar.w3-collapse{display:none}
-    .w3-main{margin-left:0!important;margin-right:0!important}
-    .w3-auto{max-width:100%}
-    .w3-display-topright{display: none;}
-    .modal{padding-left:0px!important;}
-    #lineChart{height:60%!important;width: 60%!important;}
-    h3{font-size: 18px;}
-    
+    /* For login page */
+    .tabcontent{width: 220px!important;} 
+    .acaderlogo img{height:60px!important;width: 260px!important}
+
 }
 
 .w3-top{
@@ -268,6 +295,7 @@ hr{
 }
 
 .w3-padding-55{
+    text-align: center;
     padding-top:45px!important;
     padding-bottom:45px!important;
 }
@@ -282,7 +310,12 @@ hr{
     background-color:#355d98
 }
 
-.w3-white,.w3-hover-white:hover{
+.w3-white{
     color:#000;
     background-color:#fff
+}
+.w3-hover-white:hover{
+    color: black;
+    background: white;
+    border-left-color: black;
 }

@@ -7,6 +7,11 @@ class EmailValidationOnForgotPassword(PasswordResetForm):
     def clean_email(self):
         email = self.cleaned_data['email']
         if not CustomUser.objects.filter(email__iexact=email, is_active=True).exists():
+<<<<<<< HEAD
             raise ValidationError("There is no user registered with the specified email address!z")
+=======
+            raise ValidationError("There is no user registered with the specified email address. Please mention "
+                                  "your valid email.")
+>>>>>>> 55e042bf2407d06dda428c66a1e021fa9b5327ba
 
         return email

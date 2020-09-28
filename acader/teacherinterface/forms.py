@@ -14,11 +14,9 @@ class BioUpdate1(forms.ModelForm):
                             )
                         )
 
-    
     class Meta:
         model = Profile1
-        fields = ['description','image']
-
+        fields = ['description', 'image']
 
 
 

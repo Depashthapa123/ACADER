@@ -34,7 +34,7 @@ def student_profile(request):
         context = {
             'user3': user3,
             'p_form': p_form,
-            'description' : description,
+            'description': description,
             # 'i_form': i_form
         }
         return render(request, 'studentinterface/student_profile.html', context)
@@ -42,7 +42,28 @@ def student_profile(request):
 
 @unauthenticated_student
 def course_content(request):
-    return render(request, 'studentinterface/course_content.html')
+    if request.session.has_key('student_id'):
+        student_id = request.session['student_id']
+
+    student_details = Student.objects.filter(student_id=student_id).values('faculty', 'grade')
+    teacher_filter = Teacher.objects.filter(faculty=student_details[0]['faculty'], grade=student_details[0]['grade']).values('teacher_id')
+    print(teacher_filter)
+
+    course_subject = Course.objects.filter(faculty=student_details[0]['faculty'], grade=student_details[0]['grade'])
+
+    teacher_context = []
+    for teacher in teacher_filter:
+        teacher_filter1 = CustomUser.objects.filter(id=teacher['teacher_id']).values('first_name', 'last_name', 'email')
+        teacher_details = {'First_name': teacher_filter1[0]['first_name'], 'Last_name': teacher_filter1[0]['last_name'], 'Email': teacher_filter1[0]['email']}
+        teacher_context.append(teacher_details)
+
+    print('teacher details=', teacher_context)
+
+    context = {
+        'teacher_context': teacher_context,
+        'course_subject': course_subject
+    }
+    return render(request, 'studentinterface/course_content.html', context)
 
 
 @unauthenticated_student
@@ -55,21 +76,39 @@ def student_dashboard(request):
     student_faculty = Student.objects.filter(student_id=student_id).values('faculty')
     student_grade = Student.objects.filter(student_id=student_id).values('grade')
 
-    dashboard_messages = postmessage.objects.filter(faculty=student_faculty[0]['faculty'], grade=student_grade[0]['grade']).values('teacher_id', 'message', 'created_at', 'name')
+    dashboard_messages = postmessage\
+        .objects.filter(faculty=student_faculty[0]['faculty'], grade=student_grade[0]['grade']).values('teacher_id', 'message', 'created_at', 'name', 'file_upload').order_by('-created_at')
 
     dashboard_context = []
     for messages in dashboard_messages:
+        type = None
+        extension = None
+        file_name = None
         print(messages)
         custom_user_id = Teacher.objects.filter(id=messages['teacher_id']).values('teacher_id')
         teacher_image = Profile1.objects.filter(teacher_id=custom_user_id[0]['teacher_id']).values('image')
-        message_details = {**messages, 'profile_picture': teacher_image[0]['image']}
-        dashboard_context.append(message_details)
+        if messages['file_upload'] != '':
+            extension = messages['file_upload'].split('.')[1]
+            file_name = messages['file_upload'].split('/')[2]
+        if extension == 'pdf' or extension == 'docx':
+            type = 'file'
+        elif extension == 'jpg' or extension == 'png':
+            type = 'image'
 
-    print('message_details ', dashboard_context)
+        message_details = {
+                **messages,
+                'profile_picture': teacher_image[0]['image'],
+                'file_type': type,
+                'file_name': file_name
+            }
+        dashboard_context.append(message_details)
+        print(dashboard_context)
 
     context = {
         'dashboard_context': dashboard_context,
+        'dashboard_messages': dashboard_messages
     }
+
     return render(request, 'studentinterface/student_dashboard.html', context)
 
 

@@ -3,7 +3,7 @@ body,h1,h2,h3,h4,h5 {
 }
 
 body {
-    overflow: hidden;
+    overflow: auto;
     font-size:16px;
     height: 100%;
     width: 100%;
@@ -26,7 +26,7 @@ body {
     width: 340px;  
     display: table;
     margin:  auto;
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 
 .side_bar{
@@ -36,9 +36,9 @@ body {
   .tabcontent {
     width: 350px;
     margin: auto;
-    display: table;
     padding: 20px 20px;
     border: 2px solid #ccc;
+    border-radius: 8px;
     border-top: 5px;
     display: table;
     background-color: snow;
@@ -57,6 +57,7 @@ input {
     color: #355d98;
     background: none;
     border: 1px solid grey;
+    border-radius: 4px;
     font-family: inherit;
 }
 
@@ -87,7 +88,7 @@ input::placeholder {
 .button {
     border: none;
     cursor: pointer;
-    border-radius: 2px;
+    border-radius: 4px;
     padding: 15px 0;
     font-size: 20px;
     text-transform: uppercase;
@@ -97,6 +98,7 @@ input::placeholder {
     transition: 0.7s;
     font-family: inherit;
     margin-top: 25px;
+    color: black;
   }
 
 .button:hover {
@@ -191,7 +193,7 @@ input::placeholder {
 }
 
 /* dropup active */
-.active{
+/* .active{
     width:100%;
     display:block;
     padding:8px 16px;
@@ -206,7 +208,8 @@ input::placeholder {
     white-space:nowrap;
     color:#000!important;
     background-color: #add8e6!important;
-  }
+    border-radius: 4px;
+  } */
 
 
 /* active in navbar */
@@ -218,11 +221,15 @@ input::placeholder {
     white-space:normal;
     float:none;
     outline:0;
-    border:none;
     overflow:hidden;
     text-decoration:none;
     cursor:pointer;
     white-space:nowrap;
     color:#000!important;
     background-color: white;
+    border-radius: 4px;
+    border-left: 3px solid transparent;
+    border-left-color: black!important;
   }
+
+

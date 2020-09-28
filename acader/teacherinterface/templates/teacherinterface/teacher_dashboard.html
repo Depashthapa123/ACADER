@@ -8,26 +8,27 @@
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
 <link rel="stylesheet" href="{% static 'css/w3.css' %}">
 <link rel="stylesheet" href="{% static 'css/font.css' %}">
+<link rel="stylesheet" href="{% static 'css/picture_modal.css' %}">
 </head>
 <body>
     <!-- Sidebar/menu -->
     <nav class="w3-sidebar w3-blue w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
       <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:12px">Close Menu</a>
       <div class="w3-container">
-        <h1 class="w3-padding-55"><b>Acader</b></h1>
+        <h1 class="w3-padding-55"><a href="{% url 'teacher_dashboard' %}"  style="text-decoration:none;color:white;"><b>Acader</b></a></h1>
       </div>
       <div class="w3-bar-block">
-        <a href="{% url 'teacher_profile' %}" onclick="w3_close()" class=" w3-bar-item w3-button w3-hover-white">Profile</a><br>
-        <a href="{% url 'teacher_dashboard' %}" onclick="w3_close()" class="active">Dashboard</a><br>
-        <a href="{% url 'teacher_marks' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Student list</a><br>
-        <a href="{% url 'do_logout1' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Logout</a>
+        <a href="{% url 'teacher_profile' %}" onclick="w3_close()" class=" w3-bar-item w3-button w3-hover-white"><img src="{% static 'image/profile.png' %}" alt=""> Profile</a><br>
+        <a href="{% url 'teacher_dashboard' %}" onclick="w3_close()" class="active"><img src="{% static 'image/dashboard.png' %}" alt="">Dashboard</a><br>
+        <a href="{% url 'teacher_marks' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white"><img src="{% static 'image/studentlist.png' %}" alt="">Student list</a><br>
+        <a href="{% url 'do_logout1' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white"><img src="{% static 'image/logout.png' %}" alt="">Logout</a>
       </div>
     </nav>
 
 <!-- Top menu on small screens -->
 <header class="w3-container w3-top w3-hide-large w3-blue w3-xlarge w3-padding">
   <a href="javascript:void(0)" class="w3-button w3-blue w3-margin-right" onclick="w3_open()">☰</a>
-  <span>Acader</span>
+  <span><a href="{% url 'teacher_dashboard' %}"  style="text-decoration:none;color:white;">Acader</a></span>
 </header>
 
 <!-- Overlay effect when opening sidebar on small screens -->
@@ -39,36 +40,57 @@
   <!-- Header(main body) -->
   <div class="w3-container-bgcolor" style="margin-top:40px;" id="showcase">
     <h3>Announcement</h3>
-    <form action="" method="POST" id="message_form">
+    <form action="" method="POST" id="message_form" enctype="multipart/form-data">
         {% csrf_token %}
               <div class="comment">
-                  <textarea class="textinput"  name="message" form="message_form" placeholder="Comment" required></textarea>
+                  <textarea class="textinput"  name="message" form="message_form" placeholder="Comment" ></textarea>
+                  <div style="flex-direction: row ">
+                    <input type="file" name="file" class="file-upload" id="inputtypefile" multiple>
+                    <div id="showfileslist"></div>
+                    <!--                      <label>Upload a file</label>-->
+<!--                    <input type="file" name="image" />-->
+                  </div>
               </div>
         <br><br><br><br><br>
-        <input class="marks" type="submit">
-      </form>
+        <label class="marks" id="upload" onclick="addphotos()">Upload a file</label>
+        <button class="marks" type="submit" >Submit</button>
+    
   </div>
     <div class="w3-container-bgcolor" style="margin-top:20px" id="showcase">
 
           <h3>Message</h3>
       {% for postMessage in post_message %}
       <div class="announcement darker">
-
-            <p>{{postMessage.message}}</p>
-            <p>{{postMessage.created_at}}</p>
+            <p style="font-size: 10px">{{postMessage.created_at}}</p>
+            <span class="time-left">{{postMessage.message}}</span><br><br>
+           {% if postMessage.file_type == 'image' %}
+                <image class="modal_image"  src="/media/{{postMessage.file_upload}}"/>
+                    <!-- The Modal -->
+                  <div id="myModal" class="modal">
+                    <span class="close">&times;</span>
+                    <img class="modal-content" id="img01">
+                    <!-- <div id="caption"></div> -->
+                  </div>
+           {% elif postMessage.file_type == 'file' %}
+                <p><a style="color: blue; cursor: pointer" onclick="handleURL('{{ postMessage.file_upload }}')">{{postMessage.file_name}}</a></p>
+           {% endif %}
             <p><a href="{% url 'delete_post' message_id=postMessage.id %}" class="marks">Delete</a> </p>
       </div>
-             {% endfor %}
+           {% endfor %}
+           {% block content %}
+           {% endblock %}
     </div>
 
-    {% block content %}
-        {% endblock %}
+
 
 <!-- End page content -->
 </div>
 <script src="{% static 'js/jquery-2.2.4.min.js' %}"></script>
+<script src="{% static 'js/picture_modal.js' %}"></script>
+<script src="{% static 'js/file_upload.js' %}"></script>
 <script src="{% static 'js/jsindex2.js' %}"></script>
 <script src="{% static 'js/delete.js' %}"></script>
+</form>
 </body>
 </html>
 

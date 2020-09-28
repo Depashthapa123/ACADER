@@ -14,19 +14,19 @@
     <nav class="w3-sidebar w3-blue w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
       <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:12px">Close Menu</a>
       <div class="w3-container">
-        <h1 class="w3-padding-55"><b>Acader</b></h1>
+        <h1 class="w3-padding-55"><a href="{% url 'student-func' %}" style="text-decoration:none;color:white;"><b>Acader</b></a></h1>
       </div>
       <div class="w3-bar-block">
-          <a href="{% url 'student-func' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Student</a><br>
-          <a href="{% url 'teacher_list' %}" onclick="w3_close()" class="active">Teacher list</a><br>
-          <a href="{% url 'do_logout' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Logout</a>
+          <a href="{% url 'student-func' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white"><img src="{% static 'image/studentlist.png' %}" alt="">Student</a><br>
+          <a href="{% url 'teacher_list' %}" onclick="w3_close()" class="active"><img src="{% static 'image/teacherlist.png' %}" alt="">Teacher list</a><br>
+          <a href="{% url 'do_logout' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white"><img src="{% static 'image/logout.png' %}" alt="">Logout</a>
       </div>
     </nav>
 
 <!-- Top menu on small screens -->
 <header class="w3-container w3-top w3-hide-large w3-blue w3-xlarge w3-padding">
   <a href="javascript:void(0)" class="w3-button w3-blue w3-margin-right" onclick="w3_open()">☰</a>
-  <span>Acader</span>
+  <span><a href="{% url 'student-func' %}" style="text-decoration:none;color:white;">Acader</a></span>
 </header>
 
 <!-- Overlay effect when opening sidebar on small screens -->
@@ -52,11 +52,12 @@
         <thead>
           <tr class="w3-blue">
             <th><a href="#" onclick="sortTable(0)" style="text-decoration:none;color:white">Teacher username</a></th>
-            <th><a href="#" onclick="sortTable(1)" style="text-decoration:none;color:white">faculty</a></th>
-            <th><a href="#" onclick="sortTable(2)" style="text-decoration:none;color:white">grade</a></th>
-            <th><a href="#" onclick="sortTable(3)" style="text-decoration:none;color:white">section</a></th>
-            <th><a href="#" onclick="sortTable(4)" style="text-decoration:none;color:white">gender</a></th>
-            <th><a href="#" onclick="sortTable(5)" style="text-decoration:none;color:white">address</a></th>
+            <th><a href="#" onclick="sortTable(1)" style="text-decoration:none;color:white">Faculty</a></th>
+            <th><a href="#" onclick="sortTable(2)" style="text-decoration:none;color:white">Grade</a></th>
+            <th><a href="#" onclick="sortTable(3)" style="text-decoration:none;color:white">Section</a></th>
+            <th><a href="#" onclick="sortTable(4)" style="text-decoration:none;color:white">Gender</a></th>
+            <th><a href="#" onclick="sortTable(5)" style="text-decoration:none;color:white">Address</a></th>
+            <th></th>
           </tr>
         </thead>
         {% for t in teachers1 %}
@@ -67,6 +68,7 @@
           <td>{{ t.teacher.section }}</td>
           <td>{{ t.teacher.gender }}</td>
           <td>{{ t.teacher.address }}</td>
+          <td><button class="marks"><a href="{% url 'edit_teacher' teacher_id_slug=t.id %}" style="text-decoration: none;color: white;">Edit</a></button></td>
         </tr>
         {% endfor %}
     </table>
@@ -74,7 +76,7 @@
 
 <!-- End page content -->
 </div>
-<script src="{% static 'js/loginpage.js' %}"></script>
+<script src="{% static 'js/adminnav.js' %}"></script>
 <script src="{% static 'js/search.js' %}"></script>
 <script src="{% static 'js/sort.js' %}"></script>
 </body>

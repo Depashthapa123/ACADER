@@ -14,20 +14,20 @@
     <nav class="w3-sidebar w3-blue w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
       <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:12px">Close Menu</a>
       <div class="w3-container">
-        <h1 class="w3-padding-55"><b>Acader</b></h1>
+        <h1 class="w3-padding-55"><a href="{% url 'teacher_dashboard' %}"  style="text-decoration:none;color:white;"><b>Acader</b></a></h1>
       </div>
       <div class="w3-bar-block">
-        <a href="{% url 'teacher_profile' %}" onclick="w3_close()" class=" w3-bar-item w3-button w3-hover-white">Profile</a><br>
-        <a href="{% url 'teacher_dashboard' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Dashboard</a><br>
-        <a href="{% url 'teacher_marks' %}" onclick="w3_close()" class="active">Students Marks</a><br>
-        <a href="{% url 'do_logout1' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Logout</a>
+        <a href="{% url 'teacher_profile' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white"><img src="{% static 'image/profile.png' %}" alt=""> Profile</a><br>
+        <a href="{% url 'teacher_dashboard' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white"><img src="{% static 'image/dashboard.png' %}" alt="">Dashboard</a><br>
+        <a href="{% url 'teacher_marks' %}" onclick="w3_close()" class="active"><img src="{% static 'image/studentlist.png' %}" alt="">Student list</a><br>
+        <a href="{% url 'do_logout1' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white"><img src="{% static 'image/logout.png' %}" alt="">Logout</a>
       </div>
     </nav>
 
 <!-- Top menu on small screens -->
 <header class="w3-container w3-top w3-hide-large w3-blue w3-xlarge w3-padding">
   <a href="javascript:void(0)" class="w3-button w3-blue w3-margin-right" onclick="w3_open()">☰</a>
-  <span>Acader</span>
+  <span><a href="{% url 'teacher_dashboard' %}"  style="text-decoration:none;color:white;">Acader</a></span>
 </header>
 
 <!-- Overlay effect when opening sidebar on small screens -->
@@ -69,7 +69,7 @@
 
 <!-- End page content -->
 </div>
-<script src="{% static 'js/loginpage.js' %}"></script>
+<script src="{% static 'js/jsindex2.js' %}"></script>
 <script src="{% static 'js/sort.js' %}"></script>
 </body>
 </html>

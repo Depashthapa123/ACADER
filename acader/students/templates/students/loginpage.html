@@ -11,7 +11,9 @@
 </head>
 <body style="background-image: url({% static 'image/bg.jpg' %})">
     <div class="acaderlogo">
-      <a href="{% url 'loginpage' %}"><img src="{% static 'image/acaderexcel.png' %}" style="margin-top: 65px;" alt="Logo"></a>
+      <!-- <a href="{% url 'loginpage' %}"> -->
+        <img src="{% static 'image/acaderexcel.png' %}" style="margin-top: 65px;" class="logo" alt="Logo">
+      <!-- </a> -->
     </div>
     
     <!-- Sidebar/menu -->
@@ -101,7 +103,7 @@
 <!-- End page content -->
 
 </div>
-
+<script src="{%static 'js/jquery-2.2.4.min.js' %}"></script>
 <script src="{% static 'js/loginpage.js' %}"></script>
 </body>
 </html>

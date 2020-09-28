@@ -3,49 +3,26 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import CustomUser, Course, Marks, Terms, Grade, Faculty, StudentCourse, Student
+from .models import CustomUser, Course, Marks, Terms, Grade, Faculty, StudentCourse, Student, Teacher
 from .restrictions import unauthenticated_admin, unauthenticated_teacher, unauthenticated_student, login_authenticate
 
 
 @login_authenticate
 def loginpage(request):
-    # print(request.session.test_cookie_worked())
-    # if request.session.has_key('username') and request.session.has_key('password'):
+    # userType = 3
     #
-    #     saved_username = request.session['username']
-    #     saved_password = request.session['password']
-    #
-    #     user = authenticate(username=saved_username,password=saved_password)
-    #
-    #     if user is not None:
-    #         login(request, user)
-    #
-    #         if user.user_type == '3':
-    #             request.session['student_id'] = user.id
-    #             return redirect('student_dashboard')
-    #         elif user.user_type == '2':
-    #             messages.warning(request, 'sory mf')
-    #         else:
-    #             messages.warning(request, 'sory mf')
-    #             return redirect('loginpage')
-    #     else:
-    #         messages.warning(request, "invalid")
-    #         return redirect('/')
-    #     return
-    # else:
-    #     print('I do not have cookies')
-
+    # if request.method == 'GET':
+    #     if 'user-type' in request.COOKIES:
+    #         # userType = request.COOKIES['user-type']
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
         userType = str(request.POST['user-type'])
 
         user = authenticate(username=username,password=password)
-        # print('userType is ', userType)
-        # print(type(userType))
-        # print('server userType is ', user.user_type)
 
-        # print(userType == user.user_type)
+        # request.COOKIES['user'] = user.id
+        # request.COOKIES['user-type'] = userType
 
         if user is not None:
             login(request, user)
@@ -133,11 +110,11 @@ def teacherregister(request):
             return redirect("teacherregister")
 
         if not first_name.isalpha():
-            messages.warning(request,"The first name only requires alphabets")
+            messages.warning(request,"Enter your first name correctly! Must only contain albhabets")
             return redirect("teacherregister")
 
         if not last_name.isalpha():
-            messages.warning(request,"The last name only requires alphabets")
+            messages.warning(request,"Enter your last name correctly! Must only contain albhabets")
             return redirect("teacherregister") 
 
         if CustomUser.objects.filter(username=username).exists():
@@ -213,11 +190,11 @@ def studentregister(request):
             return redirect("studentregister")
 
         if not first_name.isalpha():
-            messages.warning(request,"The first name only requires alphabets")
+            messages.warning(request,"Enter your first name correctly! Must only contain albhabets")
             return redirect("studentregister")
 
         if not last_name.isalpha():
-            messages.warning(request,"The last name only requires alphabets")
+            messages.warning(request,"Enter your last name correctly! Must only contain albhabets")
             return redirect("studentregister") 
 
         if CustomUser.objects.filter(username=username).exists():
@@ -267,8 +244,8 @@ def studentregister(request):
 
         hello = user.save()
         print(hello)
-        messages.success(request, 'A teacher is added')
-        # return redirect('student-func')
+        messages.success(request, 'A student is added')
+        return redirect('studentregister')
 
     return render(request, 'students/studentregister.html')
 
@@ -381,9 +358,9 @@ def marks(request):
             faculty=faculty,
         )
         marks.save()
-        messages.success(request, "Successfull")
+        messages.success(request, "A student's marks is successfully added ")
     
-        # return redirect('student-func')
+        # return redirect('studentregister')
 
 
         # print('Registering')
@@ -495,3 +472,65 @@ def search_teacher(request):
         return render(request, 'admininterface/search_teacher.html', context)
     else:
         return render(request, 'admininterface/search_teacher.html')
+
+def edit_teacher(request,teacher_id_slug):
+    teacher_slug = Teacher.objects.get(teacher=teacher_id_slug)
+
+    if request.method == 'POST':
+        teacher_id = request.POST['teacher_id']
+        username = request.POST['username']
+        address = (request.POST['address']).capitalize()
+        faculty = request.POST['faculty']
+        grade = request.POST['grade']
+        section = request.POST['section']
+
+        teacheruser = CustomUser.objects.get(id=teacher_id)
+        teacheruser.username = username
+        teacheruser.save()
+
+        t_model = Teacher.objects.get(teacher_id=teacher_id)
+        t_model.address = address
+        t_model.faculty = faculty
+        t_model.grade = grade
+        t_model.section = section
+        t_model.name = username
+        t_model.save()
+
+        messages.success(request, f'Successfully edited')
+        return redirect('/edit_teacher/' + teacher_id_slug)
+
+    return render(request, 'students/edit_teacher.html', {'teacher_slug': teacher_slug})
+
+def edit_student(request, student_id_slug):
+    student_slug = Student.objects.get(student=student_id_slug)
+
+    if request.method == 'POST':
+        student_id = request.POST['student_id']
+        username = request.POST['username']
+        DOB = request.POST['DOB']
+        parent_name = (request.POST['parent_name']).capitalize()
+        address = (request.POST['address']).capitalize()
+        contact = request.POST['contact']
+        faculty = request.POST['faculty']
+        grade = request.POST['grade']
+        section = request.POST['section']
+
+        studentuser = CustomUser.objects.get(id=student_id)
+        studentuser.username = username
+        studentuser.save()
+
+        s_model = Student.objects.get(student_id=student_id)
+        s_model.DOB = DOB
+        s_model.parent_name = parent_name
+        s_model.address = address
+        s_model.contact = contact
+        s_model.faculty = faculty
+        s_model.grade = grade
+        s_model.section = section
+        s_model.name = username
+        s_model.save()
+
+        messages.success(request, f'Successfully edited')
+        return redirect('/edit_student/' + student_id_slug)
+
+    return render(request, 'students/edit_student.html', {'student_slug': student_slug})

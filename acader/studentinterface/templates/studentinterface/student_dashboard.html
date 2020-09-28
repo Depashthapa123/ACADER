@@ -8,72 +8,88 @@
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
 <link rel="stylesheet" href="{% static 'css/w3.css' %}">
 <link rel="stylesheet" href="{% static 'css/font.css' %}">
+<link rel="stylesheet" href="{% static 'css/picture_modal.css' %}">
+
 </head>
 <body>
-
 <!-- Sidebar/menu -->
+
 <nav class="w3-sidebar w3-blue w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
-  <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:12px">Close Menu</a>
-  <div class="w3-container">
-    <h1 class="w3-padding-55"><b>Acader</b></h1>
-  </div>
-  <div class="w3-bar-block">
-    <a href="{% url 'student_profile' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Profile</a><br>
-    <a href="{% url 'student_dashboard' %}" onclick="w3_close()" class="active">Dashboard</a><br>
-    <a href="{% url 'student_marks' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Marks</a> <br>
-    <a href="{% url 'course_content' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Course Content</a> <br>
-    <a href="{% url 'do_logout2' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Logout</a>
-  </div>
+    <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:12px">Close Menu</a>
+    <div class="w3-container">
+      <h1 class="w3-padding-55" id="acader"><a href="{% url 'student_dashboard' %}" style="text-decoration:none;color:white;"><b>Acader</b></a></h1>
+    </div>
+    <div class="w3-bar-block">
+      <a href="{% url 'student_profile' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white"><img id="image" src="{% static 'image/profile.png' %}" alt="">Profile</a><br>
+      <a href="{% url 'student_dashboard' %}" onclick="w3_close()" class="active"><img id="image" src="{% static 'image/dashboard.png' %}" alt="">Dashboard</a><br>
+      <a href="{% url 'student_marks' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white"><img id="image" src="{% static 'image/marks.png' %}" alt="">Marks</a> <br>
+      <a href="{% url 'course_content' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white"><img id="image" src="{% static 'image/course.png' %}" alt="">Course</a> <br>
+      <a href="{% url 'do_logout2' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white"><img id="image" src="{% static 'image/logout.png' %}" alt="">Logout</a>
+    </div>
+
 </nav>
 
 <!-- Top menu on small screens -->
 <header class="w3-container w3-top w3-hide-large w3-blue w3-xlarge w3-padding">
   <a href="javascript:void(0)" class="w3-button w3-blue w3-margin-right" onclick="w3_open()">☰</a>
-  <span>Acader</span>
+  <span><a href="{% url 'student_dashboard' %}" style="text-decoration:none;color:white;">Acader</a></span>
 </header>
 
 <!-- Overlay effect when opening sidebar on small screens -->
 <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
 <!-- !PAGE CONTENT! -->
-<div class="w3-main" style="margin-left:340px;margin-right:40px">
+<div class="w3-main" style=" margin-left:340px;margin-right:40px;">
 
   <!-- Header(main body) -->
   <div class="w3-container-bgcolor" style="margin-top:40px;" id="showcase">
     <div class="LineChart">
       <article><h3 class="w3-xxxlarge w3-text-blue"><b>Marksheet Of Terminal <br> Examination</b></h3>
                 <!-- <hr style="width:300px;border:5px solid blue" class="w3-round"> -->
-                    <div class="w3-display-topright">
+                    <!-- <div class="w3-display-topright">
                       <h3>Teacher's email</h3>
                       <p><a href="#" style="color: black;">template@gmail.com</a></p>
                       <p><a href="#" style="color: black;">template@gmail.com</a></p>
                       <p><a href="#" style="color: black;">template@gmail.com</a></p>
                       <p><a href="#" style="color: black;">template@gmail.com</a></p>
                       <p><a href="#" style="color: black;">template@gmail.com</a></p>
-                    </div>
+                    </div> -->
                 <canvas id="lineChart" height="400px" width="400px"></canvas>
       </article>
     </div>
   </div>
     <div class="w3-container-bgcolor" style="margin-top:20px" id="showcase">
       <h1>Notice:</h1>
-      {% for context in dashboard_context %}
+      {% for items in dashboard_context %}
         <div class="announcement darker">
-          <img src="/media/{{context.profile_picture}}" alt="Avatar" class="right" style="width:100%;"/>
-          <h2>{{ context.name }}</h2>
-          <p style="font-size: 10px;margin-top:-25px;">{{ context.created_at }}</p>
-          <span class="time-left">{{ context.message }}</span>
+          <img id="profile-image" src="/media/{{items.profile_picture}}" alt="Avatar" class="right"/>
+          <h2>{{ items.name }}</h2>
+          <p style="font-size: 10px;margin-top:-25px;">{{ items.created_at }}</p>
+          <span class="time-left">{{ items.message }}</span><br><br>
+          {% if items.file_type == 'image' %}
+          <image class="modal_image" src="/media/{{items.file_upload}}"/><br><br>
+                                  <!-- The Modal -->
+                                  <div id="myModal" class="modal">
+                                    <span class="close">&times;</span>
+                                    <img class="modal-content" id="img01">
+                                    <!-- <div id="caption"></div> -->
+                                  </div>
+          {% elif items.file_type == 'file' %}
+                        <div><a style="color: blue; cursor: pointer" onclick="handleURL('{{items.file_upload}}')">{{ items.file_name }}</a></div>
+          {% endif %}
         </div>
         <br>
       {% endfor %}
-     
+
     </div>
     </div>
 <!-- End page content -->
 </div>
 
-<script src="{% static 'js/Chart.min.js' %}">/*https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js*/</script>
+<script src="{% static 'js/Chart.min.js' %}"></script>
 <script src="{% static 'js/linechart.js' %}"></script>
 <script src="{% static 'js/jsindex2.js' %}"></script>
+<script src="{% static 'js/picture_modal.js' %}"></script>
+
 </body>
 </html>
