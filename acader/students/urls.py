@@ -37,6 +37,7 @@ urlpatterns = [
          name='password_reset_complete'),
     path('edit_teacher/<str:teacher_id_slug>/', views.edit_teacher, name='edit_teacher'),
     path('edit_student/<str:student_id_slug>/', views.edit_student, name='edit_student'),
+    path('delete_teacher/<str:teacher_del_slug>/', views.delete_teacher, name='delete_teacher'),
+    path('delete_student/<str:student_del_slug>/', views.delete_student, name='delete_student'),
 
-    
 ]

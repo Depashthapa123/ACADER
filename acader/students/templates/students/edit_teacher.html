@@ -13,7 +13,7 @@
       {% csrf_token %}
 <div class="wrapper">
     <div class="title">
-        Edit Teacher- Username: {{teacher_slug.teacher.username}} [Id: {{teacher_slug.teacher.id}}]
+<!--        Edit Teacher- Username: {{teacher_slug.teacher.username}} [Id: {{teacher_slug.teacher.id}}]-->
         <h3>Edit Teacher</h3>
         <p style="font-size: 13px;"> For Username: {{teacher_slug.teacher.username}}</p>
 
@@ -37,11 +37,9 @@
     <div class="custom_select">
       <select name="faculty" required>
          <option {% if teacher_slug.faculty == "Science" %} selected {% endif %}>Science</option>
-<<<<<<< HEAD
         <option {% if teacher_slug.faculty == "Management" %} selected {% endif %}>Management</option>
-=======
+
             <option {% if teacher_slug.faculty == "Management" %} selected {% endif %}>Management</option>
->>>>>>> 55e042bf2407d06dda428c66a1e021fa9b5327ba
       </select>
     </div>
     </div>
@@ -50,17 +48,11 @@
       <label>Grade</label>
     <div class="custom_select">
     <select name="grade" required>
-<<<<<<< HEAD
         <option {% if teacher_slug.grade == "11" %} selected {% endif %}>11</option>
         <option {% if teacher_slug.grade == "12" %} selected {% endif %}>12</option>
     </select>
     </div>
-=======
-                <option {% if teacher_slug.grade == "11" %} selected {% endif %}>11</option>
-            <option {% if teacher_slug.grade == "12" %} selected {% endif %}>12</option>
-        </select>
-        </div>
->>>>>>> 55e042bf2407d06dda428c66a1e021fa9b5327ba
+
     </div>
 
    <div class="inputfield">
@@ -83,7 +75,6 @@
             {% if message.tags == 'success' %}
             <div id="myModal" class="modal">
 
-<<<<<<< HEAD
               <!-- Modal content -->
               <div class="modal-content" style="  border: 4px solid #007029!important;">
                 <div class="modal-header" style="background-color: #007029!important;">
@@ -114,7 +105,6 @@
               </div>
 
             </div>               <!-- <script>
-=======
                 <!-- Modal content -->
                 <div class="modal-content" >
 

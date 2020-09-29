@@ -78,6 +78,8 @@
           <td>{{ s.student.parent_name }}</td>
           <td><button class="marks"><a href="{% url 'student_displaymarks' student_id=s.id %}" style="text-decoration: none;color: white;">Marks</a></button></td>
           <td><button class="marks"><a href="{% url 'edit_student' student_id_slug=s.id %}" style="text-decoration: none;color: white;">Edit</a></button></td>
+          <td><button class="marks"><a href="{% url 'delete_student' student_del_slug=s.id %}" style="text-decoration: none;color: white;">Delete</a></button></td>
+
         </tr>
         {% endfor %}
     </table>
