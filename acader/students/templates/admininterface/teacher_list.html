@@ -58,6 +58,8 @@
             <th><a href="#" onclick="sortTable(4)" style="text-decoration:none;color:white">Gender</a></th>
             <th><a href="#" onclick="sortTable(5)" style="text-decoration:none;color:white">Address</a></th>
             <th></th>
+            <th></th>
+
           </tr>
         </thead>
         {% for t in teachers1 %}
@@ -68,8 +70,8 @@
           <td>{{ t.teacher.section }}</td>
           <td>{{ t.teacher.gender }}</td>
           <td>{{ t.teacher.address }}</td>
-          <td><button class="marks"><a href="{% url 'edit_teacher' teacher_id_slug=t.id %}" style="text-decoration: none;color: white;">Edit</a></button></td>
-          <td><button class="marks"><a href="{% url 'delete_teacher' teacher_del_slug=t.id %}" style="text-decoration: none;color: white;">Delete</a></button></td>
+          <td class="forimg"><button class="buttongreen"><a href="{% url 'edit_teacher' teacher_id_slug=t.id %}" style="text-decoration: none;color: white;"><img src="{% static 'image/edit.png' %}" alt=""></a></button></td>
+          <td class="forimg"><button class="buttonred"><a href="{% url 'delete_teacher' teacher_del_slug=t.id %}" style="text-decoration: none;color: white;"><img src="{% static 'image/delete.png' %}" alt=""></a></button></td>
 
         </tr>
         {% endfor %}

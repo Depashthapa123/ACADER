@@ -274,12 +274,21 @@ hr{
     padding:0.01em 16px
 }
 
-.w3-container-bgcolor{
+.w3-container-bgcolor, .w3-container-imgbg{
     background-color:#efefef;
     /* border: solid 1px whi ; */
     border-radius: 15px;
     padding:16px 16px;
 
+}
+
+.w3-container-imgbg{
+    height: 680px;
+    background-color: #cccccc;
+    background-position: center; */
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* /* background-attachment: fixed; */
 }
 
 .w3-margin-right{

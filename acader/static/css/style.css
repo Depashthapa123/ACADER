@@ -19,7 +19,6 @@ body {
 
 
 .profile_img {
-  /* display: table; */
   margin: auto ;
   width: 150px;
   height: 150px;
@@ -84,22 +83,6 @@ cursor: pointer;
   background: #f1f1f1;
 }
 
-/* .example button {
-  float: left;
-  width: 20%;
-  padding: 10px;
-  background: #2196F3;
-  color: white;
-  font-size: 17px;
-  border: 1px solid grey;
-  border-left: none;
-  cursor: pointer;
-} */
-
-/* .example button:hover {
-  background: #0b7dda;
-} */
-
 .example::after {
   content: "";
   clear: both;
@@ -119,17 +102,13 @@ cursor: pointer;
    height: 42px;
 }
 
-/* .searchbtn:hover {
-  background: #0b7dda;
-} */
-
 .searchbtn img{
   height: 20px;
 }
 
 
-/* marksbutton */
-.marks {
+/* buttons */
+.marks, .buttongreen, .buttonred {
   display: inline-block;
   padding: 5px 15px;
   font-size: 16px;
@@ -151,6 +130,21 @@ cursor: pointer;
   /* box-shadow: 0 5px #666;
   transform: translateY(4px); */
 }
+
+.buttongreen{
+  background-color:#228B22;
+}
+
+.buttongreen:hover {background-color:  green}
+
+.buttonred{
+  background-color:#c06572 ;
+}
+
+.buttonred:hover {background-color: #a64452}
+
+
+
 
 /* forannouncement */
 .comment {
@@ -222,6 +216,8 @@ cursor: pointer;
   float: right;
   cursor: pointer;
 }
+
+
 /* About me pop up */
 
 /* The Modal (background) */
@@ -324,4 +320,9 @@ cursor: pointer;
 
 .aboutyou{
   margin: auto;
+}
+
+.forimg img{
+  height: 15px;
+  width: 15px;
 }
