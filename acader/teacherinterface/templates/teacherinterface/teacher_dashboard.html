@@ -52,8 +52,8 @@
                   </div>
               </div>
         <br><br><br><br><br>
-        <label class="marks" id="upload" onclick="addphotos()">Upload a file</label>
-        <button class="marks" type="submit" >Submit</button>
+        <label class="buttongreen" id="upload" onclick="addphotos()">+</label>
+        <button class="marks" type="submit" >Post</button>
     
   </div>
     <div class="w3-container-bgcolor" style="margin-top:20px" id="showcase">
@@ -74,7 +74,7 @@
            {% elif postMessage.file_type == 'file' %}
                 <p><a style="color: blue; cursor: pointer" onclick="handleURL('{{ postMessage.file_upload }}')">{{postMessage.file_name}}</a></p>
            {% endif %}
-            <p><a href="{% url 'delete_post' message_id=postMessage.id %}" class="marks">Delete</a> </p>
+            <p><a href="{% url 'delete_post' message_id=postMessage.id %}" class="buttonred">Delete</a> </p>
       </div>
            {% endfor %}
            {% block content %}

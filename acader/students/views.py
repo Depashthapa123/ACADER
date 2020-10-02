@@ -1,3 +1,4 @@
+
 from django.db.models import Q
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
@@ -348,7 +349,7 @@ def marks(request):
         faculty = request.POST['faculty']
         term_id = request.POST['term']
         course = request.POST['course']
-        obtained_marks = request.POST['obtained_marks']
+        obtained_marks = '{:0>2}'.format(request.POST['obtained_marks'])
 
         marks = Marks(
             obtained_marks=obtained_marks,
@@ -505,7 +506,7 @@ def edit_teacher(request,teacher_id_slug):
         messages.success(request, f'Successfully edited')
         return redirect('/edit_teacher/' + teacher_id_slug)
 
-    return render(request, 'students/edit_teacher.html', {'teacher_slug': teacher_slug})
+    return render(request, 'admininterface/edit_teacher.html', {'teacher_slug': teacher_slug})
 
 
 @unauthenticated_admin
@@ -541,24 +542,28 @@ def edit_student(request, student_id_slug):
         messages.success(request, f'Successfully edited')
         return redirect('/edit_student/' + student_id_slug)
 
-    return render(request, 'students/edit_student.html', {'student_slug': student_slug})
+    return render(request, 'admininterface/edit_student.html', {'student_slug': student_slug})
 
 
 @unauthenticated_admin
 def delete_teacher(request, teacher_del_slug):
-    delete_teacher = CustomUser.objects.filter(user_type=2, id=teacher_del_slug)
+    delete_teacher = CustomUser.objects.get(user_type=2, id=teacher_del_slug)
+    print("DELETE===", delete_teacher)
+
     if request.method == 'POST':
         delete_teacher.delete()
         return redirect('teacher_list')
 
-    return render(request, 'students/delete_teacher.html')
+    return render(request, 'admininterface/delete_teacher.html', {'delete_teacher':delete_teacher})
 
 
 @unauthenticated_admin
 def delete_student(request, student_del_slug):
-    delete_student = CustomUser.objects.filter(user_type=3, id=student_del_slug)
+    delete_student = CustomUser.objects.get(user_type=3, id=student_del_slug)
+    print("DELETE===", delete_student)
+
     if request.method == 'POST':
         delete_student.delete()
         return redirect('student_list')
 
-    return render(request, 'students/delete_student.html')
+    return render(request, 'admininterface/delete_student.html',{'delete_student':delete_student})

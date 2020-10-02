@@ -1,4 +1,4 @@
-{% extends 'admininterface/base.html' %}
+{% extends 'admininterface/base_student_layout.html' %}
 
 <!--<!DOCTYPE html>-->
 <!--{% load static %}-->
@@ -42,7 +42,8 @@
 <!--  <div class="w3-container-bgcolor" style="margin-top:80px" id="showcase">-->
 <!--      <h3><a href="{% url 'marks' %}" style="text-decoration: none;color: black;">Student Marks list</a></h3>-->
 {% block content %}
-
+  <!-- Header(main body) -->
+  <div class="w3-container-bgcolor" style="margin-top:80px" id="showcase">
 <h3>Students List</h3>
      <!-- Search form -->
      <div class="example" style="margin:0px;max-width:300px">
@@ -68,6 +69,7 @@
             <th><a href="#" onclick="sortTable(8)" style="text-decoration:none;color:white">Parent name</a></th>
             <th></th>
             <th></th>
+            <th></th>
 
           </tr>
         </thead>
@@ -84,8 +86,8 @@
           <td>{{ s.student.DOB }}</td>
           <td>{{ s.student.parent_name }}</td>
           <td><button class="marks"><a href="{% url 'student_displaymarks' student_id=s.id %}" style="text-decoration: none;color: white;">Marks</a></button></td>
-          <td><button class="marks"><a href="{% url 'edit_student' student_id_slug=s.id %}" style="text-decoration: none;color: white;">Edit</a></button></td>
-          <td><button class="marks"><a href="{% url 'delete_student' student_del_slug=s.id %}" style="text-decoration: none;color: white;">Delete</a></button></td>
+          <td class="forimg"><button class="buttongreen"><a href="{% url 'edit_student' student_id_slug=s.id %}" style="text-decoration: none;color: white;"><img src="{% static 'image/edit.png' %}" alt=""></a></button></td>
+          <td class="forimg"><button class="buttonred" ><a href="{% url 'delete_student' student_del_slug=s.id %}" style="text-decoration: none;color: white;"><img src="{% static 'image/delete.png' %}" alt=""></a></button></td>
 
         </tr>
         {% endfor %}
@@ -94,7 +96,7 @@
   </div>
 
 <!-- End page content -->
-</div>
+<!--</div>-->
 {% endblock %}
 
 <!--<script src="{% static 'js/adminnav.js' %}"></script>-->

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
-<head>  
+<head>
 <title>Acader</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -36,7 +36,7 @@
 <div class="w3-main" style="margin-left:340px;margin-right:40px">
 
   <!-- Header(main body) -->
-  <div class="w3-container-bgcolor" style="margin-top:40px;" id="showcase">
+  <div class="w3-container-imgbg" style="margin-top:40px;background-image: url({% static 'image/adminpic3.png' %});" id="showcase">
     <h3><a href="{% url 'student_list' %}" style="text-decoration: none;color: black;">Student list</a></h3>
       <h3><a href="{% url 'studentregister' %}" style="text-decoration: none;color: black;">Add Student</a></h3>
       <h3><a href="{% url 'marks' %}" style="text-decoration: none;color: black;">Add Student Marks</a></h3>
