@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Student-Edit</title>
+	<title>Edit-Marks</title>
   <link rel="stylesheet" href="{% static 'css/registerstudent.css' %}">
   <link rel="stylesheet" href="{% static 'css/alertmodal.css' %}">
 </head>
@@ -13,74 +13,29 @@
       {% csrf_token %}
 <div class="wrapper">
     <div class="title">
-        <h3>Edit Student </h3>
-        <p style="font-size: 13px;">For Username: {{student_slug.student.username}} </p>
+        <h3>Edit Marks</h3><hr>
+    </div>
+
+    <div class="title">
+        <p style="font-size: 13px;">
+        Grade : {{marks_slug.grade}}<br><br>
+        Faculty : {{marks_slug.faculty}}<br><br>
+        Subject : {{marks_slug.course}}<br><br>
+        Term : {{marks_slug.terms.terms_name}}<br>
+        </p>
     </div>
     <div class="form">
 
-    <input type="hidden" name="student_id" value="{{student_slug.student.id}}">
+    <input type="hidden" name="marks_id" value="{{marks_slug.id}}">
 
     <div class="inputfield">
-        <label>Username</label>
-        <input type="text" class="input" name="username" value="{{student_slug.student.username}}">
-    </div>
-
-        <div class="inputfield">
-        <label>Faculty</label>
-    <div class="custom_select">
-      <select name="faculty" required>
-         <option {% if student_slug.faculty == "Science" %} selected {% endif %}>Science</option>
-            <option {% if student_slug.faculty == "Management" %} selected {% endif %}>Management</option>
-      </select>
-    </div>
-    </div>
-
-   <div class="inputfield">
-      <label>Grade</label>
-    <div class="custom_select">
-    <select name="grade" required>
-            <option {% if student_slug.grade == "11" %} selected {% endif %}>11</option>
-            <option {% if student_slug.grade == "12" %} selected {% endif %}>12</option>
-        </select>
-        </div>
-    </div>
-
-
-   <div class="inputfield">
-        <label>Section</label>
-        <div class="custom_select">
-        <select name="section" required>
-            <option {% if student_slug.section == "A" %} selected {% endif %}>A</option>
-            <option {% if student_slug.section == "B" %} selected {% endif %}>B</option>
-        </select>
-        </div>
+        <label>Update Marks</label>
+        <input type="number" class="input" name="obtained_marks" value="{{marks_slug.obtained_marks}}">
     </div>
 
 
     <div class="inputfield">
-          <label>Address</label>
-          <input type="text" class="input" name="address" value="{{student_slug.address}}">
-    </div>
-
-
-        <div class="inputfield">
-          <label>Contact</label>
-          <input type="text" class="input" name="contact" value="{{student_slug.contact}}">
-    </div>
-
-        <div class="inputfield">
-          <label>DOB</label>
-          <input type="date" class="input" name="DOB" value="{{student_slug.DOB|date:'Y-m-d'}}">
-    </div>
-
-        <div class="inputfield">
-          <label>Parent Name</label>
-          <input type="text" class="input" name="parent_name" value="{{student_slug.parent_name}}">
-    </div>
-
-
-    <div class="inputfield">
-        <button type="submit" value="Register" class="btn">Save changes</button>
+        <button type="submit" value="Register" class="btn">Save</button>
     </div>
 
     <div class="container">
@@ -130,8 +85,8 @@
                 <span style="float:left;font-size:12px;">
                   <a href="/student-func/" style="text-decoration: none;color: #155724;"> Go To Dashboard</a>
                 </span>
-              </div>  
-            </div> 
+              </div>
+            </div>
             {% endif %}
             {% if message.tags == 'warning' %}
             <div id="myModal" class="modal" >
@@ -142,7 +97,7 @@
                 <div class="modal-body">
                   <p><img src="{% static 'image/error.png' %}" alt="">{{message}}</p>
                 </div>
-              </div> 
+              </div>
             </div>                <!-- <script>
 >>>>>>> 55e042bf2407d06dda428c66a1e021fa9b5327ba
                  alert('Username not written correctly. You have to register again!') ; window.location.href = "{% url 'studentregister' %}"
