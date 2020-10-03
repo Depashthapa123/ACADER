@@ -3,12 +3,12 @@
 {% block body %}
 <!-- Header(main body) -->
   <div class="w3-container-bgcolor" style="margin-top:80px" id="showcase">
-<p>Are you sure you want to delete <b>{{delete_student.first_name}} {{delete_student.last_name}}</b> and his/her all related data?</p>
+<p>Are you sure you want to delete <b>{{delete_teacher.first_name}} {{delete_teacher.last_name}}</b> and his/her all related data?</p>
 
     <form method="POST">
         {% csrf_token %}
         <a href="{% url 'teacher_list' %}" class="marks">Cancel</a>
-        <input type="submit" class="marks" value="Yes">
+        <input type="submit" class="buttonred" value="Yes">
     </form>
   </div>
 {% endblock %}

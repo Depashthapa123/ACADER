@@ -326,3 +326,30 @@ cursor: pointer;
   height: 15px;
   width: 15px;
 }
+
+/* Profile card */
+.cardarea{
+  height: 300px;
+  width: auto;
+  display: flex;
+  /* grid-template-columns: repeat(auto-fill,minmax(120px,1fr)); */
+  grid-gap: 2.25rem;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 400px;
+  height: 200px;
+  border-radius: 5px;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  cursor: pointer;
+}
+
+.cardbox {
+  padding: 2px 16px;
+  text-align: center;
+}

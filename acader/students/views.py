@@ -547,25 +547,31 @@ def edit_student(request, student_id_slug):
 
 @unauthenticated_admin
 def delete_teacher(request, teacher_del_slug):
-    delete_teacher = CustomUser.objects.get(user_type=2, id=teacher_del_slug)
-    print("DELETE===", delete_teacher)
+    context = None
 
     if request.method == 'POST':
+        
+        delete_teacher = CustomUser.objects.get(user_type=2, id=teacher_del_slug)
+        print("DELETE===", delete_teacher)
         delete_teacher.delete()
+        context = {'delete_teacher':delete_teacher}
         return redirect('teacher_list')
 
-    return render(request, 'admininterface/delete_teacher.html', {'delete_teacher':delete_teacher})
+    return render(request, 'admininterface/delete_teacher.html', context)
 
 
 @unauthenticated_admin
 def delete_student(request, student_del_slug):
-    delete_student = CustomUser.objects.get(user_type=3, id=student_del_slug)
-    print("DELETE===", delete_student)
+    context = None
 
     if request.method == 'POST':
+        delete_student = CustomUser.objects.get(user_type=3, id=student_del_slug)
+        print("DELETE===", delete_student)
         delete_student.delete()
+        context = {'delete_student':delete_student}
         return redirect('student_list')
 
+<<<<<<< Updated upstream
     return render(request, 'admininterface/delete_student.html',{'delete_student':delete_student})
 
 
@@ -585,3 +591,6 @@ def edit_marks(request, student_marks_slug):
         return redirect('/edit_marks/' + student_marks_slug)
 
     return render(request, 'admininterface/edit_marks.html', {'marks_slug': marks_slug})
+=======
+    return render(request, 'admininterface/delete_student.html',context)
+>>>>>>> Stashed changes

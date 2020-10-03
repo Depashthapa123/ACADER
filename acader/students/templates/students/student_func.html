@@ -37,14 +37,29 @@
 
   <!-- Header(main body) -->
   <div class="w3-container-imgbg" style="margin-top:40px;background-image: url({% static 'image/adminpic3.png' %});" id="showcase">
-    <h3><a href="{% url 'student_list' %}" style="text-decoration: none;color: black;">Student list</a></h3>
-      <h3><a href="{% url 'studentregister' %}" style="text-decoration: none;color: black;">Add Student</a></h3>
-      <h3><a href="{% url 'marks' %}" style="text-decoration: none;color: black;">Add Student Marks</a></h3>
+    <div class="cardarea">
+      <div class="card">
+        <div class="cardbox">
+          <h3><a href="{% url 'student_list' %}" style="text-decoration: none;color: black;">Student list</a></h3>
+        </div>
+      </div>
+      <div class="card">
+        <div class="cardbox">
+          <h3><a href="{% url 'studentregister' %}" style="text-decoration: none;color: black;">Add Student</a></h3>
+        </div>
+      </div>
+      <div class="card">
+        <div class="cardbox">
+          <h3><a href="{% url 'marks' %}" style="text-decoration: none;color: black;">Add Student Marks</a></h3>
+        </div>
+      </div>
+    </div>
 
   </div>
 
 <!-- End page content -->
 </div>
 <script src="{% static 'js/adminnav.js' %}"></script>
+
 </body>
 </html>
