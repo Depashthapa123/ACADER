@@ -349,7 +349,7 @@ def marks(request):
         faculty = request.POST['faculty']
         term_id = request.POST['term']
         course = request.POST['course']
-        obtained_marks = '{:0>2}'.format(request.POST['obtained_marks'])
+        obtained_marks = request.POST['obtained_marks']
 
         marks = Marks(
             obtained_marks=obtained_marks,
@@ -567,3 +567,21 @@ def delete_student(request, student_del_slug):
         return redirect('student_list')
 
     return render(request, 'admininterface/delete_student.html',{'delete_student':delete_student})
+
+
+@unauthenticated_admin
+def edit_marks(request, student_marks_slug):
+    marks_slug = Marks.objects.get(id=student_marks_slug)
+
+    if request.method == 'POST':
+        marks_id = request.POST['marks_id']
+        obtained_marks = request.POST['obtained_marks']
+
+        studentuser_marks = Marks.objects.get(id=marks_id)
+        studentuser_marks.obtained_marks = obtained_marks
+        studentuser_marks.save()
+
+        messages.success(request, f'Successfully edited')
+        return redirect('/edit_marks/' + student_marks_slug)
+
+    return render(request, 'admininterface/edit_marks.html', {'marks_slug': marks_slug})
