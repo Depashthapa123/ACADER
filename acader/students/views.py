@@ -571,8 +571,7 @@ def delete_student(request, student_del_slug):
         context = {'delete_student':delete_student}
         return redirect('student_list')
 
-<<<<<<< Updated upstream
-    return render(request, 'admininterface/delete_student.html',{'delete_student':delete_student})
+    return render(request, 'admininterface/delete_student.html',context)
 
 
 @unauthenticated_admin
@@ -591,6 +590,3 @@ def edit_marks(request, student_marks_slug):
         return redirect('/edit_marks/' + student_marks_slug)
 
     return render(request, 'admininterface/edit_marks.html', {'marks_slug': marks_slug})
-=======
-    return render(request, 'admininterface/delete_student.html',context)
->>>>>>> Stashed changes

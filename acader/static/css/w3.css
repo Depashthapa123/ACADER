@@ -213,17 +213,19 @@ hr{
 @media (max-width:992px){
     .dropup{display:none}
     .w3-sidebar.w3-collapse{display:none}
-    .w3-container-bgcolor{overflow: auto;}
+    .w3-container-bgcolor,.w3-container-imgbg{overflow: auto;}
     .w3-main{margin-left:20px!important;margin-right:20px!important;margin-top: 70px!important}
     .w3-auto{max-width:100%}
     .w3-display-topright{display: none;}
     .modal{padding-left:0px!important;}
+    .cardarea{display: block!important;}
 }
 
 @media (max-width:400px){
         /* For login page */
         .tabcontent{width: 270px!important;} 
         .acaderlogo img{height: 70px!important;width: 280px!important}
+        img#small{display: none!important;}
 
 
 }
@@ -284,11 +286,12 @@ hr{
 
 .w3-container-imgbg{
     height: 680px;
+    overflow: auto;
     background-color: #cccccc;
-    background-position: center; */
+    background-position: center; 
     background-repeat: no-repeat;
     background-size: cover;
-    /* /* background-attachment: fixed; */
+    /* background-attachment: fixed; */
 }
 
 .w3-margin-right{

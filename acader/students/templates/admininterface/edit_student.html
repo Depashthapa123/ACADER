@@ -90,37 +90,6 @@
             <div id="myModal" class="modal">
 
               <!-- Modal content -->
-<!--<<<<<<< HEAD-->
-              <div class="modal-content" style="  border: 4px solid #007029!important;">
-                <div class="modal-header" style="background-color: #007029!important;">
-                  <span class="close">&times;</span>
-                  <h2>Alert</h2>
-                </div>
-                <div class="modal-body">
-                  <p>{{message}}</p>
-                </div>
-                <div class="modal-footer">
-                  <span class="marks" style="background-color: #007029!important;margin-top:90px;"><a href="{% url 'student_list' %}" style="text-decoration: none;color: white;">Okay</a></span>
-                </div>
-              </div>
-            </div>
-            {% endif %}
-            {% if message.tags == 'warning' %}
-            <div id="myModal" class="modal">
-
-              <!-- Modal content -->
-              <div class="modal-content">
-                <div class="modal-header">
-                  <span class="close">&times;</span>
-                  <h2>Alert</h2>
-                </div>
-                <div class="modal-body">
-                  <p>{{message}}</p>
-                </div>
-              </div>
-
-            </div>               <!-- <script>
-=======
               <div class="modal-content" >
 
                   <span class="close">&times;</span>
@@ -143,10 +112,7 @@
                   <p><img src="{% static 'image/error.png' %}" alt="">{{message}}</p>
                 </div>
               </div> 
-            </div>                <!-- <script>
->>>>>>> 55e042bf2407d06dda428c66a1e021fa9b5327ba
-                 alert('Username not written correctly. You have to register again!') ; window.location.href = "{% url 'studentregister' %}"
-            </script> -->
+            </div>     
             {% endif %}
         {% endfor %}
       {% endif %}

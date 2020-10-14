@@ -73,8 +73,8 @@
           <td>{{ t.teacher.section }}</td>
           <td>{{ t.teacher.gender }}</td>
           <td>{{ t.teacher.address }}</td>
-          <td class="forimg"><button class="buttongreen"><a href="{% url 'edit_teacher' teacher_id_slug=t.id %}" style="text-decoration: none;color: white;"><img src="{% static 'image/edit.png' %}" alt=""></a></button></td>
-          <td class="forimg"><button class="buttonred"><a href="{% url 'delete_teacher' teacher_del_slug=t.id %}" style="text-decoration: none;color: white;"><img src="{% static 'image/delete.png' %}" alt=""></a></button></td>
+          <td class="forimg"><a href="{% url 'edit_teacher' teacher_id_slug=t.id %}" class="buttongreen" style="text-decoration: none;color: white;"><img src="{% static 'image/edit.png' %}" alt=""></a></td>
+          <td class="forimg"><a href="{% url 'delete_teacher' teacher_del_slug=t.id %}" class="buttonred" style="text-decoration: none;color: white;"><img src="{% static 'image/delete.png' %}" alt=""></a></td>
 
         </tr>
         {% endfor %}

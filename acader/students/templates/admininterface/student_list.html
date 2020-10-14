@@ -85,9 +85,9 @@
           <td>{{ s.student.contact }}</td>
           <td>{{ s.student.DOB }}</td>
           <td>{{ s.student.parent_name }}</td>
-          <td><button class="marks"><a href="{% url 'student_displaymarks' student_id=s.id %}" style="text-decoration: none;color: white;">Marks</a></button></td>
-          <td class="forimg"><button class="buttongreen"><a href="{% url 'edit_student' student_id_slug=s.id %}" style="text-decoration: none;color: white;"><img src="{% static 'image/edit.png' %}" alt=""></a></button></td>
-          <td class="forimg"><button class="buttonred" ><a href="{% url 'delete_student' student_del_slug=s.id %}" style="text-decoration: none;color: white;"><img src="{% static 'image/delete.png' %}" alt=""></a></button></td>
+          <td><a href="{% url 'student_displaymarks' student_id=s.id %}" class="marks" style="text-decoration: none;color: white;">Marks</a></td>
+          <td class="forimg"><a href="{% url 'edit_student' student_id_slug=s.id %}" class="buttongreen" style="text-decoration: none;color: white;"><img src="{% static 'image/edit.png' %}" alt=""></a></td>
+          <td class="forimg"><a href="{% url 'delete_student' student_del_slug=s.id %}" class="buttonred" style="text-decoration: none;color: white;"><img src="{% static 'image/delete.png' %}" alt=""></a></td>
 
         </tr>
         {% endfor %}

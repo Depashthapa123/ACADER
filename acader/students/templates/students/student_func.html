@@ -40,18 +40,14 @@
     <div class="cardarea">
       <div class="card">
         <div class="cardbox">
-          <h3><a href="{% url 'student_list' %}" style="text-decoration: none;color: black;">Student list</a></h3>
+          <a href="{% url 'student_list' %}" style="text-decoration: none;color: black;">Student List <br><img src="{% static 'image/list.svg' %}" class="adminimg"></a>
         </div>
       </div>
       <div class="card">
-        <div class="cardbox">
-          <h3><a href="{% url 'studentregister' %}" style="text-decoration: none;color: black;">Add Student</a></h3>
-        </div>
+          <a href="{% url 'studentregister' %}" style="text-decoration: none;color: black;">Add Student<br><img src="{% static 'image/addstudent.svg' %}" class="adminimg"></a>
       </div>
       <div class="card">
-        <div class="cardbox">
-          <h3><a href="{% url 'marks' %}" style="text-decoration: none;color: black;">Add Student Marks</a></h3>
-        </div>
+          <a href="{% url 'marks' %}" style="text-decoration: none;color: black;">Add Student Marks<br><img src="{% static 'image/addmarks.svg' %}" class="adminimg"></a>
       </div>
     </div>
 
