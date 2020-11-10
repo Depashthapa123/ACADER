@@ -2,8 +2,9 @@
 {% load static %}
 <html lang="en">
 <head>
-<title>Acader</title>
-<meta charset="UTF-8">
+<!--<title>Acader</title>-->
+<title>{% block title %}  {% endblock title %}</title>
+    <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
 <link rel="stylesheet" href="{% static 'css/w3.css' %}">
@@ -42,6 +43,6 @@
       <script src="{% static 'js/adminnav.js' %}"></script>
 <script src="{% static 'js/search.js' %}"></script>
 <script src="{% static 'js/sort.js' %}"></script>
-<script src="{% static 'js/delete_student.js' %}"></script>
+<!--<script src="{% static 'js/delete_student.js' %}"></script>-->
 </body>
 </html>

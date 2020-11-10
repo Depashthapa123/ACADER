@@ -1,4 +1,5 @@
 {% extends 'admininterface/base_teacher_layout.html' %}
+{% block title1 %}  Search Teacher {% endblock title1 %}
 {% load static %}
 {% block body %}
 
@@ -67,7 +68,7 @@
                     </thead>
                     {% for t in list %}
                     <tr>
-                        <td>{{ t.id }}</td>
+<!--                        <td>{{ t.id }}</td>-->
                       <td>{{ t.username }}</td>
                       <td>{{ t.teacher.faculty }}</td>
                       <td>{{ t.teacher.grade }}</td>
