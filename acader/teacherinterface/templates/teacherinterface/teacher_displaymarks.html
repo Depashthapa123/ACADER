@@ -44,7 +44,7 @@
 
     {% else %}
       {% for s in student %}
-      <h3>Students Marks:&nbsp;&nbsp;&nbsp;{{s.student.first_name}} {{s.student.last_name}}</h3><br>
+      <h3>Marks of {{s.student.first_name}} {{s.student.last_name}}</h3><br>
       {% endfor %}
       <table class="w3-table-all" id="myTable">
           <thead>

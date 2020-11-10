@@ -46,7 +46,7 @@
     <h2>No searched results for the marks inquiry</h2>
 
   {% else %}
-    <h3>Students Marks</h3>
+    <h3>Marks</h3>
     <table class="w3-table-all" id="myTable">
         <thead>
 <!--            <h1>{{ s. }}</h1>-->
@@ -62,7 +62,7 @@
                     <td>{{ m.course }}</td>
                     <td>{{ m.terms_id }}</td>
                     <td>{{ m.obtained_marks }}</td>
-                    <td><button class="marks"><a href="{% url 'edit_marks' student_marks_slug=m.id %}" style="text-decoration: none;color: white;">Update Marks</a></button></td>
+                    <td><button class="marks"><a href="{% url 'edit_marks' student_marks_slug=m.id %}" style="text-decoration: none;color: white;">Edit Marks</a></button></td>
                 </tr>
             {% endfor %}
       </table>
