@@ -218,6 +218,7 @@ hr{
     .w3-auto{max-width:100%}
     .w3-display-topright{display: none;}
     .modal{padding-left:0px!important;}
+    .w3-container-imgbg{background-image:none!important}
     .cardarea{display: block!important;}
 }
 

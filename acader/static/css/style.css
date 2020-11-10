@@ -352,15 +352,15 @@ cursor: pointer;
   cursor: pointer;
 }
 
-.card img:hover{
-  opacity: 1;
-}
-
 .card a{
   display: block;
   width: 350px!important;
   height: 200px!important;
   text-align: center;
+}
+
+.card a:hover img{
+  opacity: 1;
 }
 
 .adminimg{
