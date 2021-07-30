@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'acader.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'ACADERproject',
+        'NAME': 'ACADER',
         'USER': 'postgres',
         'PASSWORD': '123',
         'HOST': 'localhost',
@@ -133,6 +133,8 @@ STATICFILES_DIRS = [
 # os.path.join(BASE_DIR, 'media')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+MODELS = os.path.join(BASE_DIR, 'studentinterface/ML models')
 
 AUTH_USER_MODEL = 'students.CustomUser'
 

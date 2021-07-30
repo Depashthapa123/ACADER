@@ -17,13 +17,42 @@ class Admin(models.Model):
     objects = models.Manager()
 
 
+class Terms(models.Model):
+    id = models.AutoField(primary_key=True)
+    terms_name = models.TextField()
+
+
+class Grade(models.Model):
+    id = models.AutoField(primary_key=True)
+    grade1 = models.IntegerField(default=0)
+
+
+class Faculty(models.Model):
+    id = models.AutoField(primary_key=True)
+    faculty1 = models.TextField()
+
+
+class Course(models.Model):
+    id = models.AutoField(primary_key=True)
+    course_name = models.TextField()
+    faculty = models.ForeignKey(Faculty, on_delete=models.CASCADE, default=1)
+    grade = models.ForeignKey(Grade, on_delete=models.CASCADE, default=1)
+    # faculty = models.CharField(max_length=50)
+    # grade = models.CharField(max_length=10)
+    created_at = models.DateTimeField(auto_now_add=True)
+    pass_marks = models.IntegerField(default=0)
+    total_marks = models.IntegerField(default=0)
+
+
 class Teacher(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.TextField(default=0)
     teacher = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     contact = models.IntegerField(default=0)
-    faculty = models.TextField()
-    grade = models.CharField(max_length=10)
+    # faculty = models.TextField()
+    # grade = models.CharField(max_length=10)
+    faculty = models.ForeignKey(Faculty, on_delete=models.CASCADE, default=1)
+    grade = models.ForeignKey(Grade, on_delete=models.CASCADE, default=1)
     section = models.CharField(max_length=5)
     gender = models.TextField()
     address = models.CharField(max_length=50)
@@ -41,49 +70,31 @@ class Student(models.Model):
     contact = models.CharField(max_length=100)
     DOB = models.DateField(null=True)
     section = models.CharField(max_length=5)
-    grade = models.CharField(max_length=5)
-    faculty = models.TextField(max_length=50)
+    # grade = models.CharField(max_length=5, default=11)
+    grade = models.ForeignKey(Grade, on_delete=models.CASCADE, default=1)
+    # faculty = models.TextField(max_length=50, default=1)
+    faculty = models.ForeignKey(Faculty, on_delete=models.CASCADE, default=1)
     parent_name = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     objects = models.Manager()
 
 
-
-class Course(models.Model):
-    id = models.AutoField(primary_key=True)
-    course_name = models.TextField()
-    faculty = models.CharField(max_length=50)
-    grade = models.CharField(max_length=10)
-    created_at = models.DateTimeField(auto_now_add=True)
-    pass_marks = models.IntegerField(default=0)
-    total_marks = models.IntegerField(default=0)
-
-class Terms(models.Model):
-    id = models.AutoField(primary_key=True)
-    terms_name = models.TextField()
-
-
-class Grade(models.Model):
-    id = models.AutoField(primary_key=True)
-    grade1 = models.IntegerField(default=0)
-
-
-class Faculty(models.Model):
-    id = models.AutoField(primary_key=True)
-    faculty1 = models.TextField()
-
-
 class Marks(models.Model):
     id = models.AutoField(primary_key=True)
     obtained_marks = models.IntegerField(default=0)
+    assignment_marks = models.IntegerField(default=0)
+    attendance_marks = models.IntegerField(default=0)
     terms = models.ForeignKey(Terms, on_delete=models.CASCADE, default=1)
     student = models.ForeignKey(CustomUser, on_delete=models.CASCADE, default=1)
     course = models.CharField(max_length=50, default=False)
-    grade = models.IntegerField(default=None)
-    faculty = models.CharField(max_length=50, default=False)
+    # grade = models.IntegerField(default=None)
+    # faculty = models.CharField(max_length=50, default=False)
+    faculty = models.ForeignKey(Faculty, on_delete=models.CASCADE, default=1)
+    grade = models.ForeignKey(Grade, on_delete=models.CASCADE, default=1)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
+
 
 class StudentCourse(models.Model):
     id = models.AutoField(primary_key=True)

@@ -44,7 +44,18 @@
               <label>Current Grade</label>
               <div class="custom_select">
                 <select name="grade">
-                    <option value="{{student_grade}}">{{student_grade}}</option>
+                    {% if student_grade == 1 %}
+                        <option value="">Science</option>
+                    {% endif %}
+
+                     {% if student_grade == 2 %}
+                        <option value="">Management</option>
+                    {% endif %}
+
+
+<!--                <option {% if student_grade.faculty.id == "1" %} selected {% endif %}>Science</option>-->
+<!--                <option {% if student_grade.faculty.id == "2" %} selected {% endif %}>Management</option>-->
+<!--                    <option value="{{student_grade}}">{{ student_grade }}</option>-->
                 </select>
               </div>
             </div>
@@ -53,7 +64,14 @@
               <label>Faculty</label>
               <div class="custom_select">
                 <select name="faculty">
-                  <option value="{{student_faculty}}">{{student_faculty}}</option>
+                    {% if student_faculty == 1 %}
+                        <option value="">11</option>
+                    {% endif %}
+
+                     {% if student_faculty == 2 %}
+                        <option value="">12</option>
+                    {% endif %}
+<!--                  <option value="{{student_faculty}}">{{student_faculty}}</option>-->
                 </select>
               </div>
            </div>
@@ -86,6 +104,16 @@
             <div class="inputfield">
               <label>Marks obtained</label>
               <input type="number" class="input" name="obtained_marks">
+            </div>
+
+            <div class="inputfield">
+              <label>Assignment Marks</label>
+              <input type="number" class="input" name="assignment_marks">
+            </div>
+
+            <div class="inputfield">
+              <label>Attendance Marks</label>
+              <input type="number" class="input" name="attendance_marks">
             </div>
 
             <div class="inputfield">

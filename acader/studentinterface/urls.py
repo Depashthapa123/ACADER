@@ -11,6 +11,8 @@ urlpatterns = [
     path('search_marks/', views.search_marks, name='search_marks'),
     path('student_profile/', views.student_profile, name='student_profile'),
     path('do_logout2/', views.do_logout2, name='do_logout2'),
+    path('predict/', views.predict, name='predict'),
+    path('predict/result', views.result, name='result'),
 
 ]
 # urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

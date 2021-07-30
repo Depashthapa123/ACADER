@@ -61,8 +61,8 @@
         {% for s in students %}
             <tr>
                 <td>{{ s.name }}</td>
-                <td>{{ s.faculty }}</td>
-                <td>{{ s.grade }}</td>
+                <td>{{ s.faculty.faculty1 }}</td>
+                <td>{{ s.grade.grade1 }}</td>
                 <td>{{ s.section }}</td>
                 <td><a href="{% url 'teacher_displaymarks' student_id=s.student_id %}" class="marks" style="text-decoration: none;color: white;">Marks</a></td>
             </tr>

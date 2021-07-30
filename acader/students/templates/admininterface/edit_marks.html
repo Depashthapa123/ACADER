@@ -18,8 +18,8 @@
 
     <div class="title">
         <p style="font-size: 13px;">
-        Grade : {{marks_slug.grade}}<br><br>
-        Faculty : {{marks_slug.faculty}}<br><br>
+        Grade : {{marks_slug.grade.grade1}}<br><br>
+        Faculty : {{marks_slug.faculty.faculty1}}<br><br>
         Subject : {{marks_slug.course}}<br><br>
         Term : {{marks_slug.terms.terms_name}}<br>
         </p>
@@ -31,6 +31,14 @@
     <div class="inputfield">
         <label>Update Marks</label>
         <input type="number" class="input" name="obtained_marks" value="{{marks_slug.obtained_marks}}">
+    </div>
+    <div class="inputfield">
+        <label>Update Assignment Marks</label>
+        <input type="number" class="input" name="assignment_marks" value="{{marks_slug.assignment_marks}}">
+    </div>
+    <div class="inputfield">
+        <label>Update Attendance Marks</label>
+        <input type="number" class="input" name="attendance_marks" value="{{marks_slug.attendance_marks}}">
     </div>
 
 
