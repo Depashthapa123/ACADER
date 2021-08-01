@@ -3,6 +3,8 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from students.models import CustomUser, Marks, Course, Teacher, Student
 from django.db.models import Q
+
+from students.models import Faculty, Grade
 from .forms import BioUpdate
 from teacherinterface.models import postmessage, Profile1
 from students.restrictions import unauthenticated_student
@@ -158,10 +160,87 @@ def search_marks(request):
         return render(request, 'studentinterface/search_marks.html')
 
 
+@unauthenticated_student
+def initialize_prediction(request):
+    student_id = None
+    if request.session.has_key('student_id'):
+        student_id = request.session['student_id']
+        print(student_id, 'found')
+    else:
+        return redirect('loginpage/')
+
+    students = Student.objects.filter(student_id=student_id)
+    print(students)
+
+    students_grade = Student.objects.filter(student_id=student_id).values('grade')
+    print(students_grade)
+    students_faculty = Student.objects.filter(student_id=student_id).values('faculty')
+    print(students_faculty)
+
+    return render(request, 'studentinterface/initialize_prediction.html',
+                  {'students': students})
+
+
+@unauthenticated_student
+def initialize_prediction_term(request):
+    student_id = None
+    if request.session.has_key('student_id'):
+        student_id = request.session['student_id']
+        print(student_id, 'found')
+    else:
+        return redirect('loginpage/')
+
+    students = Student.objects.filter(student_id=student_id)
+
+    return render(request, 'studentinterface/initialize_prediction_term.html',
+                  {'students': students})
+
+
+@unauthenticated_student
+def predict_third(request):
+    return render(request, 'studentinterface/third_term_prediction.html')
+
+
+@unauthenticated_student
+def result_third(request):
+    path = os.path.join(settings.MODELS, '11physics3rd.pkl')
+    # if request.method == 'POST':
+    student_id = request.GET["s_id"]
+    assignment = request.GET["assignment"]
+    attendance = request.GET["attendance"]
+    first = request.GET["first"]
+    gender = request.GET["gender"]
+    second = request.GET["second"]
+
+    student_id = int(student_id)
+    assignment = int(assignment)
+    attendance = int(attendance)
+    first = float(first)
+    second = float(second)
+    gender = int(gender)
+
+    fields = [student_id, assignment, attendance, first, second, gender]
+
+    with open(path, 'rb') as file:
+        model = pickle.load(file)
+        print(">> ML Model ====> " + str(model))
+
+    prediction_value = model.predict([fields])[0]
+    final = "Your predicted final marks is: " + str(prediction_value)
+
+    return render(request, "studentinterface/third_term_prediction.html",
+                  {"final": final, "id": id, "assignment": assignment,
+                   "attendance": attendance, "first": first,
+                   "second": second,
+                   "gender": gender})
+
+
+@unauthenticated_student
 def predict(request):
-    return render(request, 'studentinterface/pred.html')
+    return render(request, 'studentinterface/final_prediction.html')
 
 
+@unauthenticated_student
 def result(request):
     path = os.path.join(settings.MODELS, '11physics.pkl')
     # if request.method == 'POST':
@@ -190,10 +269,47 @@ def result(request):
     prediction_value = model.predict([fields])[0]
     final = "Your predicted final marks is: " + str(prediction_value)
 
-    return render(request, "studentinterface/pred.html", {"final": final, "id": id, "assignment": assignment,
-                                                          "attendance": attendance, "first": first,
-                                                          "second": second, "third": third,
-                                                          "gender": gender})
+    return render(request, "studentinterface/final_prediction.html",
+                  {"final": final, "id": id, "assignment": assignment,
+                   "attendance": attendance, "first": first,
+                   "second": second, "third": third,
+                   "gender": gender})
+
+
+@unauthenticated_student
+def predict_second(request):
+    return render(request, 'studentinterface/second_term_prediction.html')
+
+
+@unauthenticated_student
+def result_second(request):
+    path = os.path.join(settings.MODELS, '11physics2nd.pkl')
+    # if request.method == 'POST':
+    student_id = request.GET["s_id"]
+    assignment = request.GET["assignment"]
+    attendance = request.GET["attendance"]
+    first = request.GET["first"]
+    gender = request.GET["gender"]
+
+    student_id = int(student_id)
+    assignment = int(assignment)
+    attendance = int(attendance)
+    first = float(first)
+    gender = int(gender)
+
+    fields = [student_id, assignment, attendance, first, gender]
+
+    with open(path, 'rb') as file:
+        model = pickle.load(file)
+        print(">> ML Model ====> " + str(model))
+
+    prediction_value = model.predict([fields])[0]
+    final = "Your predicted final marks is: " + str(prediction_value)
+
+    return render(request, "studentinterface/second_term_prediction.html",
+                  {"final": final, "id": id, "assignment": assignment,
+                   "attendance": attendance, "first": first,
+                   "gender": gender})
 
 
 def do_logout2(request):

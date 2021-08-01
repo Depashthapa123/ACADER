@@ -41,15 +41,15 @@
 
         {% if show_full_form %}
             <div class="inputfield">
-              <label>Current Grade</label>
+              <label>Grade</label>
               <div class="custom_select">
                 <select name="grade">
                     {% if student_grade == 1 %}
-                        <option value="">Science</option>
+                        <option value="">11</option>
                     {% endif %}
 
                      {% if student_grade == 2 %}
-                        <option value="">Management</option>
+                        <option value="">12</option>
                     {% endif %}
 
 
@@ -65,11 +65,11 @@
               <div class="custom_select">
                 <select name="faculty">
                     {% if student_faculty == 1 %}
-                        <option value="">11</option>
+                        <option value="">Science</option>
                     {% endif %}
 
                      {% if student_faculty == 2 %}
-                        <option value="">12</option>
+                        <option value="">Management</option>
                     {% endif %}
 <!--                  <option value="{{student_faculty}}">{{student_faculty}}</option>-->
                 </select>
