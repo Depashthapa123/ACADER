@@ -43,7 +43,7 @@
     <form action="" method="POST" id="message_form" enctype="multipart/form-data">
         {% csrf_token %}
               <div class="comment">
-                  <textarea class="textinput"  name="message" form="message_form" placeholder="Comment" ></textarea>
+                  <textarea class="textinput"  name="message" form="message_form" placeholder="Message" ></textarea>
                   <div style="flex-direction: row ">
                     <input type="file" name="file" class="file-upload" id="inputtypefile" multiple>
                     <div id="showfileslist"></div>
@@ -90,7 +90,7 @@
 <script src="{% static 'js/picture_modal.js' %}"></script>
 <script src="{% static 'js/file_upload.js' %}"></script>
 <script src="{% static 'js/jsindex2.js' %}"></script>
-<!--<script src="{% static 'js/delete.js' %}"></script>-->
+<script src="{% static 'js/delete.js' %}"></script>
 </form>
 </body>
 </html>

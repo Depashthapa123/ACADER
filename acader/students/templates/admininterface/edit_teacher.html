@@ -36,10 +36,8 @@
         <label>Faculty</label>
     <div class="custom_select">
       <select name="faculty" required>
-         <option {% if teacher_slug.faculty == "1" %} selected {% endif %}>Science</option>
+        <option {% if teacher_slug.faculty == "1" %} selected {% endif %}>Science</option>
         <option {% if teacher_slug.faculty == "2" %} selected {% endif %}>Management</option>
-
-            <option {% if teacher_slug.faculty == "Management" %} selected {% endif %}>Management</option>
       </select>
     </div>
     </div>

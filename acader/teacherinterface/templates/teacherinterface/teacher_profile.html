@@ -51,15 +51,15 @@
       </div>
         <h3 class="profile_name">{{user2.first_name}} {{user2.last_name}}</h3>
     </div>
-
+    <button class="marks" type="submit" style="display: table !important; margin: auto !important; ">Update PP </button>
     <div class="aboutyou">
-      <span class="layer"><h3>About yourself</h3></span>
+      <span class="layer"><h3>Short Bio</h3></span>
       {% for d in description %}
       <span class="details">
         <span class="aboutu">
           <!-- <textarea cols="100" rows="10" style="color: #6b6969;" readonly> -->
             <div class="announcement darker">
-              <h4>" {{d.description}}"</h4>
+              <h4> {{d.description}}</h4>
             </div>
         <!-- </textarea> --><br>
           <div class="marks" id="myBtn">Edit</div>
@@ -135,7 +135,7 @@
     </div>
 
 
-          <button class="buttongreen" type="submit">Update </button>  
+            
     </form>
 
   </div>
