@@ -103,17 +103,20 @@
 
             <div class="inputfield">
               <label>Marks obtained</label>
-              <input type="number" class="input" name="obtained_marks">
+              <input type="number" class="input" name="obtained_marks"oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+              maxlength="3" min="0" max="100" required>
             </div>
 
             <div class="inputfield">
               <label>Assignment Marks</label>
-              <input type="number" class="input" name="assignment_marks">
+              <input type="number" class="input" name="assignment_marks" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+              maxlength="2" min="0" max="10" required >
             </div>
 
             <div class="inputfield">
               <label>Attendance Marks</label>
-              <input type="number" class="input" name="attendance_marks">
+              <input type="number" class="input" name="attendance_marks" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+              maxlength="2" min="0" max="10" required>
             </div>
 
             <div class="inputfield">

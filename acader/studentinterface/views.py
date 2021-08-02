@@ -83,6 +83,10 @@ def student_dashboard(request):
     student_faculty = Student.objects.filter(student_id=student_id).values('faculty')
     student_grade = Student.objects.filter(student_id=student_id).values('grade')
 
+    courses = Course.objects.filter(faculty=student_faculty[0]['faculty'], grade=student_grade[0]['grade']).values(
+        'course_name')
+    print(courses)
+    
     dashboard_messages = postmessage \
         .objects.filter(faculty=student_faculty[0]['faculty'], grade=student_grade[0]['grade']).values('teacher_id',
                                                                                                        'message',
@@ -118,7 +122,8 @@ def student_dashboard(request):
 
     context = {
         'dashboard_context': dashboard_context,
-        'dashboard_messages': dashboard_messages
+        'dashboard_messages': dashboard_messages,
+        'courses': courses
     }
 
     return render(request, 'studentinterface/student_dashboard.html', context)
