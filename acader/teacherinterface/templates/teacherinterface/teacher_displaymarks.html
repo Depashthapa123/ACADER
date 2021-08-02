@@ -53,6 +53,9 @@
               <th><a href="#" onclick="sortTable(0)" style="text-decoration:none;color:white">Course</a></th>
               <th><a href="#" onclick="sortTable(1)" style="text-decoration:none;color:white">Term</a></th>
               <th><a href="#" onclick="sortTable(2)" style="text-decoration:none;color:white">Marks</a></th>
+              <th><a href="#" onclick="sortTable(3)" style="text-decoration:none;color:white">Assignment Marks</a> </th>
+              <th><a href="#" onclick="sortTable(4)" style="text-decoration:none;color:white">Attendance Marks</a> </th>
+
             </tr>
           </thead>
               {% for m in marks1 %}
@@ -60,6 +63,9 @@
                       <td>{{ m.course }}</td>
                     <td>{{ m.terms_id }}</td>
                     <td>{{ m.obtained_marks }}</td>
+                    <td>{{ m.assignment_marks }}</td>
+                    <td>{{ m.attendance_marks }}</td>
+
                   </tr>
               {% endfor %}
         </table>

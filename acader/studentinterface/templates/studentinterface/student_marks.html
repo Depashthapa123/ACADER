@@ -57,6 +57,9 @@
             <th><a href="#" onclick="sortTable(0)" style="text-decoration:none;color:white">Subject</a></th>
             <th><a href="#" onclick="sortTable(1)" style="text-decoration:none;color:white">Term</a></th>
             <th><a href="#" onclick="sortTable(2)" style="text-decoration:none;color:white">Marks</a> </th>
+            <th><a href="#" onclick="sortTable(3)" style="text-decoration:none;color:white">Assignment Marks</a> </th>
+            <th><a href="#" onclick="sortTable(4)" style="text-decoration:none;color:white">Attendance Marks</a> </th>
+
           </tr>
         </thead>
 <!--        {% if request.user.is_authenticated %}-->
@@ -65,6 +68,9 @@
                     <td>{{ m.course }}</td>
                     <td>{{ m.terms_id }}</td>
                     <td>{{ m.obtained_marks }}</td>
+                    <td>{{ m.assignment_marks }}</td>
+                    <td>{{ m.attendance_marks }}</td>
+
                 </tr>
             {% endfor %}
 <!--      {% endif %}-->
@@ -72,7 +78,7 @@
     </div>
     <div class="w3-container-bgcolor" style="margin-top:20px;" id="showcase">
       <h1 class="w3-xxxlarge w3-text-blue"><b>Prediction</b></h1>
-          <a href="{% url 'initialize_prediction' %}" class="marks" style="text-decoration: none;color: white;">Predict your marks</a>
+          <a class="marks" style="text-decoration: none;color: white;" onclick="NewTab()">Predict your marks</a>
 
     </div>
     <!-- <hr style="width:50px;border:5px solid blue" class="w3-round"> -->
@@ -82,5 +88,11 @@
 <script src="{% static 'js/jsindex2.js' %}"></script>
 <script src="{% static 'js/sort.js' %}"></script>
 <script src="{% static 'js/search.js' %}"></script>
+<script>
+  function NewTab() {
+      window.open(
+        "{% url 'initialize_prediction' %}", "_blank");
+  }
+</script>
 </body>
 </html>

@@ -9,8 +9,8 @@
 <link rel="stylesheet" href="{% static 'css/w3.css' %}">
 <link rel="stylesheet" href="{% static 'css/font.css' %}">
 <link rel="stylesheet" href="{% static 'css/picture_modal.css' %}">
-
 </head>
+
 <body>
 <!-- Sidebar/menu -->
 
@@ -45,15 +45,6 @@
   <div class="w3-container-bgcolor" style="margin-top:40px;" id="showcase">
     <div class="LineChart">
       <article><h3 class="w3-xxxlarge w3-text-blue"><b>Marksheet Of Terminal <br> Examination</b></h3>
-                <!-- <hr style="width:300px;border:5px solid blue" class="w3-round"> -->
-                    <!-- <div class="w3-display-topright">
-                      <h3>Teacher's email</h3>
-                      <p><a href="#" style="color: black;">template@gmail.com</a></p>
-                      <p><a href="#" style="color: black;">template@gmail.com</a></p>
-                      <p><a href="#" style="color: black;">template@gmail.com</a></p>
-                      <p><a href="#" style="color: black;">template@gmail.com</a></p>
-                      <p><a href="#" style="color: black;">template@gmail.com</a></p>
-                    </div> -->
                 <canvas id="lineChart" height="400px" width="400px"></canvas>
       </article>
     </div>
@@ -85,9 +76,65 @@
     </div>
 <!-- End page content -->
 </div>
-
 <script src="{% static 'js/Chart.min.js' %}"></script>
-<script src="{% static 'js/linechart.js' %}"></script>
+<script>
+                            
+                    const CHART = document.getElementById("lineChart");
+                      console.log(CHART);
+                      let lineChart = new Chart(CHART,{
+
+                          type: 'line',
+                          data: {
+                              labels: ["","Maths","Science","Nepali","English","Computer"],
+                              datasets:[
+                                          {
+                                          label:"First Term Dataset",
+                                          fill: false,
+                                          lineTension: 0.1,
+                                          backgroundColor: "rgba(75,192,192,0.4)",
+                                          borderColor: "rgba(75,192,192,1)",
+                                          borderCapStyle: 'butt',
+                                          borderDash: [],
+                                          borderDashOffset: 0.0,
+                                          borderJoinStyle: 'miter',
+                                          pointBorderColor: "rgba(75,192,192,1)",
+                                          pointBackgroundColor: "#fff",
+                                          pointBorderWidth: 1,
+                                          pointHoverRadius: 5,
+                                          pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                                          pointHoverBorderColor: "rgba(220,220,220,1)",
+                                          pointHoverBorderWidth: 2,
+                                          pointRadius: 1,
+                                          pointHitRadius: 10,
+                                          data: [, 99, 80, 81, 56, 55, 40],
+                                          },
+                                              {
+                                              label:"Second Term Dataset",
+                                              fill: false,
+                                              lineTension: 0.1,
+                                              backgroundColor: "rgba(75,72,192,0.4)",
+                                              borderColor: "rgba(75,72,192,1)",
+                                              borderCapStyle: 'butt',
+                                              borderDash: [],
+                                              borderDashOffset: 0.0,
+                                              borderJoinStyle: 'miter',
+                                              pointBorderColor: "rgba(75,72,192,1)",
+                                              pointBackgroundColor: "#fff",
+                                              pointBorderWidth: 1,
+                                              pointHoverRadius: 5,
+                                              pointHoverBackgroundColor: "rgba(75,72,192,1)",
+                                              pointHoverBorderColor: "rgba(220,220,220,1)",
+                                              pointHoverBorderWidth: 2,
+                                              pointRadius: 1,
+                                              pointHitRadius: 10,
+                                              data: [, 12, 40, 51, 26, 65, 22],
+                                              }
+                                      ]
+                              }
+                      });
+        </script>
+
+<!-- <script src="{% static 'js/linechart.js' %}"></script> -->
 <script src="{% static 'js/jsindex2.js' %}"></script>
 <script src="{% static 'js/picture_modal.js' %}"></script>
 

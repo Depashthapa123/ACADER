@@ -61,15 +61,18 @@
                     </div>
                     <div class="inputfield">
                         <label>Assignment</label>
-                        <input type="number" class="input" name="assignment" required>
+                        <input type="number" class="input" name="assignment" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                        maxlength="2" min="0" max="10" required>
                     </div>
                     <div class="inputfield">
                         <label>Attendance</label>
-                        <input type="number" class="input" name="attendance" required>
+                        <input type="number" class="input" name="attendance" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                        maxlength="2" min="0" max="10" required>
                     </div>
                     <div class="inputfield">
                         <label>First term</label>
-                        <input type="number" class="input" name="first" required>
+                        <input type="number" class="input" name="first" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                        maxlength="3" min="0" max="100" required>
                     </div>
                     <div class="inputfield">
                         <label>Gender</label>
