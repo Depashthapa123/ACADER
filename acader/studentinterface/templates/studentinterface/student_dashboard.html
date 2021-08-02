@@ -42,13 +42,13 @@
 <div class="w3-main" style=" margin-left:340px;margin-right:40px;">
 
   <!-- Header(main body) -->
-  <div class="w3-container-bgcolor" style="margin-top:40px;" id="showcase">
+  <!-- <div class="w3-container-bgcolor" style="margin-top:40px;" id="showcase">
     <div class="LineChart">
       <article><h3 class="w3-xxxlarge w3-text-blue"><b>Marksheet Of Terminal <br> Examination</b></h3>
                 <canvas id="lineChart" height="400px" width="400px"></canvas>
       </article>
     </div>
-  </div>
+  </div> -->
     <div class="w3-container-bgcolor" style="margin-top:20px" id="showcase">
       <h1>Notice:</h1>
       {% for items in dashboard_context %}
@@ -76,7 +76,8 @@
     </div>
 <!-- End page content -->
 </div>
-<script src="{% static 'js/Chart.min.js' %}"></script>
+<!-- For linechart -->
+<!-- <script src="{% static 'js/Chart.min.js' %}"></script>
 <script>
 
                     const CHART = document.getElementById("lineChart");
@@ -85,7 +86,7 @@
 
                           type: 'line',
                           data: {
-                              labels: ["","Maths","Science","Nepali","English","Computer"],
+                            labels: [{% for c in courses %} '{{c.course_name}}', {% endfor %}],
                               datasets:[
                                           {
                                           label:"First Term Dataset",
@@ -132,7 +133,7 @@
                                       ]
                               }
                       });
-        </script>
+        </script> -->
 
 <!-- <script src="{% static 'js/linechart.js' %}"></script> -->
 <script src="{% static 'js/jsindex2.js' %}"></script>

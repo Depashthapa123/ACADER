@@ -105,13 +105,6 @@ def teacherregister(request):
         grade = request.POST['grade']
         section = request.POST['section']
 
-        if len(first_name)>10 :
-            messages.warning(request,"First name must contain 10 alphabets")
-            return redirect("teacherregister")
-
-        if len(last_name)>10 :
-            messages.warning(request,"Last name must contain 10 alphabets")
-            return redirect("teacherregister")
 
         if not first_name.isalpha():
             messages.warning(request,"Enter your first name correctly! Must only contain albhabets")
@@ -190,14 +183,6 @@ def studentregister(request):
         faculty = request.POST['faculty']
         grade = request.POST['grade']
         section = request.POST['section']
-
-        if len(first_name)>10:
-            messages.warning(request,"First name contain 10 alphabets")
-            return redirect("studentregister")
-
-        if len(last_name)>10:
-            messages.warning(request,"Last name must contain 10 alphabets")
-            return redirect("studentregister")
 
         if not first_name.isalpha():
             messages.warning(request,"Enter your first name correctly! Must only contain albhabets")

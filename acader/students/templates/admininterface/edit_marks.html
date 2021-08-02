@@ -30,15 +30,18 @@
 
     <div class="inputfield">
         <label>Update Marks</label>
-        <input type="number" class="input" name="obtained_marks" value="{{marks_slug.obtained_marks}}">
+        <input type="number" class="input" name="obtained_marks" value="{{marks_slug.obtained_marks}}" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+        maxlength="3" min="0" max="100">
     </div>
     <div class="inputfield">
         <label>Update Assignment Marks</label>
-        <input type="number" class="input" name="assignment_marks" value="{{marks_slug.assignment_marks}}">
+        <input type="number" class="input" name="assignment_marks" value="{{marks_slug.assignment_marks}}" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+        maxlength="2" min="0" max="10">
     </div>
     <div class="inputfield">
         <label>Update Attendance Marks</label>
-        <input type="number" class="input" name="attendance_marks" value="{{marks_slug.attendance_marks}}">
+        <input type="number" class="input" name="attendance_marks" value="{{marks_slug.attendance_marks}}" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+        maxlength="2" min="0" max="10">
     </div>
 
 
