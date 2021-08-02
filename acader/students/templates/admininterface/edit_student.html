@@ -29,8 +29,8 @@
         <label>Faculty</label>
     <div class="custom_select">
       <select name="faculty" required>
-         <option {% if student_slug.faculty == "Science" %} selected {% endif %}>Science</option>
-            <option {% if student_slug.faculty == "Management" %} selected {% endif %}>Management</option>
+         <option {% if student_slug.faculty == "1" %} selected {% endif %}>Science</option>
+            <option {% if student_slug.faculty == "2" %} selected {% endif %}>Management</option>
       </select>
     </div>
     </div>
@@ -39,8 +39,8 @@
       <label>Grade</label>
     <div class="custom_select">
     <select name="grade" required>
-            <option {% if student_slug.grade == "11" %} selected {% endif %}>11</option>
-            <option {% if student_slug.grade == "12" %} selected {% endif %}>12</option>
+            <option {% if student_slug.grade == "1" %} selected {% endif %}>11</option>
+            <option {% if student_slug.grade == "2" %} selected {% endif %}>12</option>
         </select>
         </div>
     </div>

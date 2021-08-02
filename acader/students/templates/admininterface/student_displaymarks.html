@@ -56,7 +56,10 @@
             <th><a href="#" onclick="sortTable(0)" style="text-decoration:none;color:white">Course</a></th>
             <th><a href="#" onclick="sortTable(1)" style="text-decoration:none;color:white">Term</a></th>
             <th><a href="#" onclick="sortTable(2)" style="text-decoration:none;color:white">Marks</a></th>
+            <th><a href="#" onclick="sortTable(2)" style="text-decoration:none;color:white">Assignment Marks</a></th>
+            <th><a href="#" onclick="sortTable(2)" style="text-decoration:none;color:white">Attendance Marks</a></th>
             <th></th>
+
           </tr>
         </thead>
             {% for m in marks1 %}
@@ -64,6 +67,8 @@
                     <td>{{ m.course }}</td>
                     <td>{{ m.terms_id }}</td>
                     <td>{{ m.obtained_marks }}</td>
+                    <td>{{ m.assignment_marks }}</td>
+                    <td>{{ m.attendance_marks }}</td>
                     <td><button class="marks"><a href="{% url 'edit_marks' student_marks_slug=m.id %}" style="text-decoration: none;color: white;">Edit Marks</a></button></td>
                 </tr>
             {% endfor %}

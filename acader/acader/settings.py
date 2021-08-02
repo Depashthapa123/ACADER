@@ -134,6 +134,8 @@ STATICFILES_DIRS = [
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
+MODELS = os.path.join(BASE_DIR, 'studentinterface/ML models')
+
 AUTH_USER_MODEL = 'students.CustomUser'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

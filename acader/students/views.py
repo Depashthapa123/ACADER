@@ -88,6 +88,8 @@ def loginpage(request):
 
 @unauthenticated_admin
 def teacherregister(request):
+    faculty_model = Faculty.objects.all()
+    grade_model = Grade.objects.all()
 
     if request.method == 'POST':
         name = request.POST['username']
@@ -105,7 +107,7 @@ def teacherregister(request):
 
         if len(first_name)>10 :
             messages.warning(request,"First name must contain 10 alphabets")
-            return redirect("teacherregister") 
+            return redirect("teacherregister")
 
         if len(last_name)>10 :
             messages.warning(request,"Last name must contain 10 alphabets")
@@ -117,7 +119,7 @@ def teacherregister(request):
 
         if not last_name.isalpha():
             messages.warning(request,"Enter your last name correctly! Must only contain albhabets")
-            return redirect("teacherregister") 
+            return redirect("teacherregister")
 
         if CustomUser.objects.filter(username=username).exists():
             messages.warning(request,"This username already exists")
@@ -129,17 +131,17 @@ def teacherregister(request):
 
         if not username.isalnum():
             messages.warning(request,"Invalid username registered")
-            return redirect("teacherregister") 
+            return redirect("teacherregister")
 
         if CustomUser.objects.filter(email=email).exists():
             messages.warning(request,"This email already exists")
-            return redirect("teacherregister")   
+            return redirect("teacherregister")
 
         if not contact.isnumeric():
             messages.warning(request,"The contact number should only contain numeric value")
-            return redirect("teacherregister")                      
+            return redirect("teacherregister")
 
-        if len(address)>15:
+        if len(address) > 15:
             messages.warning(request,"Address should contain maximum of 15 characters")
             return redirect("teacherregister")
 
@@ -153,7 +155,11 @@ def teacherregister(request):
         user.teacher.name = name
         user.teacher.gender = gender
         user.teacher.contact = contact
+
+        faculty = Faculty.objects.get(id=faculty)
         user.teacher.faculty = faculty
+
+        grade = Grade.objects.get(id=grade)
         user.teacher.grade = grade
         user.teacher.section = section
 
@@ -161,11 +167,13 @@ def teacherregister(request):
         messages.success(request, 'A teacher is added')
         # return redirect('teacher-func')
 
-    return render(request, 'students/teacherregister.html')
+    return render(request, 'students/teacherregister.html', {'faculty_model': faculty_model, 'grade_model': grade_model})
 
 
 @unauthenticated_admin
 def studentregister(request):
+    faculty_model = Faculty.objects.all()
+    grade_model = Grade.objects.all()
 
     if request.method == 'POST':
         name = request.POST['username']
@@ -197,7 +205,7 @@ def studentregister(request):
 
         if not last_name.isalpha():
             messages.warning(request,"Enter your last name correctly! Must only contain albhabets")
-            return redirect("studentregister") 
+            return redirect("studentregister")
 
         if CustomUser.objects.filter(username=username).exists():
             messages.warning(request,"This username already exists")
@@ -209,11 +217,11 @@ def studentregister(request):
 
         if not username.isalnum():
             messages.warning(request,"Invalid username registered")
-            return redirect("studentregister") 
+            return redirect("studentregister")
 
         if CustomUser.objects.filter(email=email).exists():
             messages.warning(request,"This email already exists")
-            return redirect("studentregister")   
+            return redirect("studentregister")
 
         if len(parent_name)>15:
             messages.warning(request,"The parent name is too long")
@@ -221,12 +229,11 @@ def studentregister(request):
 
         if not contact.isnumeric():
             messages.warning(request,"The contact number should only contain numeric value")
-            return redirect("studentregister")                      
+            return redirect("studentregister")
 
         if len(address)>15:
             messages.warning(request,"Address should contain maximum of 15 characters")
             return redirect("studentregister")
-
 
         user = CustomUser.objects.create_user(first_name=first_name,
                                               last_name=last_name,
@@ -240,8 +247,13 @@ def studentregister(request):
         user.student.parent_name = parent_name
         user.student.gender = gender
         user.student.contact = contact
+
+        faculty = Faculty.objects.get(id=faculty)
         user.student.faculty = faculty
+
+        grade = Grade.objects.get(id=grade)
         user.student.grade = grade
+
         user.student.section = section
 
         hello = user.save()
@@ -249,15 +261,19 @@ def studentregister(request):
         messages.success(request, 'A student is added')
         return redirect('studentregister')
 
-    return render(request, 'students/studentregister.html')
+    return render(request, 'students/studentregister.html', {'faculty_model': faculty_model, 'grade_model': grade_model})
 
 
 @unauthenticated_admin
 def course(request):
+    grade_model = Grade.objects.all()
+    faculty_model = Faculty.objects.all()
     if request.method == 'POST':
         course_name = request.POST['course_name']
         faculty = request.POST['faculty']
+        faculty = Faculty.objects.get(id=faculty)
         grade = request.POST['grade']
+        grade = Grade.objects.get(id=grade)
         pass_marks = request.POST['pass_marks']
         total_marks = request.POST['total_marks']
 
@@ -272,8 +288,7 @@ def course(request):
         messages.success(request, "successful")
         # return redirect('student-func')
 
-
-    return render(request, 'students/course.html')
+    return render(request, 'students/course.html', {'faculty_model': faculty_model, 'grade_model': grade_model})
 
 
 @unauthenticated_admin
@@ -316,6 +331,8 @@ def facultys(request):
 def marks(request):
     students_model = list(CustomUser.objects.filter(user_type=3))
     terms = Terms.objects.all()
+    faculty_model = Faculty.objects.all()
+    grade_model = Grade.objects.all()
 
     show_full_form = False
 
@@ -327,7 +344,10 @@ def marks(request):
         selected_student = filter(lambda student: student.id == int(student_id), list(students_model))
 
         student_grade = list(student_info)[0]['grade']
+        print(student_grade)
         student_faculty = list(student_info)[0]['faculty']
+        print(student_faculty)
+
         courses = Course.objects.filter(faculty=student_faculty, grade=student_grade)
         # print(courses)
 
@@ -338,6 +358,8 @@ def marks(request):
             'student_grade': student_grade,
             'student_faculty': student_faculty,
             'terms': terms,
+            'faculty_model': faculty_model,
+            'grade_model': grade_model,
             'show_full_form': show_full_form,
             'course_subject': courses,
         }
@@ -345,30 +367,33 @@ def marks(request):
 
     elif 'Register' in request.POST:
         student_id = request.POST['student-id']
-        grade = request.POST['grade']
-        faculty = request.POST['faculty']
+        # grade = request.POST['grade']
+        # # grade = Grade.objects.get(id=grade)
+        # faculty = request.POST['faculty']
+        # # faculty = Faculty.objects.get(id=faculty)
         term_id = request.POST['term']
         course = request.POST['course']
         obtained_marks = request.POST['obtained_marks']
-
+        assignment_marks = request.POST['assignment_marks']
+        attendance_marks = request.POST['attendance_marks']
         marks = Marks(
             obtained_marks=obtained_marks,
             terms_id=term_id,
             student_id=student_id,
             course=course,
-            grade=grade,
-            faculty=faculty,
+            # grade=grade,
+            # faculty=faculty,
+            assignment_marks=assignment_marks,
+            attendance_marks=attendance_marks,
         )
         marks.save()
         messages.success(request, "A student's marks is successfully added ")
-    
+
         # return redirect('studentregister')
 
-
-        # print('Registering')
-
     context = {'students_model': students_model, 'show_full_form': show_full_form}
-    return render(request, 'students/marks.html',context)
+    return render(request, 'students/marks.html', context)
+
 
 @login_required()
 def home(request):
@@ -475,8 +500,9 @@ def search_teacher(request):
     else:
         return render(request, 'admininterface/search_teacher.html')
 
+
 @unauthenticated_admin
-def edit_teacher(request,teacher_id_slug):
+def edit_teacher(request, teacher_id_slug):
     teacher_slug = Teacher.objects.get(teacher=teacher_id_slug)
 
     if request.method == 'POST':
@@ -493,8 +519,8 @@ def edit_teacher(request,teacher_id_slug):
 
         t_model = Teacher.objects.get(teacher_id=teacher_id)
         t_model.address = address
-        t_model.faculty = faculty
-        t_model.grade = grade
+        t_model.faculty.id = faculty
+        t_model.grade.id = grade
         t_model.section = section
         t_model.name = username
         t_model.save()
@@ -512,6 +538,8 @@ def edit_teacher(request,teacher_id_slug):
 @unauthenticated_admin
 def edit_student(request, student_id_slug):
     student_slug = Student.objects.get(student=student_id_slug)
+    faculty_model = Faculty.objects.all()
+    grade_model = Grade.objects.all()
 
     if request.method == 'POST':
         student_id = request.POST['student_id']
@@ -533,8 +561,10 @@ def edit_student(request, student_id_slug):
         s_model.parent_name = parent_name
         s_model.address = address
         s_model.contact = contact
-        s_model.faculty = faculty
-        s_model.grade = grade
+        # faculty = Faculty.objects.get(id=faculty)
+        s_model.faculty.id = faculty
+        # grade = Grade.objects.get(id=grade)
+        s_model.grade.id = grade
         s_model.section = section
         s_model.name = username
         s_model.save()
@@ -542,7 +572,9 @@ def edit_student(request, student_id_slug):
         messages.success(request, f'Successfully edited')
         return redirect('/edit_student/' + student_id_slug)
 
-    return render(request, 'admininterface/edit_student.html', {'student_slug': student_slug})
+    return render(request, 'admininterface/edit_student.html', {'student_slug': student_slug,
+                                                                'faculty_model': faculty_model,
+                                                                'grade_model': grade_model})
 
 
 @unauthenticated_admin
@@ -550,7 +582,7 @@ def delete_teacher(request, teacher_del_slug):
     context = None
 
     if request.method == 'POST':
-        
+
         delete_teacher = CustomUser.objects.get(user_type=2, id=teacher_del_slug)
         print("DELETE===", delete_teacher)
         delete_teacher.delete()
@@ -566,7 +598,7 @@ def delete_student(request, student_del_slug):
 
     if request.method == 'POST':
         delete_student = CustomUser.objects.get(user_type=3, id=student_del_slug)
-        print("DELETE===", delete_student)
+        print("DELETE  >>===", delete_student)
         delete_student.delete()
         context = {'delete_student':delete_student}
         return redirect('student_list')
@@ -581,9 +613,13 @@ def edit_marks(request, student_marks_slug):
     if request.method == 'POST':
         marks_id = request.POST['marks_id']
         obtained_marks = request.POST['obtained_marks']
+        assignment_marks = request.POST['assignment_marks']
+        attendance_marks = request.POST['attendance_marks']
 
         studentuser_marks = Marks.objects.get(id=marks_id)
         studentuser_marks.obtained_marks = obtained_marks
+        studentuser_marks.assignment_marks = assignment_marks
+        studentuser_marks.attendance_marks = attendance_marks
         studentuser_marks.save()
 
         messages.success(request, f'Successfully edited')

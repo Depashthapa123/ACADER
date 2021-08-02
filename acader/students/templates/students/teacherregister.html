@@ -46,10 +46,10 @@
             </select>
          </div>
     </div>
-    <div class="inputfield">
-        <label>Parent Name</label>
-        <input type="text" class="input" name="parent_name" required>
-    </div>
+<!--    <div class="inputfield">-->
+<!--        <label>Parent Name</label>-->
+<!--        <input type="text" class="input" name="parent_name" required>-->
+<!--    </div>-->
     <div class="inputfield">
           <label>Contact Number</label>
           <input type="text" class="input" name="contact" required>
@@ -62,9 +62,12 @@
         <label>Faculty</label>
     <div class="custom_select">
           <select name="faculty" required>
-            <option value="">Select</option>
-            <option value="Science">Science</option>
-            <option value="Management">Management</option>
+               {% for f in faculty_model %}
+            <option value="{{f.id}}">{{f.faculty1}}</option>
+            {% endfor %}
+              <!--            <option value="">Select</option>-->
+<!--            <option value="Science">Science</option>-->
+<!--            <option value="Management">Management</option>-->
           </select>
     </div>
     </div>
@@ -72,9 +75,12 @@
       <label>Grade</label>
         <div class="custom_select">
         <select name="grade" required>
-          <option value="">Select</option>
-          <option value="11">11</option>
-          <option value="12">12</option>
+           {% for g in grade_model %}
+            <option value="{{g.id}}">{{g.grade1}}</option>
+            {% endfor %}
+<!--          <option value="">Select</option>-->
+<!--          <option value="11">11</option>-->
+<!--          <option value="12">12</option>-->
         </select>
         </div>
     </div>

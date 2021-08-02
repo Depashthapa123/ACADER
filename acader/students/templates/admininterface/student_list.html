@@ -56,6 +56,7 @@
   </div>
 
   <div class="w3-container-bgcolor" style="margin-top:20px" id="showcase">
+
     <table class="w3-table-all" id="myTable">
         <thead>
           <tr class="w3-blue">
@@ -74,12 +75,13 @@
 
           </tr>
         </thead>
-        {% for s in students1 %}
+                  {% for s in students1 %}
+
         <tr>
 
           <td>{{ s.username }}</td>
-          <td>{{ s.student.faculty }}</td>
-          <td>{{ s.student.grade }}</td>
+          <td>{{ s.student.faculty.faculty1 }}</td>
+          <td>{{ s.student.grade.grade1 }}</td>
           <td>{{ s.student.section }}</td>
           <td>{{ s.student.gender }}</td>
           <td>{{ s.student.address }}</td>
@@ -91,10 +93,12 @@
           <td class="forimg"><a href="{% url 'delete_student' student_del_slug=s.id %}" class="buttonred" style="text-decoration: none;color: white;"><img src="{% static 'image/delete.png' %}" alt=""></a></td>
 
         </tr>
-        {% endfor %}
-    </table>
+                      {% endfor %}
 
+    </table>
   </div>
+
+
 
 <!-- End page content -->
 <!--</div>-->

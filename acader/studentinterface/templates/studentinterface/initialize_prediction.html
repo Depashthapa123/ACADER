@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <title>Marks</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/w3.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font.css' %}">
+</head>
+<body>
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-blue w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;"
+     id="mySidebar"><br>
+    <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft"
+       style="width:100%;font-size:12px">Close Menu</a>
+    <div class="w3-container">
+        <h1 class="w3-padding-55"><a href="{% url 'student_dashboard' %}" style="text-decoration:none;color:white;"><b>Acader</b></a>
+        </h1>
+    </div>
+    <div class="w3-bar-block">
+        <a href="{% url 'student_profile' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white"><img
+                src="{% static 'image/profile.png' %}" alt="">Profile</a><br>
+        <a href="{% url 'student_dashboard' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white"><img
+                src="{% static 'image/dashboard.png' %}" alt="">Dashboard</a><br>
+        <a href="{% url 'student_marks' %}" onclick="w3_close()" class="active"><img
+                src="{% static 'image/marks.png' %}" alt="">Marks</a> <br>
+        <a href="{% url 'course_content' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white"><img
+                src="{% static 'image/course.png' %}" alt="">Course</a> <br>
+        <a href="{% url 'do_logout2' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white"><img
+                src="{% static 'image/logout.png' %}" alt="">Logout</a>
+    </div>
+</nav>
+
+<!-- Top menu on small screens -->
+<header class="w3-container w3-top w3-hide-large w3-blue w3-xlarge w3-padding">
+    <a href="javascript:void(0)" class="w3-button w3-blue w3-margin-right" onclick="w3_open()">☰</a>
+    <span><a href="{% url 'student_dashboard' %}" style="text-decoration:none;color:white;">Acader</a></span>
+</header>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu"
+     id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:340px;margin-right:40px">
+
+    <!-- Header(main body) -->
+    <div class="w3-container-bgcolor" style="margin-top:40px;" id="showcase">
+        <h1 class="w3-xxxlarge w3-text-blue"><b>Choose a subject</b></h1>
+        {% for s in students %}
+
+        {% if s.faculty.faculty1 == "Science" and s.grade.grade1 == 11 %}
+            <a href="{% url 'initialize_prediction_term' %}" class="marks"
+               style="text-decoration: none;color: white;">Physics</a>
+            <a href="{% url 'initialize_prediction_term' %}" class="marks"
+               style="text-decoration: none;color: white;">Chemistry</a>
+            <a href="{% url 'initialize_prediction_term' %}" class="marks"
+               style="text-decoration: none;color: white;">Biology</a>
+            <a href="{% url 'initialize_prediction_term' %}" class="marks"
+               style="text-decoration: none;color: white;">English</a>
+            <a href="{% url 'initialize_prediction_term' %}" class="marks" style="text-decoration: none;color: white;">Mathematics</a>
+            <a href="{% url 'initialize_prediction_term' %}" class="marks"
+               style="text-decoration: none;color: white;">Computer</a>
+
+        {% elif s.faculty.faculty1 == "Science" and s.grade.grade1 == 12 %}
+            <a href="{% url 'initialize_prediction_term' %}" class="marks"
+               style="text-decoration: none;color: white;">Physics</a>
+            <a href="{% url 'initialize_prediction_term' %}" class="marks"
+               style="text-decoration: none;color: white;">Chemistry</a>
+            <a href="{% url 'initialize_prediction_term' %}" class="marks"
+               style="text-decoration: none;color: white;">Biology</a>
+            <a href="{% url 'initialize_prediction_term' %}" class="marks"
+               style="text-decoration: none;color: white;">English</a>
+            <a href="{% url 'initialize_prediction_term' %}" class="marks" style="text-decoration: none;color: white;">Mathematics</a>
+            <a href="{% url 'initialize_prediction_term' %}" class="marks"
+               style="text-decoration: none;color: white;">Nepali</a>
+
+        {% elif s.faculty.faculty1 == "Management" and s.grade.grade1 == 11 %}
+            <a href="{% url 'initialize_prediction_term' %}" class="marks"
+               style="text-decoration: none;color: white;">Economics</a>
+            <a href="{% url 'initialize_prediction_term' %}" class="marks"
+               style="text-decoration: none;color: white;">English</a>
+            <a href="{% url 'initialize_prediction_term' %}" class="marks"
+               style="text-decoration: none;color: white;">Hotel Management</a>
+            <a href="{% url 'initialize_prediction_term' %}" class="marks"
+               style="text-decoration: none;color: white;">Nepali</a>
+            <a href="{% url 'initialize_prediction_term' %}" class="marks" style="text-decoration: none;color: white;">Principle of Accounting</a>
+
+
+        {% else %}
+            <a href="{% url 'initialize_prediction_term' %}" class="marks"
+               style="text-decoration: none;color: white;">Business Mathematics</a>
+            <a href="{% url 'initialize_prediction_term' %}" class="marks"
+               style="text-decoration: none;color: white;">Economics</a>
+            <a href="{% url 'initialize_prediction_term' %}" class="marks"
+               style="text-decoration: none;color: white;">English</a>
+            <a href="{% url 'initialize_prediction_term' %}" class="marks"
+               style="text-decoration: none;color: white;">HOtel Management</a>
+            <a href="{% url 'initialize_prediction_term' %}" class="marks" style="text-decoration: none;color: white;">Marketing</a>
+              <a href="{% url 'initialize_prediction_term' %}" class="marks"
+               style="text-decoration: none;color: white;">Principle of Accounting</a>
+        {% endif %}
+        {% endfor %}
+
+        <!-- End page content -->
+    </div>
+    <script src="{% static 'js/jsindex2.js' %}"></script>
+    <script src="{% static 'js/sort.js' %}"></script>
+    <script src="{% static 'js/search.js' %}"></script>
+</body>
+</html>
